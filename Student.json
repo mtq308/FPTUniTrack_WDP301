@@ -1,0 +1,16 @@
+
+{
+    "RollNumber":"",
+    "FirstName":"",
+    "MidName":"",
+    "LastName":"",
+    "DoB":"",
+    "Phone":"",
+    "Address":"",
+    "Gender":"",
+    "IsActive":"",
+    "ClassID":"",
+    "CurrentSemester":"",
+    "Spec":"",
+    "Email":""
+}
