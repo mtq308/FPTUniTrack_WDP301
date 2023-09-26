@@ -1,0 +1,10 @@
+{
+    "ID": "1",
+    "PeriodID": {"Reference.ClassID": "PeriodID"},
+    "DayID": "",
+    "ClassID": {"Reference.Course": "CourseID"},
+    "SemesterID": {"Reference.Semester": "SemesterID"},
+    "RoomCode": "",
+    "WeekNumber": "",
+    "LecturerUserName": {"Reference.LecturerUserName": "SemesterID"}
+}

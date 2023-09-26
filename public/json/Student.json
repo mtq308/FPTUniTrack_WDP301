@@ -9,8 +9,5 @@
     "Address":"",
     "Gender":"",
     "IsActive":"",
-    "ClassID":"",
-    "CurrentSemester":"",
-    "Spec":"",
-    "Email":""
+    "Password":""
 }

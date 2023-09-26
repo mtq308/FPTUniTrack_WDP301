@@ -1,0 +1,11 @@
+{
+    "ClassID": "1",
+    "SubjectCode": "1",
+    "RoomID": "1",
+    "StartTime": "1",
+    "EndTime":"",
+    "Semester":"",
+    "StudentList":{
+        ...
+    }
+}

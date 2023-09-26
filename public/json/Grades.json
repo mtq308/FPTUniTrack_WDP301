@@ -1,0 +1,9 @@
+{
+    "GradeID": "1",
+    "StudentID": "1",
+    "AssessmentID": "1",
+    "Score":"",
+    "KEY ": {"Reference.Course": "CourseID"},
+    "KEY ": {"Reference.Assessments": "AssessmentID"}
+
+}
