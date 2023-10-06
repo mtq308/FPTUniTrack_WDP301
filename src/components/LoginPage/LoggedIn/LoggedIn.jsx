@@ -11,7 +11,7 @@ import Contacts from "../../../scenes/contacts";
 import Form from "../../../scenes/form";
 import Calendar from "../../../scenes/calendar";
 
-const LoggedIn = () => {
+const LoggedIn = ({ logout }) => {
   const [theme, colorMode] = useMode();
   return (
     <ColorModeContext.Provider value={colorMode}>
@@ -20,7 +20,7 @@ const LoggedIn = () => {
         <div className="app">
           <Sidebar />
           <main className="content">
-            <Topbar />
+            <Topbar logout={logout} />
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/team" element={<Team />} />

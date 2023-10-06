@@ -47,42 +47,41 @@ const LoginForm = ({ setIsLoggedIn }) => {
     );
 
   return (
-
-    <Card>
-      <h1 className="title">Sign In</h1>
-      <p className="subtitle">
-        Please log in using your mail and password!
-      </p>
-      <form onSubmit={handleSubmit}>
-        <div className="inputs_container">
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          {renderErrorMsg("username")}
-          {renderErrorMsg("noUsername")}
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {renderErrorMsg("password")}
-          {renderErrorMsg("noPassword")}
+    <div className="login-bg">
+      <Card>
+        <h1 className="title">Sign In</h1>
+        <p className="subtitle">Please log in using your mail and password!</p>
+        <form onSubmit={handleSubmit}>
+          <div className="inputs_container">
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            {renderErrorMsg("username")}
+            {renderErrorMsg("noUsername")}
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {renderErrorMsg("password")}
+            {renderErrorMsg("noPassword")}
+          </div>
+          <input type="submit" value="Log In" className="login_button" />
+        </form>
+        <div className="link_container">
+          <a href="/loginpage" className="small">
+            Forgot Password?
+          </a>
         </div>
-        <input type="submit" value="Log In" className="login_button" />
-      </form>
-      <div className="link_container">
-        <a href="/loginpage" className="small">
-          Forgot Password?
-        </a>
-      </div>
-      <div className="icons">
-        <GoogleIcon className="icon" />
-      </div>
-    </Card>
+        <div className="icons">
+          <GoogleIcon className="icon" />
+        </div>
+      </Card>
+    </div>
   );
 };
 

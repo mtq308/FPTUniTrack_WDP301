@@ -2,7 +2,7 @@ import { createContext, useState, useMemo } from 'react'
 import { createTheme } from '@mui/material/styles'
 
 //color design tokens
-export const tokens =  (mode) => ({
+export const tokens = (mode) => ({
     ...(mode === 'dark'
         ? {
             grey: {
@@ -60,7 +60,7 @@ export const tokens =  (mode) => ({
                 800: "#2a2d64",
                 900: "#151632",
             },
-        } 
+        }
         : {
             grey: {
                 100: "#141414",
@@ -142,6 +142,7 @@ export const themeSettings = (mode) => {
                     },
                     background: {
                         default: colors.primary[500],
+                        loginScreen: 'url(../src/assets/fpt.jpg)'
                     }
                 } : {
                     primary: {
@@ -157,9 +158,14 @@ export const themeSettings = (mode) => {
                     },
                     background: {
                         default: "#fcfcfc",
+                        loginScreen: 'url(../src/assets/fpt.jpg)'
                     }
                 }
-            )
+            ),
+            // background: {
+            //     default: '#fff',
+            //     loginScreen: 'url(../src/assets/fpt.jpg)'
+            // }
         },
         typography: {
             fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
@@ -194,11 +200,11 @@ export const themeSettings = (mode) => {
 
 //context for color mode
 export const ColorModeContext = createContext({
-    toggleColorMode: () => {}
+    toggleColorMode: () => { }
 });
 
 export const useMode = () => {
-    const [mode, setMode] = useState("dark");
+    const [mode, setMode] = useState("light");
 
     const colorMode = useMemo(
         () => ({

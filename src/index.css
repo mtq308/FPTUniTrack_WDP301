@@ -11,11 +11,13 @@ body,
 }
 
 .app {
+  background: var(--default);
   display: flex;
   position: relative;
 }
 
 .login {
+  background: var(--loginScreen);
   display: flex;
   justify-content: center;
   align-items: center;

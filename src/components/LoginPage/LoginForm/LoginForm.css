@@ -1,10 +1,10 @@
-body {
+/* .login-bg {
   background-image: url("`../../../../../../public/assets/fpt-background.jpg");
   background-size: cover;
   width: auto;
   height: auto;
   background-repeat: no-repeat;
-}
+} */
 .title {
     color: black;
     text-align: center;
