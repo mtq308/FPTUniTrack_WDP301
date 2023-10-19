@@ -1,6 +1,12 @@
-{
+[{
     "ID": "1",
-    "Name":"",
-    "StartDate":"",
-    "EnđDate":""
-}
+    "Name":"Fall2023",
+    "StartDate":"23/09/2023",
+    "EndDate":"24/10/2023"
+},
+{
+    "ID": "2",
+    "Name":"Spring2022",
+    "StartDate":"23/09/2024",
+    "EndDate":"24/10/2024"
+}]
