@@ -10,6 +10,8 @@ import Team from "../../../scenes/team";
 import Contacts from "../../../scenes/contacts";
 import Form from "../../../scenes/form";
 import Calendar from "../../../scenes/calendar";
+import Students from "../../../scenes/students";
+import Syllabus from "../../../scenes/syllabus";
 
 const LoggedIn = ({ logout }) => {
   const [theme, colorMode] = useMode();
@@ -25,6 +27,8 @@ const LoggedIn = ({ logout }) => {
               <Route path="/" element={<Dashboard />} />
               <Route path="/team" element={<Team />} />
               <Route path="/contacts" element={<Contacts />} />
+              <Route path="/students" element={<Students />} />
+              <Route path="/syllabus" element={<Syllabus />} />
               <Route path="/form" element={<Form />} />
               <Route path="/calendar" element={<Calendar />} />
             </Routes>
