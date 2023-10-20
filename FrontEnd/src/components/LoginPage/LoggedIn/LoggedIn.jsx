@@ -14,6 +14,8 @@ import Students from "../../../scenes/students";
 import Syllabus from "../../../scenes/syllabus";
 import Curriculum from "../../../scenes/curriculum";
 import Semester from "../../../scenes/semester";
+import Lecture from "../../../scenes/lecture";
+import Notification from "../../../scenes/notification";
 
 const LoggedIn = ({ logout }) => {
   const [theme, colorMode] = useMode();
@@ -35,6 +37,8 @@ const LoggedIn = ({ logout }) => {
               <Route path="/semester" element={<Semester />} />
               <Route path="/form" element={<Form />} />
               <Route path="/calendar" element={<Calendar />} />
+              <Route path="/lecture" element={<Lecture />} />
+              <Route path="/notification" element={<Notification />} />
             </Routes>
           </main>
         </div>
