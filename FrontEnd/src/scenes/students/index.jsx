@@ -95,6 +95,13 @@ const Students = () => {
           sx={{
             borderRadius: "5px",
             ml: { lg: "920px", xs: "304px" },
+            backgroundColor:
+              theme.palette.mode === "dark" ? "#3e4396" : "#a4a9fc",
+            color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
+            ":hover": {
+              bgcolor: "#a4a9fc", // theme.palette.primary.main
+              color: "white",
+            },
           }}
         >
           Add Student
@@ -108,7 +115,23 @@ const Students = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style} style={{ maxHeight: 700, overflow: "auto" }}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: { lg: 900, xs: 700 },
+            bgcolor:
+              theme.palette.mode === "dark" ? colors.blueAccent[900] : "white", // Adjust the color here
+            color:
+              theme.palette.mode === "dark" ? colors.primary[100] : "black", // Adjust the text color here
+            border: "2px solid #000",
+            boxShadow: 24,
+            p: 4,
+          }}
+          style={{ maxHeight: 700, overflow: "auto" }}
+        >
           <Typography
             id="modal-modal-title"
             variant="h4"
@@ -147,15 +170,30 @@ const Students = () => {
                     sx={{ ml: 3 }}
                   >
                     <Stack direction="row">
-                      {" "}
                       <FormControlLabel
                         value="female"
-                        control={<Radio />}
+                        control={
+                          <Radio
+                            sx={{
+                              "&, &.Mui-checked": {
+                                color: "silver",
+                              },
+                            }}
+                          />
+                        }
                         label="Female"
                       />
                       <FormControlLabel
                         value="male"
-                        control={<Radio />}
+                        control={
+                          <Radio
+                            sx={{
+                              "&, &.Mui-checked": {
+                                color: "silver",
+                              },
+                            }}
+                          />
+                        }
                         label="Male"
                       />
                     </Stack>
@@ -217,12 +255,17 @@ const Students = () => {
                   label="Chuyen nganh"
                   onChange={handleChange}
                 >
-                  <MenuItem value={10}>chim</MenuItem>
-                  <MenuItem value={20}>buom</MenuItem>
-                  <MenuItem value={30}>dai</MenuItem>
-                  <MenuItem value={30}>dai</MenuItem>
-                  <MenuItem value={30}>dai</MenuItem>
-                  <MenuItem value={30}>dai</MenuItem>
+                  <MenuItem value={10}>SE</MenuItem>
+                  <MenuItem value={20}>IA</MenuItem>
+                  <MenuItem value={30}>GD</MenuItem>
+                  <MenuItem value={30}>AI</MenuItem>
+                  <MenuItem value={30}>IB</MenuItem>
+                  <MenuItem value={30}>IS</MenuItem>
+                  <MenuItem value={30}>...</MenuItem>
+                  <MenuItem value={30}>...</MenuItem>
+                  <MenuItem value={30}>...</MenuItem>
+                  <MenuItem value={30}>...</MenuItem>
+                  <MenuItem value={30}>...</MenuItem>
                 </Select>
               </FormControl>
             </Stack>
@@ -231,10 +274,29 @@ const Students = () => {
           </Stack>
 
           <Stack direction="row" sx={{ mt: 5, ml: 80 }}>
-            <Button variant="outlined" onClick={() => {}} sx={{ mr: 3 }}>
+            <Button
+              variant="outlined"
+              onClick={() => {}}
+              sx={{
+                bgcolor:
+                  theme.palette.mode === "dark" ? colors.grey[400] : "white",
+                color:
+                  theme.palette.mode === "dark" ? colors.primary[100] : "black",
+                mr: 3,
+              }}
+            >
               Create
             </Button>
-            <Button variant="outlined" onClick={handleClose}>
+            <Button
+              variant="outlined"
+              onClick={handleClose}
+              sx={{
+                bgcolor:
+                  theme.palette.mode === "dark" ? colors.grey[400] : "white",
+                color:
+                  theme.palette.mode === "dark" ? colors.primary[100] : "black",
+              }}
+            >
               Cancel
             </Button>
           </Stack>
@@ -282,19 +344,6 @@ const Students = () => {
       {/* This is the end of the table view student list */}
     </Box>
   );
-};
-
-//This is styling for Popup "CREATE NEW STUDENT" modal -> do not remove
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: { lg: 900, xs: 700 },
-  bgcolor: "white",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
 };
 
 export default Students;
