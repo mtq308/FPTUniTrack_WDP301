@@ -14,6 +14,9 @@ import Students from "../../../scenes/students";
 import Syllabus from "../../../scenes/syllabus";
 import Curriculum from "../../../scenes/curriculum";
 import Semester from "../../../scenes/semester";
+// import SemesterDetail from "../../../scenes/SemesterDetail";
+import SemesterDetail from "../../../scenes/semester/SemesterDetail";
+import CurriculumDetail from "../../../scenes/curriculum/CurriculumDetail";
 
 const LoggedIn = ({ logout }) => {
   const [theme, colorMode] = useMode();
@@ -35,6 +38,8 @@ const LoggedIn = ({ logout }) => {
               <Route path="/semester" element={<Semester />} />
               <Route path="/form" element={<Form />} />
               <Route path="/calendar" element={<Calendar />} />
+              <Route path="/semester/:semesterId" element={<SemesterDetail />} />
+              <Route path="/curriculum/:curriculumId" element={<CurriculumDetail />} />
             </Routes>
           </main>
         </div>
