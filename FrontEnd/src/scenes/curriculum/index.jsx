@@ -1,7 +1,7 @@
 import { Box, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-
+import { Link } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 
 
@@ -38,6 +38,9 @@ const Curriculum = () => {
       headerName: "CODE",
       flex: 1,
       cellClassName: "name-column--cell",
+      renderCell: (params) => (
+        <Link to={`/curriculum/${params.row.Id}`}>{params.row.Code}</Link>
+      ),
     },
     {
       field: "Name",
@@ -45,6 +48,8 @@ const Curriculum = () => {
       type: "string",
       headerAlign: "left",
       align: "left",
+      cellClassName: "name-column--cell",
+
     },
     {
       field: "Description",
