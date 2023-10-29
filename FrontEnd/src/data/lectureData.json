@@ -2,9 +2,6 @@
     {
         "id": "SonNHHE17",
         "LectureUserName": "SonNHHE17",
-        "LastName": "Nguyễn",
-        "MiddleName": "Hồng",
-        "FirstName": "Sơn",
         "DateOfBirth": "2002-02-17T00:00:00",
         "Gender": true,
         "IDCard": "43432523532",
@@ -17,9 +14,6 @@
     {
         "id": "ANaBDK45",
         "LectureUserName": "ANaBDK45",
-        "LastName": "Trần",
-        "MiddleName": "Thị",
-        "FirstName": "Anh",
         "DateOfBirth": "1995-08-21T00:00:00",
         "Gender": false,
         "IDCard": "53245678432",
@@ -32,9 +26,6 @@
     {
         "id": "HoangLTH",
         "LectureUserName": "HoangLTH",
-        "LastName": "Lê",
-        "MiddleName": "Thanh",
-        "FirstName": "Hoàng",
         "DateOfBirth": "1990-04-05T00:00:00",
         "Gender": true,
         "IDCard": "68723987432",
@@ -47,9 +38,6 @@
     {
         "id": "MaiPTT",
         "LectureUserName": "MaiPTT",
-        "LastName": "Mai",
-        "MiddleName": "Phương",
-        "FirstName": "Thu",
         "DateOfBirth": "1998-12-15T00:00:00",
         "Gender": false,
         "IDCard": "43785612345",
@@ -62,9 +50,6 @@
     {
         "id": "LongVN",
         "LectureUserName": "LongVN",
-        "LastName": "Vũ",
-        "MiddleName": "Nhật",
-        "FirstName": "Long",
         "DateOfBirth": "2000-06-30T00:00:00",
         "Gender": true,
         "IDCard": "54327895621",
@@ -77,9 +62,6 @@
     {
         "id": "HienLQ",
         "LectureUserName": "HienLQ",
-        "LastName": "Lê",
-        "MiddleName": "Quỳnh",
-        "FirstName": "Hiền",
         "DateOfBirth": "1997-03-10T00:00:00",
         "Gender": false,
         "IDCard": "32875467890",
@@ -92,9 +74,6 @@
     {
         "id": "DatPV",
         "LectureUserName": "DatPV",
-        "LastName": "Phạm",
-        "MiddleName": "Văn",
-        "FirstName": "Đạt",
         "DateOfBirth": "2001-09-25T00:00:00",
         "Gender": true,
         "IDCard": "49876543218",
@@ -107,9 +86,6 @@
     {
         "id": "LinhTH",
         "LectureUserName": "LinhTH",
-        "LastName": "Nguyễn",
-        "MiddleName": "Thị",
-        "FirstName": "Linh",
         "DateOfBirth": "1994-11-20T00:00:00",
         "Gender": false,
         "IDCard": "35678901234",
@@ -122,9 +98,6 @@
     {
         "id": "TuanVH",
         "LectureUserName": "TuanVH",
-        "LastName": "Võ",
-        "MiddleName": "Hoàng",
-        "FirstName": "Tuấn",
         "DateOfBirth": "1996-07-12T00:00:00",
         "Gender": true,
         "IDCard": "87654321098",
@@ -137,9 +110,6 @@
     {
         "id": "MyPT",
         "LectureUserName": "MyPT",
-        "LastName": "Phan",
-        "MiddleName": "Thị",
-        "FirstName": "Mỹ",
         "DateOfBirth": "1999-02-28T00:00:00",
         "Gender": false,
         "IDCard": "76543210987",
