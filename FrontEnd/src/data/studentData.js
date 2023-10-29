@@ -8,7 +8,7 @@ export const studentsData = [
       Phone: "0374395529",
       Email: "HoangNMHE170001@fpt.edu.vn",
       StudentUsername: "HoangNMHE170001",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Nguyễn Minh Hoàng"
   },
@@ -21,7 +21,7 @@ export const studentsData = [
       Phone: "",
       Email: "SonNHHE170002@fpt.edu.vn",
       StudentUsername: "SonNHHE170002",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Hồng Sơn"
   },
@@ -34,7 +34,7 @@ export const studentsData = [
       Phone: "",
       Email: "LamPTHE170003@fpt.edu.vn",
       StudentUsername: "LamPTHE170003",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phạm Thanh Lâm"
   },
@@ -47,7 +47,7 @@ export const studentsData = [
       Phone: "0979278768",
       Email: "CuongLQHE170004@fpt.edu.vn",
       StudentUsername: "CuongLQHE170004",
-      ChuyenNganh: "IA",
+      Specialization: "IA",
       IsActive: true,
       Fullname: "Lê Quốc Cường"
   },
@@ -60,7 +60,7 @@ export const studentsData = [
       Phone: "0943255081",
       Email: "DuongLTHE170005@fpt.edu.vn",
       StudentUsername: "DuongLTHE170005",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Lê Thái Dương"
   },
@@ -85,7 +85,7 @@ export const studentsData = [
       Phone: "0912787993",
       Email: "AnhDTHE170007@fpt.edu.vn",
       StudentUsername: "AnhDTHE170007",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Dương Trung Anh"
   },
@@ -98,7 +98,7 @@ export const studentsData = [
       Phone: "0877216689",
       Email: "MinhLQHE170008@fpt.edu.vn",
       StudentUsername: "MinhLQHE170008",
-      ChuyenNganh: "AI",
+      Specialization: "AI",
       IsActive: true,
       Fullname: "Lương Quang Minh"
   },
@@ -111,7 +111,7 @@ export const studentsData = [
       Phone: "0988725981",
       Email: "QuangNPHE170009@fpt.edu.vn",
       StudentUsername: "QuangNPHE170009",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Nguyễn Phú Quang"
   },
@@ -124,7 +124,7 @@ export const studentsData = [
       Phone: "0869955131",
       Email: "DungPAHE170010@fpt.edu.vn",
       StudentUsername: "DungPAHE170010",
-      ChuyenNganh: "AI",
+      Specialization: "AI",
       IsActive: true,
       Fullname: "Phạm Anh Dũng"
   },
@@ -137,7 +137,7 @@ export const studentsData = [
       Phone: "0988271702",
       Email: "ThaiTHHE170011@fpt.edu.vn",
       StudentUsername: "ThaiTHHE170011",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trần Hữu Thái"
   },
@@ -150,7 +150,7 @@ export const studentsData = [
       Phone: "0945142062",
       Email: "DuongNCHE170012@fpt.edu.vn",
       StudentUsername: "DuongNCHE170012",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Cảnh Dương"
   },
@@ -163,7 +163,7 @@ export const studentsData = [
       Phone: "0915482216",
       Email: "HuongPLHE170013@fpt.edu.vn",
       StudentUsername: "HuongPLHE170013",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Phạm Lan Hương"
   },
@@ -176,7 +176,7 @@ export const studentsData = [
       Phone: "0364489762",
       Email: "ThangNHHE170014@fpt.edu.vn",
       StudentUsername: "ThangNHHE170014",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Huy Thắng"
   },
@@ -189,7 +189,7 @@ export const studentsData = [
       Phone: "0975165074",
       Email: "ThieuNVHE170015@fpt.edu.vn",
       StudentUsername: "ThieuNVHE170015",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Văn Thiệu"
   },
@@ -202,7 +202,7 @@ export const studentsData = [
       Phone: "0787178902",
       Email: "DuyNDHE170016@fpt.edu.vn",
       StudentUsername: "DuyNDHE170016",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Đức Duy"
   },
@@ -215,7 +215,7 @@ export const studentsData = [
       Phone: "0775339993",
       Email: "CongHTHE170017@fpt.edu.vn",
       StudentUsername: "CongHTHE170017",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Hà Thành Công"
   },
@@ -228,7 +228,7 @@ export const studentsData = [
       Phone: "0987327473",
       Email: "DungTQHE170018@fpt.edu.vn",
       StudentUsername: "DungTQHE170018",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trần Quang Dũng"
   },
@@ -241,7 +241,7 @@ export const studentsData = [
       Phone: "0944022803",
       Email: "HungTPHE170019@fpt.edu.vn",
       StudentUsername: "HungTPHE170019",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trần Phúc Hưng"
   },
@@ -254,7 +254,7 @@ export const studentsData = [
       Phone: "0862200556",
       Email: "NgaDTQHE170020@fpt.edu.vn",
       StudentUsername: "NgaDTQHE170020",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Đào Thị Quỳnh Nga"
   },
@@ -267,7 +267,7 @@ export const studentsData = [
       Phone: "0915580369",
       Email: "VietHDQHE170021@fpt.edu.vn",
       StudentUsername: "VietHDQHE170021",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Hoàng Đăng Quốc Việt"
   },
@@ -280,7 +280,7 @@ export const studentsData = [
       Phone: "0973669228",
       Email: "DatNTHE170022@fpt.edu.vn",
       StudentUsername: "DatNTHE170022",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Thành Đạt"
   },
@@ -293,7 +293,7 @@ export const studentsData = [
       Phone: "0971453596",
       Email: "MinhTTHE170023@fpt.edu.vn",
       StudentUsername: "MinhTTHE170023",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trần Tuấn Minh"
   },
@@ -306,7 +306,7 @@ export const studentsData = [
       Phone: "0817281668",
       Email: "AnhHTHE170024@fpt.edu.vn",
       StudentUsername: "AnhHTHE170024",
-      ChuyenNganh: "MC",
+      Specialization: "MC",
       IsActive: true,
       Fullname: "Hoàng Tuấn Anh"
   },
@@ -319,7 +319,7 @@ export const studentsData = [
       Phone: "0395480412",
       Email: "AnhTDHE170025@fpt.edu.vn",
       StudentUsername: "AnhTDHE170025",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Tô Đức Anh"
   },
@@ -332,7 +332,7 @@ export const studentsData = [
       Phone: "0343499104",
       Email: "NamNHHE170026@fpt.edu.vn",
       StudentUsername: "NamNHHE170026",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Hồng Nam"
   },
@@ -345,7 +345,7 @@ export const studentsData = [
       Phone: "0398988371",
       Email: "AnBGHE170027@fpt.edu.vn",
       StudentUsername: "AnBGHE170027",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Bùi Gia An"
   },
@@ -358,7 +358,7 @@ export const studentsData = [
       Phone: "0856130927",
       Email: "DucTAHE170028@fpt.edu.vn",
       StudentUsername: "DucTAHE170028",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trương Anh Đức"
   },
@@ -371,7 +371,7 @@ export const studentsData = [
       Phone: "0914711703",
       Email: "TuanMDHE170029@fpt.edu.vn",
       StudentUsername: "TuanMDHE170029",
-      ChuyenNganh: "IS",
+      Specialization: "IS",
       IsActive: true,
       Fullname: "Mạc Đình Tuấn"
   },
@@ -384,7 +384,7 @@ export const studentsData = [
       Phone: "0981059740",
       Email: "CongNTHE170030@fpt.edu.vn",
       StudentUsername: "CongNTHE170030",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Thành Công"
   },
@@ -397,7 +397,7 @@ export const studentsData = [
       Phone: "0862015758",
       Email: "QuanNAHE170031@fpt.edu.vn",
       StudentUsername: "QuanNAHE170031",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Anh Quân"
   },
@@ -410,7 +410,7 @@ export const studentsData = [
       Phone: "0395833834",
       Email: "AnhPDHE170032@fpt.edu.vn",
       StudentUsername: "AnhPDHE170032",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phạm Đức Anh"
   },
@@ -423,7 +423,7 @@ export const studentsData = [
       Phone: "0919875111",
       Email: "AnhNTHE170033@fpt.edu.vn",
       StudentUsername: "AnhNTHE170033",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Tuấn Anh"
   },
@@ -436,7 +436,7 @@ export const studentsData = [
       Phone: "0867561383",
       Email: "ThinhLHHE170034@fpt.edu.vn",
       StudentUsername: "ThinhLHHE170034",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Lê Hải Thịnh"
   },
@@ -449,7 +449,7 @@ export const studentsData = [
       Phone: "0989476493",
       Email: "AnhBTHE170035@fpt.edu.vn",
       StudentUsername: "AnhBTHE170035",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Bùi Tiến Anh"
   },
@@ -462,7 +462,7 @@ export const studentsData = [
       Phone: "0812828852",
       Email: "DucPVHE170036@fpt.edu.vn",
       StudentUsername: "DucPVHE170036",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phạm Văn Đức"
   },
@@ -475,7 +475,7 @@ export const studentsData = [
       Phone: "0917560170",
       Email: "NgocTMHE170037@fpt.edu.vn",
       StudentUsername: "NgocTMHE170037",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trần Minh Ngọc"
   },
@@ -488,7 +488,7 @@ export const studentsData = [
       Phone: "0904142138",
       Email: "HungLVHE170038@fpt.edu.vn",
       StudentUsername: "HungLVHE170038",
-      ChuyenNganh: "AI",
+      Specialization: "AI",
       IsActive: true,
       Fullname: "Lê Việt Hưng"
   },
@@ -501,7 +501,7 @@ export const studentsData = [
       Phone: "0325885099",
       Email: "HuyLQHE170039@fpt.edu.vn",
       StudentUsername: "HuyLQHE170039",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Lê Quang Huy"
   },
@@ -514,7 +514,7 @@ export const studentsData = [
       Phone: "0348107251",
       Email: "NamNPHE170040@fpt.edu.vn",
       StudentUsername: "NamNPHE170040",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Phương Nam"
   },
@@ -527,7 +527,7 @@ export const studentsData = [
       Phone: "0966164741",
       Email: "SyTDHE170041@fpt.edu.vn",
       StudentUsername: "SyTDHE170041",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trương Đăng Sỹ"
   },
@@ -540,7 +540,7 @@ export const studentsData = [
       Phone: "0394396228",
       Email: "TuHVHE170042@fpt.edu.vn",
       StudentUsername: "TuHVHE170042",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Hoàng Văn Tú"
   },
@@ -553,7 +553,7 @@ export const studentsData = [
       Phone: "0365963262",
       Email: "DatNTHE170043@fpt.edu.vn",
       StudentUsername: "DatNTHE170043",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Nguyễn Thành Đạt"
   },
@@ -566,7 +566,7 @@ export const studentsData = [
       Phone: "0582659286",
       Email: "NamTMHE170044@fpt.edu.vn",
       StudentUsername: "NamTMHE170044",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Trần Minh Nam"
   },
@@ -579,7 +579,7 @@ export const studentsData = [
       Phone: "0383546482",
       Email: "HoaHTHE170045@fpt.edu.vn",
       StudentUsername: "HoaHTHE170045",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Hoàng Thị Hoa"
   },
@@ -592,7 +592,7 @@ export const studentsData = [
       Phone: "0974971015",
       Email: "HuyNDHE170046@fpt.edu.vn",
       StudentUsername: "HuyNDHE170046",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Nguyễn Đức Huy"
   },
@@ -605,7 +605,7 @@ export const studentsData = [
       Phone: "0325870768",
       Email: "NgaNTTHE170047@fpt.edu.vn",
       StudentUsername: "NgaNTTHE170047",
-      ChuyenNganh: "AI",
+      Specialization: "AI",
       IsActive: true,
       Fullname: "Nguyễn Thị Thuý Nga"
   },
@@ -618,7 +618,7 @@ export const studentsData = [
       Phone: "0394721618",
       Email: "HieuNQHE170048@fpt.edu.vn",
       StudentUsername: "HieuNQHE170048",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Quang Hiếu"
   },
@@ -631,7 +631,7 @@ export const studentsData = [
       Phone: "0965161508",
       Email: "TruongTXHE170049@fpt.edu.vn",
       StudentUsername: "TruongTXHE170049",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trần Xuân Trường"
   },
@@ -644,7 +644,7 @@ export const studentsData = [
       Phone: "0913327470",
       Email: "DucVPHHE170050@fpt.edu.vn",
       StudentUsername: "DucVPHHE170050",
-      ChuyenNganh: "IA",
+      Specialization: "IA",
       IsActive: true,
       Fullname: "Vũ Phạm Hoàng Đức"
   },
@@ -657,7 +657,7 @@ export const studentsData = [
       Phone: "0357993710",
       Email: "TamVMHE170051@fpt.edu.vn",
       StudentUsername: "TamVMHE170051",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Vũ Minh Tâm"
   },
@@ -670,7 +670,7 @@ export const studentsData = [
       Phone: "0336967777",
       Email: "DatNTHE170052@fpt.edu.vn",
       StudentUsername: "DatNTHE170052",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Thành Đạt"
   },
@@ -683,7 +683,7 @@ export const studentsData = [
       Phone: "0963862055",
       Email: "DungDHHE170053@fpt.edu.vn",
       StudentUsername: "DungDHHE170053",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Đoàn Hoàng Dũng"
   },
@@ -696,7 +696,7 @@ export const studentsData = [
       Phone: "0978135019",
       Email: "DongNVHE170054@fpt.edu.vn",
       StudentUsername: "DongNVHE170054",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nghiêm Viết Đông"
   },
@@ -709,7 +709,7 @@ export const studentsData = [
       Phone: "0867520108",
       Email: "NamNTHE170055@fpt.edu.vn",
       StudentUsername: "NamNTHE170055",
-      ChuyenNganh: "MKT",
+      Specialization: "MKT",
       IsActive: true,
       Fullname: "Nguyễn Thái Nam"
   },
@@ -722,7 +722,7 @@ export const studentsData = [
       Phone: "0903242748",
       Email: "LamPNHE170056@fpt.edu.vn",
       StudentUsername: "LamPNHE170056",
-      ChuyenNganh: "IB",
+      Specialization: "IB",
       IsActive: true,
       Fullname: "Phạm Nhật Lâm"
   },
@@ -735,7 +735,7 @@ export const studentsData = [
       Phone: "0988284661",
       Email: "QuanNHHE170057@fpt.edu.vn",
       StudentUsername: "QuanNHHE170057",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Hồng Quân"
   },
@@ -748,7 +748,7 @@ export const studentsData = [
       Phone: "0352986307",
       Email: "KhoiDTHE170058@fpt.edu.vn",
       StudentUsername: "KhoiDTHE170058",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Đào Trọng Khôi"
   },
@@ -761,7 +761,7 @@ export const studentsData = [
       Phone: "0377249863",
       Email: "DatNTHE170059@fpt.edu.vn",
       StudentUsername: "DatNTHE170059",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Tấn Đạt"
   },
@@ -774,7 +774,7 @@ export const studentsData = [
       Phone: "0917288894",
       Email: "HoangNMHE170060@fpt.edu.vn",
       StudentUsername: "HoangNMHE170060",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Minh Hoàng"
   },
@@ -787,7 +787,7 @@ export const studentsData = [
       Phone: "0822923206",
       Email: "TrangNTHE170061@fpt.edu.vn",
       StudentUsername: "TrangNTHE170061",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Nguyễn Thu Trang"
   },
@@ -800,7 +800,7 @@ export const studentsData = [
       Phone: "0817825048",
       Email: "NguNNHE170062@fpt.edu.vn",
       StudentUsername: "NguNNHE170062",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Ngọc Ngự"
   },
@@ -813,7 +813,7 @@ export const studentsData = [
       Phone: "0865748382",
       Email: "TruongPVHE170063@fpt.edu.vn",
       StudentUsername: "TruongPVHE170063",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phạm Văn Trường"
   },
@@ -826,7 +826,7 @@ export const studentsData = [
       Phone: "0974078108",
       Email: "HanDGHE170064@fpt.edu.vn",
       StudentUsername: "HanDGHE170064",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Đinh Gia Hân"
   },
@@ -839,7 +839,7 @@ export const studentsData = [
       Phone: "0395332856",
       Email: "LongPVHE170065@fpt.edu.vn",
       StudentUsername: "LongPVHE170065",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Phan Vân Long"
   },
@@ -852,7 +852,7 @@ export const studentsData = [
       Phone: "0395200926",
       Email: "ChungDVHE170067@fpt.edu.vn",
       StudentUsername: "ChungDVHE170067",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Đinh Việt Chung"
   },
@@ -865,7 +865,7 @@ export const studentsData = [
       Phone: "0983569754",
       Email: "LinhLHHE170069@fpt.edu.vn",
       StudentUsername: "LinhLHHE170069",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Lê Hương Linh"
   },
@@ -878,7 +878,7 @@ export const studentsData = [
       Phone: "0705885237",
       Email: "HauVTHHE170070@fpt.edu.vn",
       StudentUsername: "HauVTHHE170070",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Vũ Thị Hiền Hậu"
   },
@@ -891,7 +891,7 @@ export const studentsData = [
       Phone: "0586619796",
       Email: "AnhDQHE170071@fpt.edu.vn",
       StudentUsername: "AnhDQHE170071",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Đỗ Quốc Anh"
   },
@@ -904,7 +904,7 @@ export const studentsData = [
       Phone: "0983626229",
       Email: "DucNKTHE170072@fpt.edu.vn",
       StudentUsername: "DucNKTHE170072",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Khánh Tuấn Đức"
   },
@@ -917,7 +917,7 @@ export const studentsData = [
       Phone: "0353794904",
       Email: "GiangNPTHE170073@fpt.edu.vn",
       StudentUsername: "GiangNPTHE170073",
-      ChuyenNganh: "MC",
+      Specialization: "MC",
       IsActive: true,
       Fullname: "Nguyễn Phạm Thu Giang"
   },
@@ -930,7 +930,7 @@ export const studentsData = [
       Phone: "0985290363",
       Email: "MinhPDHE170074@fpt.edu.vn",
       StudentUsername: "MinhPDHE170074",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phạm Đình Minh"
   },
@@ -943,7 +943,7 @@ export const studentsData = [
       Phone: "0975489030",
       Email: "DuyNKHE170075@fpt.edu.vn",
       StudentUsername: "DuyNKHE170075",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Khắc Duy"
   },
@@ -956,7 +956,7 @@ export const studentsData = [
       Phone: "0962504110",
       Email: "HungDQHE170076@fpt.edu.vn",
       StudentUsername: "HungDQHE170076",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Đào Quý Hưng"
   },
@@ -969,7 +969,7 @@ export const studentsData = [
       Phone: "0369657334",
       Email: "SiNVHE170077@fpt.edu.vn",
       StudentUsername: "SiNVHE170077",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Văn Sĩ"
   },
@@ -982,7 +982,7 @@ export const studentsData = [
       Phone: "0949192737",
       Email: "KhanhPNHE170078@fpt.edu.vn",
       StudentUsername: "KhanhPNHE170078",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phạm Ngọc Khánh"
   },
@@ -995,7 +995,7 @@ export const studentsData = [
       Phone: "0335738382",
       Email: "PhatDTHE170079@fpt.edu.vn",
       StudentUsername: "PhatDTHE170079",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Đào Tấn Phát"
   },
@@ -1008,7 +1008,7 @@ export const studentsData = [
       Phone: "0986507718",
       Email: "UyenTTTHE170080@fpt.edu.vn",
       StudentUsername: "UyenTTTHE170080",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Trần Thị Tố Uyên"
   },
@@ -1021,7 +1021,7 @@ export const studentsData = [
       Phone: "0977350146",
       Email: "PhucNTHE170081@fpt.edu.vn",
       StudentUsername: "PhucNTHE170081",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Thành Phúc"
   },
@@ -1034,7 +1034,7 @@ export const studentsData = [
       Phone: "0852173689",
       Email: "HungTVHE170082@fpt.edu.vn",
       StudentUsername: "HungTVHE170082",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trần Việt Hùng"
   },
@@ -1047,7 +1047,7 @@ export const studentsData = [
       Phone: "0867565113",
       Email: "MinhBDHE170083@fpt.edu.vn",
       StudentUsername: "MinhBDHE170083",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Bùi Đức Minh"
   },
@@ -1072,7 +1072,7 @@ export const studentsData = [
       Phone: "0374875724",
       Email: "PhucNHHE170085@fpt.edu.vn",
       StudentUsername: "PhucNHHE170085",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Hồng Phúc"
   },
@@ -1085,7 +1085,7 @@ export const studentsData = [
       Phone: "0967587565",
       Email: "DuyNLHE170086@fpt.edu.vn",
       StudentUsername: "DuyNLHE170086",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Nguyễn Lương Duy"
   },
@@ -1098,7 +1098,7 @@ export const studentsData = [
       Phone: "0819794028",
       Email: "AnhTDHE170087@fpt.edu.vn",
       StudentUsername: "AnhTDHE170087",
-      ChuyenNganh: "IB",
+      Specialization: "IB",
       IsActive: true,
       Fullname: "Trần Đức Anh"
   },
@@ -1111,7 +1111,7 @@ export const studentsData = [
       Phone: "0849070802",
       Email: "KhanhHNHE170088@fpt.edu.vn",
       StudentUsername: "KhanhHNHE170088",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Hoàng Nhật Khánh"
   },
@@ -1124,7 +1124,7 @@ export const studentsData = [
       Phone: "0376427765",
       Email: "VuTAHE170089@fpt.edu.vn",
       StudentUsername: "VuTAHE170089",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trịnh Anh Vũ"
   },
@@ -1137,7 +1137,7 @@ export const studentsData = [
       Phone: "0912052886",
       Email: "SonMTHE170091@fpt.edu.vn",
       StudentUsername: "SonMTHE170091",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Mạc Tuấn Sơn"
   },
@@ -1150,7 +1150,7 @@ export const studentsData = [
       Phone: "0392635953",
       Email: "SangDQHE170092@fpt.edu.vn",
       StudentUsername: "SangDQHE170092",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Đinh Quốc Sang"
   },
@@ -1163,7 +1163,7 @@ export const studentsData = [
       Phone: "0399374070",
       Email: "LocDPHE170093@fpt.edu.vn",
       StudentUsername: "LocDPHE170093",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Đoàn Phúc Lộc"
   },
@@ -1176,7 +1176,7 @@ export const studentsData = [
       Phone: "0384347170",
       Email: "HuyNNHE170094@fpt.edu.vn",
       StudentUsername: "HuyNNHE170094",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Ngô Ngọc Huy"
   },
@@ -1189,7 +1189,7 @@ export const studentsData = [
       Phone: "0796064544",
       Email: "NghiaNVHE170095@fpt.edu.vn",
       StudentUsername: "NghiaNVHE170095",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Vũ Nghĩa"
   },
@@ -1202,7 +1202,7 @@ export const studentsData = [
       Phone: "0972946073",
       Email: "AnhPTHE170096@fpt.edu.vn",
       StudentUsername: "AnhPTHE170096",
-      ChuyenNganh: "AI",
+      Specialization: "AI",
       IsActive: true,
       Fullname: "Phạm Tiến Anh"
   },
@@ -1215,7 +1215,7 @@ export const studentsData = [
       Phone: "0865537918",
       Email: "TruongVVHE170097@fpt.edu.vn",
       StudentUsername: "TruongVVHE170097",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Vương Văn Trường"
   },
@@ -1228,7 +1228,7 @@ export const studentsData = [
       Phone: "0948102469",
       Email: "HocTTHE170098@fpt.edu.vn",
       StudentUsername: "HocTTHE170098",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trần Trung Học"
   },
@@ -1241,7 +1241,7 @@ export const studentsData = [
       Phone: "0984073408",
       Email: "LongLTHE170099@fpt.edu.vn",
       StudentUsername: "LongLTHE170099",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Lưu Tiểu Long"
   },
@@ -1254,7 +1254,7 @@ export const studentsData = [
       Phone: "0949570828",
       Email: "LamNVTHE170100@fpt.edu.vn",
       StudentUsername: "LamNVTHE170100",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Vĩnh Tùng Lâm"
   },
@@ -1267,7 +1267,7 @@ export const studentsData = [
       Phone: "0916163475",
       Email: "ThinhNDHE170101@fpt.edu.vn",
       StudentUsername: "ThinhNDHE170101",
-      ChuyenNganh: "IS",
+      Specialization: "IS",
       IsActive: true,
       Fullname: "Nguyễn Đức Thịnh"
   },
@@ -1280,7 +1280,7 @@ export const studentsData = [
       Phone: "0816187659",
       Email: "HaiTDHE170102@fpt.edu.vn",
       StudentUsername: "HaiTDHE170102",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Triệu Đức Hải"
   },
@@ -1293,7 +1293,7 @@ export const studentsData = [
       Phone: "0856230927",
       Email: "MyTAHE170103@fpt.edu.vn",
       StudentUsername: "MyTAHE170103",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trương Anh Mỹ"
   },
@@ -1306,7 +1306,7 @@ export const studentsData = [
       Phone: "0855590996",
       Email: "AnhTMHE170104@fpt.edu.vn",
       StudentUsername: "AnhTMHE170104",
-      ChuyenNganh: "IS",
+      Specialization: "IS",
       IsActive: true,
       Fullname: "Trần Minh Anh"
   },
@@ -1319,7 +1319,7 @@ export const studentsData = [
       Phone: "0865631219",
       Email: "MinhBHHE170105@fpt.edu.vn",
       StudentUsername: "MinhBHHE170105",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Bùi Huy Minh"
   },
@@ -1332,7 +1332,7 @@ export const studentsData = [
       Phone: "0987545638",
       Email: "DucVMHE170106@fpt.edu.vn",
       StudentUsername: "DucVMHE170106",
-      ChuyenNganh: "IA",
+      Specialization: "IA",
       IsActive: true,
       Fullname: "Vũ Minh Đức"
   },
@@ -1345,7 +1345,7 @@ export const studentsData = [
       Phone: "0949541098",
       Email: "HieuDTHE170107@fpt.edu.vn",
       StudentUsername: "HieuDTHE170107",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Đặng Trung Hiếu"
   },
@@ -1358,7 +1358,7 @@ export const studentsData = [
       Phone: "0923795672",
       Email: "AnhNLDHE170108@fpt.edu.vn",
       StudentUsername: "AnhNLDHE170108",
-      ChuyenNganh: "MC",
+      Specialization: "MC",
       IsActive: true,
       Fullname: "Nguyễn Lê Đức Anh"
   },
@@ -1371,7 +1371,7 @@ export const studentsData = [
       Phone: "0968065135",
       Email: "ToiLTHE170109@fpt.edu.vn",
       StudentUsername: "ToiLTHE170109",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Lều Trung Tới"
   },
@@ -1384,7 +1384,7 @@ export const studentsData = [
       Phone: "0778222106",
       Email: "KhanhNGHE170110@fpt.edu.vn",
       StudentUsername: "KhanhNGHE170110",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Gia Khánh"
   },
@@ -1397,7 +1397,7 @@ export const studentsData = [
       Phone: "0979520297",
       Email: "ThaoNTHE170111@fpt.edu.vn",
       StudentUsername: "ThaoNTHE170111",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Nguyễn Thu Thảo"
   },
@@ -1410,7 +1410,7 @@ export const studentsData = [
       Phone: "0868121203",
       Email: "BachNBHE170112@fpt.edu.vn",
       StudentUsername: "BachNBHE170112",
-      ChuyenNganh: "AI",
+      Specialization: "AI",
       IsActive: true,
       Fullname: "Nguyễn Bá Bách"
   },
@@ -1423,7 +1423,7 @@ export const studentsData = [
       Phone: "0936197146",
       Email: "TamHDHE170113@fpt.edu.vn",
       StudentUsername: "TamHDHE170113",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Hoàng Đức Tâm"
   },
@@ -1436,7 +1436,7 @@ export const studentsData = [
       Phone: "0989567450",
       Email: "AnhNNHE170114@fpt.edu.vn",
       StudentUsername: "AnhNNHE170114",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Nhật Anh"
   },
@@ -1449,7 +1449,7 @@ export const studentsData = [
       Phone: "0376407369",
       Email: "KhoaTQHE170115@fpt.edu.vn",
       StudentUsername: "KhoaTQHE170115",
-      ChuyenNganh: "AI",
+      Specialization: "AI",
       IsActive: true,
       Fullname: "Trần Quốc Khoa"
   },
@@ -1462,7 +1462,7 @@ export const studentsData = [
       Phone: "0933328688",
       Email: "LinhDGHE170116@fpt.edu.vn",
       StudentUsername: "LinhDGHE170116",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Đoàn Gia Linh"
   },
@@ -1475,7 +1475,7 @@ export const studentsData = [
       Phone: "0982011906",
       Email: "GiangLHHE170117@fpt.edu.vn",
       StudentUsername: "GiangLHHE170117",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Lê Hương Giang"
   },
@@ -1488,7 +1488,7 @@ export const studentsData = [
       Phone: "0986038148",
       Email: "HongNSHE170118@fpt.edu.vn",
       StudentUsername: "HongNSHE170118",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Sinh Hồng"
   },
@@ -1501,7 +1501,7 @@ export const studentsData = [
       Phone: "0912314425",
       Email: "TuNAHE170119@fpt.edu.vn",
       StudentUsername: "TuNAHE170119",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Anh Tú"
   },
@@ -1514,7 +1514,7 @@ export const studentsData = [
       Phone: "0962817186",
       Email: "HungDNHE170121@fpt.edu.vn",
       StudentUsername: "HungDNHE170121",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Đặng Ngọc Hưng"
   },
@@ -1527,7 +1527,7 @@ export const studentsData = [
       Phone: "0968318258",
       Email: "TanNAHE170122@fpt.edu.vn",
       StudentUsername: "TanNAHE170122",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Anh Tân"
   },
@@ -1540,7 +1540,7 @@ export const studentsData = [
       Phone: "0399484816",
       Email: "AnhNVHE170123@fpt.edu.vn",
       StudentUsername: "AnhNVHE170123",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Việt Anh"
   },
@@ -1553,7 +1553,7 @@ export const studentsData = [
       Phone: "0389935245",
       Email: "ManhLDHE170124@fpt.edu.vn",
       StudentUsername: "ManhLDHE170124",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Lê Đức Mạnh"
   },
@@ -1566,7 +1566,7 @@ export const studentsData = [
       Phone: "0377411493",
       Email: "AnhPTPHE170125@fpt.edu.vn",
       StudentUsername: "AnhPTPHE170125",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phạm Thị Phương Anh"
   },
@@ -1579,7 +1579,7 @@ export const studentsData = [
       Phone: "0865580567",
       Email: "QuocNCHE170126@fpt.edu.vn",
       StudentUsername: "QuocNCHE170126",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Nguyễn Cường Quốc"
   },
@@ -1592,7 +1592,7 @@ export const studentsData = [
       Phone: "0914031629",
       Email: "HieuVCHE170127@fpt.edu.vn",
       StudentUsername: "HieuVCHE170127",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Vũ Công Hiếu"
   },
@@ -1605,7 +1605,7 @@ export const studentsData = [
       Phone: "0912905947",
       Email: "ThanhNHHE170128@fpt.edu.vn",
       StudentUsername: "ThanhNHHE170128",
-      ChuyenNganh: "IA",
+      Specialization: "IA",
       IsActive: true,
       Fullname: "Nguyễn Huy Thành"
   },
@@ -1618,7 +1618,7 @@ export const studentsData = [
       Phone: "0899165659",
       Email: "TramNNHE170129@fpt.edu.vn",
       StudentUsername: "TramNNHE170129",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Nguyễn Ngọc Trâm"
   },
@@ -1631,7 +1631,7 @@ export const studentsData = [
       Phone: "0987473862",
       Email: "DoanhBNHE170130@fpt.edu.vn",
       StudentUsername: "DoanhBNHE170130",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Bùi Ngọc Doanh"
   },
@@ -1644,7 +1644,7 @@ export const studentsData = [
       Phone: "0812497838",
       Email: "PhiNXHE170131@fpt.edu.vn",
       StudentUsername: "PhiNXHE170131",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Xuân Phi"
   },
@@ -1657,7 +1657,7 @@ export const studentsData = [
       Phone: "0866052283",
       Email: "AnhNVHE170132@fpt.edu.vn",
       StudentUsername: "AnhNVHE170132",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Việt Anh"
   },
@@ -1670,7 +1670,7 @@ export const studentsData = [
       Phone: "0338756162",
       Email: "ManhLQHE170133@fpt.edu.vn",
       StudentUsername: "ManhLQHE170133",
-      ChuyenNganh: "IA",
+      Specialization: "IA",
       IsActive: true,
       Fullname: "Lê Quang Mạnh"
   },
@@ -1683,7 +1683,7 @@ export const studentsData = [
       Phone: "0972361867",
       Email: "HaiHDHE170135@fpt.edu.vn",
       StudentUsername: "HaiHDHE170135",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Hoàng Đức Hải"
   },
@@ -1696,7 +1696,7 @@ export const studentsData = [
       Phone: "0327771081",
       Email: "SonNTHE170136@fpt.edu.vn",
       StudentUsername: "SonNTHE170136",
-      ChuyenNganh: "AI",
+      Specialization: "AI",
       IsActive: true,
       Fullname: "Nguyễn Thái Sơn"
   },
@@ -1709,7 +1709,7 @@ export const studentsData = [
       Phone: "0987433500",
       Email: "TruongLQHE170138@fpt.edu.vn",
       StudentUsername: "TruongLQHE170138",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Lê Quang Trường"
   },
@@ -1722,7 +1722,7 @@ export const studentsData = [
       Phone: "0397009663",
       Email: "NamNHHE170139@fpt.edu.vn",
       StudentUsername: "NamNHHE170139",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Nguyễn Hải Nam"
   },
@@ -1735,7 +1735,7 @@ export const studentsData = [
       Phone: "0969919003",
       Email: "ChienTMHE170140@fpt.edu.vn",
       StudentUsername: "ChienTMHE170140",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trần Minh Chiến"
   },
@@ -1748,7 +1748,7 @@ export const studentsData = [
       Phone: "0356439203",
       Email: "NamNVHE170141@fpt.edu.vn",
       StudentUsername: "NamNVHE170141",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Viết Nam"
   },
@@ -1761,7 +1761,7 @@ export const studentsData = [
       Phone: "0818862003",
       Email: "DuyHLHE170142@fpt.edu.vn",
       StudentUsername: "DuyHLHE170142",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Hoàng Lê Duy"
   },
@@ -1774,7 +1774,7 @@ export const studentsData = [
       Phone: "0395923769",
       Email: "NamVCHE170143@fpt.edu.vn",
       StudentUsername: "NamVCHE170143",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Vũ Công Nam"
   },
@@ -1787,7 +1787,7 @@ export const studentsData = [
       Phone: "0989655016",
       Email: "TiepPVHE170144@fpt.edu.vn",
       StudentUsername: "TiepPVHE170144",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phạm Văn Tiệp"
   },
@@ -1800,7 +1800,7 @@ export const studentsData = [
       Phone: "0964654100",
       Email: "AnhNDHE170145@fpt.edu.vn",
       StudentUsername: "AnhNDHE170145",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Đức Anh"
   },
@@ -1813,7 +1813,7 @@ export const studentsData = [
       Phone: "0975485233",
       Email: "HuyPHQHE170146@fpt.edu.vn",
       StudentUsername: "HuyPHQHE170146",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phạm Hùng Quang Huy"
   },
@@ -1826,7 +1826,7 @@ export const studentsData = [
       Phone: "0392909527",
       Email: "DuyHDHE170147@fpt.edu.vn",
       StudentUsername: "DuyHDHE170147",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Hoàng Đức Duy"
   },
@@ -1839,7 +1839,7 @@ export const studentsData = [
       Phone: "0983827299",
       Email: "PhuongPHHE170148@fpt.edu.vn",
       StudentUsername: "PhuongPHHE170148",
-      ChuyenNganh: "AI",
+      Specialization: "AI",
       IsActive: true,
       Fullname: "Phạm Hoàng Phương"
   },
@@ -1852,7 +1852,7 @@ export const studentsData = [
       Phone: "0985187536",
       Email: "TrungLQHE170149@fpt.edu.vn",
       StudentUsername: "TrungLQHE170149",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Lương Quang Trung"
   },
@@ -1865,7 +1865,7 @@ export const studentsData = [
       Phone: "0377262942",
       Email: "HuynhPVHE170150@fpt.edu.vn",
       StudentUsername: "HuynhPVHE170150",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phan Văn Huynh"
   },
@@ -1878,7 +1878,7 @@ export const studentsData = [
       Phone: "0866513607",
       Email: "HieuNDHE170151@fpt.edu.vn",
       StudentUsername: "HieuNDHE170151",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Đức Hiểu"
   },
@@ -1891,7 +1891,7 @@ export const studentsData = [
       Phone: "0358683832",
       Email: "ChienTTHE170152@fpt.edu.vn",
       StudentUsername: "ChienTTHE170152",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trần Trung Chiến"
   },
@@ -1904,7 +1904,7 @@ export const studentsData = [
       Phone: "0332700592",
       Email: "NamPPHE170153@fpt.edu.vn",
       StudentUsername: "NamPPHE170153",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phạm Phương Nam"
   },
@@ -1917,7 +1917,7 @@ export const studentsData = [
       Phone: "0389466556",
       Email: "KhaiLQHE170154@fpt.edu.vn",
       StudentUsername: "KhaiLQHE170154",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Lê Quang Khải"
   },
@@ -1930,7 +1930,7 @@ export const studentsData = [
       Phone: "0913048469",
       Email: "KienPDHE170155@fpt.edu.vn",
       StudentUsername: "KienPDHE170155",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phạm Duy Kiên"
   },
@@ -1943,7 +1943,7 @@ export const studentsData = [
       Phone: "0335413680",
       Email: "LongHVHE170156@fpt.edu.vn",
       StudentUsername: "LongHVHE170156",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Hồ Việt Long"
   },
@@ -1956,7 +1956,7 @@ export const studentsData = [
       Phone: "0829787976",
       Email: "PhucDVHE170157@fpt.edu.vn",
       StudentUsername: "PhucDVHE170157",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Đặng Vĩnh Phúc"
   },
@@ -1969,7 +1969,7 @@ export const studentsData = [
       Phone: "0964087763",
       Email: "TuanTHHE170158@fpt.edu.vn",
       StudentUsername: "TuanTHHE170158",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trần Huy Tuấn"
   },
@@ -1982,7 +1982,7 @@ export const studentsData = [
       Phone: "0988234988",
       Email: "LongPHHE170159@fpt.edu.vn",
       StudentUsername: "LongPHHE170159",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phạm Hoàng Long"
   },
@@ -1995,7 +1995,7 @@ export const studentsData = [
       Phone: "0989355623",
       Email: "DucNPHE170160@fpt.edu.vn",
       StudentUsername: "DucNPHE170160",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Phạm Đức"
   },
@@ -2008,7 +2008,7 @@ export const studentsData = [
       Phone: "0342115540",
       Email: "HuyNTHE170161@fpt.edu.vn",
       StudentUsername: "HuyNTHE170161",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Trọng Huy"
   },
@@ -2021,7 +2021,7 @@ export const studentsData = [
       Phone: "0965126941",
       Email: "LanCBHE170162@fpt.edu.vn",
       StudentUsername: "LanCBHE170162",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Cát Bá Lân"
   },
@@ -2034,7 +2034,7 @@ export const studentsData = [
       Phone: "0836889919",
       Email: "AnhNDHE170163@fpt.edu.vn",
       StudentUsername: "AnhNDHE170163",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Duy Anh"
   },
@@ -2047,7 +2047,7 @@ export const studentsData = [
       Phone: "0328912178",
       Email: "KhoaKNHE170164@fpt.edu.vn",
       StudentUsername: "KhoaKNHE170164",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Khuất Như Khoa"
   },
@@ -2060,7 +2060,7 @@ export const studentsData = [
       Phone: "0372643526",
       Email: "NhanDTHE170165@fpt.edu.vn",
       StudentUsername: "NhanDTHE170165",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Đoàn Thành Nhân"
   },
@@ -2073,7 +2073,7 @@ export const studentsData = [
       Phone: "0366607006",
       Email: "TienHTHE170166@fpt.edu.vn",
       StudentUsername: "TienHTHE170166",
-      ChuyenNganh: "IA",
+      Specialization: "IA",
       IsActive: true,
       Fullname: "Hoàng Trọng Tiến"
   },
@@ -2086,7 +2086,7 @@ export const studentsData = [
       Phone: "0352453032",
       Email: "SonDAHE170167@fpt.edu.vn",
       StudentUsername: "SonDAHE170167",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Đỗ Anh Sơn"
   },
@@ -2099,7 +2099,7 @@ export const studentsData = [
       Phone: "0329867757",
       Email: "AnhNHHE170168@fpt.edu.vn",
       StudentUsername: "AnhNHHE170168",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Nguyễn Hoàng Anh"
   },
@@ -2112,7 +2112,7 @@ export const studentsData = [
       Phone: "0329005911",
       Email: "MinhPQHE170169@fpt.edu.vn",
       StudentUsername: "MinhPQHE170169",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phạm Quang Minh"
   },
@@ -2125,7 +2125,7 @@ export const studentsData = [
       Phone: "0378330836",
       Email: "DiepNNHE170170@fpt.edu.vn",
       StudentUsername: "DiepNNHE170170",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Ngọc Diệp"
   },
@@ -2138,7 +2138,7 @@ export const studentsData = [
       Phone: "0398907462",
       Email: "ThiNDHE170171@fpt.edu.vn",
       StudentUsername: "ThiNDHE170171",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Đình Thi"
   },
@@ -2151,7 +2151,7 @@ export const studentsData = [
       Phone: "0983658803",
       Email: "LamNXHE170172@fpt.edu.vn",
       StudentUsername: "LamNXHE170172",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Nguyễn Xuân Lâm"
   },
@@ -2164,7 +2164,7 @@ export const studentsData = [
       Phone: "0359955026",
       Email: "TrungDHHE170173@fpt.edu.vn",
       StudentUsername: "TrungDHHE170173",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Đỗ Hoàng Trung"
   },
@@ -2177,7 +2177,7 @@ export const studentsData = [
       Phone: "0364215750",
       Email: "DuyNAHE170174@fpt.edu.vn",
       StudentUsername: "DuyNAHE170174",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Anh Duy"
   },
@@ -2190,7 +2190,7 @@ export const studentsData = [
       Phone: "0862727833",
       Email: "HuyDQHE170175@fpt.edu.vn",
       StudentUsername: "HuyDQHE170175",
-      ChuyenNganh: "IA",
+      Specialization: "IA",
       IsActive: true,
       Fullname: "Đỗ Quốc Huy"
   },
@@ -2203,7 +2203,7 @@ export const studentsData = [
       Phone: "0961594860",
       Email: "DuongLTHE170176@fpt.edu.vn",
       StudentUsername: "DuongLTHE170176",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Lã Tùng Dương"
   },
@@ -2216,7 +2216,7 @@ export const studentsData = [
       Phone: "0386317283",
       Email: "DaiDVHE170177@fpt.edu.vn",
       StudentUsername: "DaiDVHE170177",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Dương Văn Đại"
   },
@@ -2229,7 +2229,7 @@ export const studentsData = [
       Phone: "0869928550",
       Email: "LongTHHE170178@fpt.edu.vn",
       StudentUsername: "LongTHHE170178",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trần Hữu Long"
   },
@@ -2242,7 +2242,7 @@ export const studentsData = [
       Phone: "0888787718",
       Email: "LongNTHE170179@fpt.edu.vn",
       StudentUsername: "LongNTHE170179",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Thành Long"
   },
@@ -2255,7 +2255,7 @@ export const studentsData = [
       Phone: "0395881658",
       Email: "KhaiTQHE170180@fpt.edu.vn",
       StudentUsername: "KhaiTQHE170180",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trần Quang Khải"
   },
@@ -2268,7 +2268,7 @@ export const studentsData = [
       Phone: "0971463675",
       Email: "HieuNMHE170181@fpt.edu.vn",
       StudentUsername: "HieuNMHE170181",
-      ChuyenNganh: "IB",
+      Specialization: "IB",
       IsActive: true,
       Fullname: "Nguyễn Minh Hiếu"
   },
@@ -2281,7 +2281,7 @@ export const studentsData = [
       Phone: "0912192003",
       Email: "LongVNDHE170182@fpt.edu.vn",
       StudentUsername: "LongVNDHE170182",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Vũ Nguyễn Duy Long"
   },
@@ -2294,7 +2294,7 @@ export const studentsData = [
       Phone: "0878407296",
       Email: "LongTHHE170183@fpt.edu.vn",
       StudentUsername: "LongTHHE170183",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Trần Hưng Long"
   },
@@ -2307,7 +2307,7 @@ export const studentsData = [
       Phone: "0987409988",
       Email: "NamTDHE170184@fpt.edu.vn",
       StudentUsername: "NamTDHE170184",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Trần Doãn Nam"
   },
@@ -2320,7 +2320,7 @@ export const studentsData = [
       Phone: "0793377450",
       Email: "BinhNAHE170185@fpt.edu.vn",
       StudentUsername: "BinhNAHE170185",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Ngô An Bình"
   },
@@ -2333,7 +2333,7 @@ export const studentsData = [
       Phone: "0359951587",
       Email: "HoangPVHE170186@fpt.edu.vn",
       StudentUsername: "HoangPVHE170186",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phạm Việt Hoàng"
   },
@@ -2346,7 +2346,7 @@ export const studentsData = [
       Phone: "0911401838",
       Email: "TuanVMHE170187@fpt.edu.vn",
       StudentUsername: "TuanVMHE170187",
-      ChuyenNganh: "AI",
+      Specialization: "AI",
       IsActive: true,
       Fullname: "Vũ Minh Tuấn"
   },
@@ -2359,7 +2359,7 @@ export const studentsData = [
       Phone: "0986351092",
       Email: "ThaiNAHE170188@fpt.edu.vn",
       StudentUsername: "ThaiNAHE170188",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Anh Thái"
   },
@@ -2372,7 +2372,7 @@ export const studentsData = [
       Phone: "0387127846",
       Email: "TungNSHE170189@fpt.edu.vn",
       StudentUsername: "TungNSHE170189",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Sĩ Tùng"
   },
@@ -2385,7 +2385,7 @@ export const studentsData = [
       Phone: "0907306996",
       Email: "AnhDTHHE170190@fpt.edu.vn",
       StudentUsername: "AnhDTHHE170190",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Đinh Thu Hiền Anh"
   },
@@ -2398,7 +2398,7 @@ export const studentsData = [
       Phone: "0966399879",
       Email: "KienNTHE170191@fpt.edu.vn",
       StudentUsername: "KienNTHE170191",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Nguyễn Trung Kiên"
   },
@@ -2411,7 +2411,7 @@ export const studentsData = [
       Phone: "0383529613",
       Email: "HuyNQHE170192@fpt.edu.vn",
       StudentUsername: "HuyNQHE170192",
-      ChuyenNganh: "FIN",
+      Specialization: "FIN",
       IsActive: true,
       Fullname: "Nguyễn Quang Huy"
   },
@@ -2424,7 +2424,7 @@ export const studentsData = [
       Phone: "0387736166",
       Email: "DiuNTHE170193@fpt.edu.vn",
       StudentUsername: "DiuNTHE170193",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Thu Dịu"
   },
@@ -2437,7 +2437,7 @@ export const studentsData = [
       Phone: "0961993806",
       Email: "TungTPHHE170194@fpt.edu.vn",
       StudentUsername: "TungTPHHE170194",
-      ChuyenNganh: "MKT",
+      Specialization: "MKT",
       IsActive: true,
       Fullname: "Trương Phạm Hoàng Tùng"
   },
@@ -2450,7 +2450,7 @@ export const studentsData = [
       Phone: "0971450750",
       Email: "MinhPVAHE170195@fpt.edu.vn",
       StudentUsername: "MinhPVAHE170195",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phạm Vũ Anh Minh"
   },
@@ -2463,7 +2463,7 @@ export const studentsData = [
       Phone: "0967681955",
       Email: "AnhPCDHE170196@fpt.edu.vn",
       StudentUsername: "AnhPCDHE170196",
-      ChuyenNganh: "IA",
+      Specialization: "IA",
       IsActive: true,
       Fullname: "Phạm Công Đức Anh"
   },
@@ -2476,7 +2476,7 @@ export const studentsData = [
       Phone: "0383325062",
       Email: "NguyenPBHE170197@fpt.edu.vn",
       StudentUsername: "NguyenPBHE170197",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phạm Bình Nguyên"
   },
@@ -2489,7 +2489,7 @@ export const studentsData = [
       Phone: "0796313640",
       Email: "NhatDMHE170198@fpt.edu.vn",
       StudentUsername: "NhatDMHE170198",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Đào Minh Nhật"
   },
@@ -2502,7 +2502,7 @@ export const studentsData = [
       Phone: "0818539015",
       Email: "LuongNDHE170199@fpt.edu.vn",
       StudentUsername: "LuongNDHE170199",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Đức Lương"
   },
@@ -2515,7 +2515,7 @@ export const studentsData = [
       Phone: "0946453069",
       Email: "QuangBTHE170200@fpt.edu.vn",
       StudentUsername: "QuangBTHE170200",
-      ChuyenNganh: "GD",
+      Specialization: "GD",
       IsActive: true,
       Fullname: "Bùi Tuấn Quang"
   },
@@ -2528,7 +2528,7 @@ export const studentsData = [
       Phone: "0969891732",
       Email: "KhanhLDHE170201@fpt.edu.vn",
       StudentUsername: "KhanhLDHE170201",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Lưu Đức Khánh"
   },
@@ -2541,7 +2541,7 @@ export const studentsData = [
       Phone: "0916975588",
       Email: "TuanNMHE170202@fpt.edu.vn",
       StudentUsername: "TuanNMHE170202",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Nguyễn Minh Tuấn"
   },
@@ -2554,7 +2554,7 @@ export const studentsData = [
       Phone: "0866475161",
       Email: "BinhPQHE170203@fpt.edu.vn",
       StudentUsername: "BinhPQHE170203",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Phạm Quốc Bình"
   },
@@ -2567,7 +2567,7 @@ export const studentsData = [
       Phone: "0338485185",
       Email: "LongDVHE170204@fpt.edu.vn",
       StudentUsername: "LongDVHE170204",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Đặng Văn Long"
   },
@@ -2580,7 +2580,7 @@ export const studentsData = [
       Phone: "0837848683",
       Email: "SonDHHE170206@fpt.edu.vn",
       StudentUsername: "SonDHHE170206",
-      ChuyenNganh: "SE",
+      Specialization: "SE",
       IsActive: true,
       Fullname: "Đỗ Huy Sơn"
   }
