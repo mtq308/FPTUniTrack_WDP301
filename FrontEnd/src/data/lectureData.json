@@ -9,7 +9,7 @@
         "Gender": true,
         "IDCard": "43432523532",
         "Address": "Phạm Văn Đồng",
-        "MobilePhone": "0124942412",
+        "Phone": "0124942412",
         "Email": "SonNHHE@fe.edu.vn",
         "Fullname": "Nguyễn Hồng Sơn",
         "IsActive": true
@@ -24,7 +24,7 @@
         "Gender": false,
         "IDCard": "53245678432",
         "Address": "Lê Lợi Street",
-        "MobilePhone": "0987654321",
+        "Phone": "0987654321",
         "Email": "AnhTran@fe.edu.vn",
         "Fullname": "Trần Thị Anh",
         "IsActive": true
@@ -39,7 +39,7 @@
         "Gender": true,
         "IDCard": "68723987432",
         "Address": "Nguyễn Du Avenue",
-        "MobilePhone": "0978234567",
+        "Phone": "0978234567",
         "Email": "HoangLTH@fe.edu.vn",
         "Fullname": "Lê Thanh Hoàng",
         "IsActive": true
@@ -54,7 +54,7 @@
         "Gender": false,
         "IDCard": "43785612345",
         "Address": "Lý Thường Kiệt Street",
-        "MobilePhone": "0912345678",
+        "Phone": "0912345678",
         "Email": "MaiPTT@fe.edu.vn",
         "Fullname": "Mai Phương Thu",
         "IsActive": true
@@ -69,7 +69,7 @@
         "Gender": true,
         "IDCard": "54327895621",
         "Address": "Trần Hưng Đạo Street",
-        "MobilePhone": "0981234567",
+        "Phone": "0981234567",
         "Email": "LongVN@fe.edu.vn",
         "Fullname": "Vũ Nhật Long",
         "IsActive": true
@@ -84,7 +84,7 @@
         "Gender": false,
         "IDCard": "32875467890",
         "Address": "Ngô Quyền Street",
-        "MobilePhone": "0965432187",
+        "Phone": "0965432187",
         "Email": "HienLQ@fe.edu.vn",
         "Fullname": "Lê Quỳnh Hiền",
         "IsActive": true
@@ -99,7 +99,7 @@
         "Gender": true,
         "IDCard": "49876543218",
         "Address": "Trường Chinh Street",
-        "MobilePhone": "0919876543",
+        "Phone": "0919876543",
         "Email": "DatPV@fe.edu.vn",
         "Fullname": "Phạm Văn Đạt",
         "IsActive": true
@@ -114,7 +114,7 @@
         "Gender": false,
         "IDCard": "35678901234",
         "Address": "Lê Quang Đạo Street",
-        "MobilePhone": "0976543210",
+        "Phone": "0976543210",
         "Email": "LinhTH@fe.edu.vn",
         "Fullname": "Nguyễn Thị Linh",
         "IsActive": true
@@ -129,7 +129,7 @@
         "Gender": true,
         "IDCard": "87654321098",
         "Address": "Hồ Chí Minh Street",
-        "MobilePhone": "0901234987",
+        "Phone": "0901234987",
         "Email": "TuanVH@fe.edu.vn",
         "Fullname": "Võ Hoàng Tuấn",
         "IsActive": true
@@ -144,7 +144,7 @@
         "Gender": false,
         "IDCard": "76543210987",
         "Address": "Nguyễn Thị Minh Khai Street",
-        "MobilePhone": "0987654321",
+        "Phone": "0987654321",
         "Email": "MyPT@fe.edu.vn",
         "Fullname": "Phan Thị Mỹ",
         "IsActive": true

@@ -1,6 +1,6 @@
 [
     {
-        "SyllabusID": 10316,
+        "SubjectID": 10316,
         "SubjectCode": "ENT001",
         "SyllabusName": "Tiếng Anh 1",
         "Score": [
@@ -25,7 +25,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10317,
+        "SubjectID": 10317,
         "SubjectCode": "ENT104",
         "SyllabusName": "Tiếng Anh 2",
         "Score": [
@@ -46,7 +46,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10318,
+        "SubjectID": 10318,
         "SubjectCode": "ENT203",
         "SyllabusName": "Tiếng Anh 3",
         "Score": [
@@ -67,7 +67,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10319,
+        "SubjectID": 10319,
         "SubjectCode": "ENT303",
         "SyllabusName": "Tiếng Anh 4",
         "Score": [
@@ -88,7 +88,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10320,
+        "SubjectID": 10320,
         "SubjectCode": "ENT403",
         "SyllabusName": "Tiếng Anh 5",
         "Score": [
@@ -109,7 +109,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10321,
+        "SubjectID": 10321,
         "SubjectCode": "ENT503",
         "SyllabusName": "Tiếng Anh 6",
         "Score": [
@@ -130,7 +130,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9215,
+        "SubjectID": 9215,
         "SubjectCode": "LUK1",
         "SyllabusName": "LUK Global 1",
         "Score": [
@@ -155,7 +155,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9217,
+        "SubjectID": 9217,
         "SubjectCode": "LUK2",
         "SyllabusName": "LUK Global 2",
         "Score": [
@@ -180,7 +180,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9218,
+        "SubjectID": 9218,
         "SubjectCode": "LUK3",
         "SyllabusName": "LUK Global 3",
         "Score": [
@@ -205,7 +205,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9219,
+        "SubjectID": 9219,
         "SubjectCode": "LUK4",
         "SyllabusName": "LUK Global 4",
         "Score": [
@@ -230,7 +230,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9220,
+        "SubjectID": 9220,
         "SubjectCode": "LUK5",
         "SyllabusName": "LUK Global 5",
         "Score": [
@@ -255,7 +255,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 4484,
+        "SubjectID": 4484,
         "SubjectCode": "LUK6",
         "SyllabusName": "Little UK Level 6",
         "Score": [
@@ -280,14 +280,14 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 7820,
+        "SubjectID": 7820,
         "SubjectCode": "OTP101",
         "SyllabusName": "Định hướng và Rèn luyện tập trung(Orientaiton and General Training Program)",
         "PREQUISITE": "",
         "IsActive": true
     },
     {
-        "SyllabusID": 10086,
+        "SubjectID": 10086,
         "SubjectCode": "VOV114",
         "SyllabusName": "Vovinam 1",
         "Score": [
@@ -304,7 +304,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10087,
+        "SubjectID": 10087,
         "SubjectCode": "VOV124",
         "SyllabusName": "Vovinam 2",
         "Score": [
@@ -321,7 +321,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10088,
+        "SubjectID": 10088,
         "SubjectCode": "VOV134",
         "SyllabusName": "Vovinam 3",
         "Score": [
@@ -338,7 +338,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10089,
+        "SubjectID": 10089,
         "SubjectCode": "COV111",
         "SyllabusName": "Cờ Vua 1_Chess 1",
         "Score": [
@@ -359,7 +359,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10091,
+        "SubjectID": 10091,
         "SubjectCode": "COV121",
         "SyllabusName": "Cờ Vua 2_Chess 2",
         "Score": [
@@ -380,7 +380,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10092,
+        "SubjectID": 10092,
         "SubjectCode": "COV131",
         "SyllabusName": "Cờ Vua 3_Chess 3",
         "Score": [
@@ -401,7 +401,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9998,
+        "SubjectID": 9998,
         "SubjectCode": "DNG103",
         "SyllabusName": "Nhạc cụ truyền thống-Đàn nguyệt",
         "Score": [
@@ -426,7 +426,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9999,
+        "SubjectID": 9999,
         "SubjectCode": "DBA103",
         "SyllabusName": "Nhạc cụ truyền thống - Đàn Bầu",
         "Score": [
@@ -451,7 +451,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9997,
+        "SubjectID": 9997,
         "SubjectCode": "DNH103",
         "SyllabusName": "Nhạc cụ truyền thống- Đàn Nhị",
         "Score": [
@@ -476,7 +476,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9996,
+        "SubjectID": 9996,
         "SubjectCode": "DSA103",
         "SyllabusName": "Nhạc cụ truyền thống- Sáo trúc",
         "Score": [
@@ -501,7 +501,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9995,
+        "SubjectID": 9995,
         "SubjectCode": "DTB103",
         "SyllabusName": "Nhạc cụ truyền thống- Đàn Tỳ bà",
         "Score": [
@@ -526,7 +526,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9994,
+        "SubjectID": 9994,
         "SubjectCode": "TRG103",
         "SyllabusName": "Nhạc cụ truyền thống -Trống dân tộc",
         "Score": [
@@ -551,7 +551,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10003,
+        "SubjectID": 10003,
         "SubjectCode": "MLN111",
         "SyllabusName": "Philosophy of Marxism – Leninism - Triết học Mác - Lê-nin",
         "Score": [
@@ -580,7 +580,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10004,
+        "SubjectID": 10004,
         "SubjectCode": "MLN122",
         "SyllabusName": "Political economics of Marxism – Leninism - Kinh tế chính trị Mác - Lê-nin",
         "Score": [
@@ -609,7 +609,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10002,
+        "SubjectID": 10002,
         "SubjectCode": "MLN131",
         "SyllabusName": "Scientific socialism - Chủ nghĩa xã hội khoa học",
         "Score": [
@@ -638,7 +638,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10005,
+        "SubjectID": 10005,
         "SubjectCode": "HCM202",
         "SyllabusName": "HCM Ideology - Tư tưởng Hồ Chí Minh",
         "Score": [
@@ -667,7 +667,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10360,
+        "SubjectID": 10360,
         "SubjectCode": "VNR202",
         "SyllabusName": "History of CPV - Lịch sử Đảng Cộng sản Việt Nam",
         "Score": [
@@ -696,7 +696,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10358,
+        "SubjectID": 10358,
         "SubjectCode": "EXE101",
         "SyllabusName": "Experiential Entrepreneurship 1 - Trải nghiệm khởi nghiệp 1",
         "Score": [
@@ -725,7 +725,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10361,
+        "SubjectID": 10361,
         "SubjectCode": "EXE201",
         "SyllabusName": "Experiential Entrepreneurship 2 - Trải nghiệm khởi nghiệp 2",
         "Score": [
@@ -754,7 +754,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10275,
+        "SubjectID": 10275,
         "SubjectCode": "LAW102",
         "SyllabusName": "Business Law and Ethics Fundamentals_Luật và Đạo đức kinh doanh",
         "Score": [
@@ -791,7 +791,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10326,
+        "SubjectID": 10326,
         "SubjectCode": "MAE101",
         "SyllabusName": "Mathematics for Engineering_Toán cho ngành kỹ thuật",
         "Score": [
@@ -816,7 +816,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10328,
+        "SubjectID": 10328,
         "SubjectCode": "MAI391",
         "SyllabusName": "Toán cho học máy",
         "Score": [
@@ -845,7 +845,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10327,
+        "SubjectID": 10327,
         "SubjectCode": "MAS202",
         "SyllabusName": "Applied Statistics for Business_Thống kê ứng dụng trong kinh doanh",
         "Score": [
@@ -878,7 +878,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9241,
+        "SubjectID": 9241,
         "SubjectCode": "MAD101",
         "SyllabusName": "Toán rời rạc",
         "Score": [
@@ -903,7 +903,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9243,
+        "SubjectID": 9243,
         "SubjectCode": "MAS291",
         "SyllabusName": "Statistics &amp; Probability_Xác suất thống kê",
         "Score": [
@@ -932,7 +932,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9594,
+        "SubjectID": 9594,
         "SubjectCode": "MKT301",
         "SyllabusName": "Marketing Research_Nghiên cứu Marketing",
         "Score": [
@@ -969,7 +969,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9569,
+        "SubjectID": 9569,
         "SubjectCode": "PRF192",
         "SyllabusName": "Programming Fundamentals_Cơ sở lập trình",
         "Score": [
@@ -1002,7 +1002,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9430,
+        "SubjectID": 9430,
         "SubjectCode": "SDN301m",
         "SyllabusName": "Server-Side development with NodeJS, Express, and MongoDB_Phát triển Server-Side với NodeJS, Express và MongoDB",
         "Score": [
@@ -1035,7 +1035,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10014,
+        "SubjectID": 10014,
         "SubjectCode": "CEA201",
         "SyllabusName": "Computer Organization and Architecture_Tổ chức và Kiến trúc máy tính",
         "Score": [
@@ -1060,7 +1060,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10015,
+        "SubjectID": 10015,
         "SubjectCode": "CSD201",
         "SyllabusName": "Data Structures and Algorithm_Cấu trúc dữ liệu và giải thuật",
         "Score": [
@@ -1089,7 +1089,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9986,
+        "SubjectID": 9986,
         "SubjectCode": "CSD203",
         "SyllabusName": "Data Structures and Algorithm with Python_Cấu trúc dữ liệu và giải thuật với Python",
         "Score": [
@@ -1126,7 +1126,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10200,
+        "SubjectID": 10200,
         "SubjectCode": "CSD301",
         "SyllabusName": "Advanced Algorithms_Giải thuật nâng cao",
         "Score": [
@@ -1151,7 +1151,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9982,
+        "SubjectID": 9982,
         "SubjectCode": "CSI104",
         "SyllabusName": "Introduction to Computer Science_Nhập môn khoa học máy tính",
         "Score": [
@@ -1180,7 +1180,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10084,
+        "SubjectID": 10084,
         "SubjectCode": "SSG104",
         "SyllabusName": "Communication and In-Group Working Skills_Kỹ năng giao tiếp và cộng tác",
         "Score": [
@@ -1217,7 +1217,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10085,
+        "SubjectID": 10085,
         "SubjectCode": "SSL101c",
         "SyllabusName": "Academic Skills for University Success_Kỹ năng học tập ở Đại học",
         "Score": [
@@ -1234,7 +1234,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10018,
+        "SubjectID": 10018,
         "SubjectCode": "SWD392",
         "SyllabusName": "Software Architecture and Design_Kiến trúc và thiết kế phần mềm",
         "Score": [
@@ -1259,7 +1259,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10174,
+        "SubjectID": 10174,
         "SubjectCode": "SWE201c",
         "SyllabusName": "Introduction to Software Engineering_Nhập môn kỹ thuật phần mềm",
         "Score": [
@@ -1284,7 +1284,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10020,
+        "SubjectID": 10020,
         "SubjectCode": "SWR302",
         "SyllabusName": "Software Requirement_Yêu cầu phần mềm",
         "Score": [
@@ -1317,7 +1317,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9848,
+        "SubjectID": 9848,
         "SubjectCode": "SWT301",
         "SyllabusName": "Software Testing_Kiểm thử phần mềm",
         "Score": [
@@ -1354,7 +1354,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9893,
+        "SubjectID": 9893,
         "SubjectCode": "SYB302c",
         "SyllabusName": "Entrepreneurship_Khởi sự doanh nghiệp",
         "Score": [
@@ -1371,7 +1371,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9873,
+        "SubjectID": 9873,
         "SubjectCode": "OJT202",
         "SyllabusName": "On-the-job training_Đào tạo trong môi trường thực tế",
         "Score": [
@@ -1392,7 +1392,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10114,
+        "SubjectID": 10114,
         "SubjectCode": "OSG202",
         "SyllabusName": "Operating System_Hệ điều hành",
         "Score": [
@@ -1421,7 +1421,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10339,
+        "SubjectID": 10339,
         "SubjectCode": "PRM392",
         "SyllabusName": "Mobile Programming_Lập trình di động",
         "Score": [
@@ -1450,7 +1450,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10338,
+        "SubjectID": 10338,
         "SubjectCode": "PRN211",
         "SyllabusName": "Basis Cross-Platform Application Programming With .NET_Lập trình ứng dụng đa nền tảng cơ bản với .NET",
         "Score": [
@@ -1479,7 +1479,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10296,
+        "SubjectID": 10296,
         "SubjectCode": "PRO192",
         "SyllabusName": "Object-Oriented Programming_Lập trình hướng đối tượng",
         "Score": [
@@ -1508,7 +1508,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10173,
+        "SubjectID": 10173,
         "SubjectCode": "NWC203c",
         "SyllabusName": "Computer Networking_Mạng máy tính",
         "Score": [
@@ -1533,7 +1533,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10041,
+        "SubjectID": 10041,
         "SubjectCode": "NWC204",
         "SyllabusName": "Computer Networking_Mạng máy tính",
         "Score": [
@@ -1562,7 +1562,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9226,
+        "SubjectID": 9226,
         "SubjectCode": "JPD113",
         "SyllabusName": "Elementary Japanese 1- A1.1_Tiếng Nhật sơ cấp 1-A1.1",
         "Score": [
@@ -1591,7 +1591,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9228,
+        "SubjectID": 9228,
         "SubjectCode": "JPD123",
         "SyllabusName": "Elementary Japanese 1-A1.2_Tiếng Nhật sơ cấp 1-A1.2",
         "Score": [
@@ -1620,7 +1620,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 6021,
+        "SubjectID": 6021,
         "SubjectCode": "JPD133",
         "SubjectName": "Elementary Japanese 1-A1/A2_Tiếng Nhật sơ cấp 1-A1/A2",
         "SyllabusName": "Tiếng Nhật sơ cấp 1-A1/A2",
@@ -1650,7 +1650,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 998,
+        "SubjectID": 998,
         "SubjectCode": "JPD111",
         "SubjectName": "Elementary Japanese 1.1_Tiếng Nhật sơ cấp 1.1",
         "SyllabusName": "Tiếng Nhật sơ cấp 1.1",
@@ -1680,7 +1680,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 1000,
+        "SubjectID": 1000,
         "SubjectCode": "JPD112",
         "SyllabusName": "Tiếng Nhật sơ cấp 1",
         "Score": [
@@ -1709,7 +1709,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 1135,
+        "SubjectID": 1135,
         "SubjectCode": "JPD121",
         "SyllabusName": "Tiếng Nhật sơ cấp 1.2",
         "Score": [
@@ -1738,7 +1738,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 1001,
+        "SubjectID": 1001,
         "SubjectCode": "JPD122",
         "SyllabusName": "Tiếng Nhật sơ cấp 2",
         "Score": [
@@ -1767,7 +1767,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 1136,
+        "SubjectID": 1136,
         "SubjectCode": "JPD131",
         "SyllabusName": "Tiếng Nhật sơ cấp 1.3",
         "Score": [
@@ -1796,7 +1796,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 1004,
+        "SubjectID": 1004,
         "SubjectCode": "JPD222",
         "SyllabusName": "Tiếng Nhật sơ trung cấp 1",
         "Score": [
@@ -1825,7 +1825,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 1005,
+        "SubjectID": 1005,
         "SubjectCode": "JPD223",
         "SyllabusName": "Tiếng Nhật sơ trung cấp 2",
         "Score": [
@@ -1854,7 +1854,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 1006,
+        "SubjectID": 1006,
         "SubjectCode": "JPD322",
         "SyllabusName": "Tiếng Nhật trung cấp 1",
         "Score": [
@@ -1883,7 +1883,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 1007,
+        "SubjectID": 1007,
         "SubjectCode": "JPD323",
         "SyllabusName": "Tiếng Nhật trung cấp 2",
         "Score": [
@@ -1912,7 +1912,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 1008,
+        "SubjectID": 1008,
         "SubjectCode": "JPD324",
         "SyllabusName": "Tiếng Nhật trung cấp 3",
         "Score": [
@@ -1941,7 +1941,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 1009,
+        "SubjectID": 1009,
         "SubjectCode": "JPD325",
         "SyllabusName": "Tiếng Nhật trung cấp 4",
         "Score": [
@@ -1970,7 +1970,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10010,
+        "SubjectID": 10010,
         "SubjectCode": "DBI202",
         "SyllabusName": "Database Systems_Các hệ cơ sở dữ liệu",
         "Score": [
@@ -2003,7 +2003,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10021,
+        "SubjectID": 10021,
         "SubjectCode": "LAB211",
         "SyllabusName": "OOP with Java Lab_Thực hành OOP với Java",
         "Score": [],
@@ -2011,7 +2011,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9892,
+        "SubjectID": 9892,
         "SubjectCode": "LAW201c",
         "SyllabusName": "International Business Law_Luật kinh doanh quốc tế",
         "Score": [
@@ -2028,7 +2028,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10022,
+        "SubjectID": 10022,
         "SubjectCode": "WDP301",
         "SyllabusName": "Web Development Project_Dự án phát triển Web",
         "Score": [
@@ -2053,7 +2053,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10179,
+        "SubjectID": 10179,
         "SubjectCode": "WDU203c",
         "SyllabusName": "UI/UX Design_Thiết kế trải nghiệm người dùng",
         "Score": [
@@ -2070,7 +2070,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9966,
+        "SubjectID": 9966,
         "SubjectCode": "WED201c",
         "SyllabusName": "Web Design_Thiết kế web",
         "Score": [
@@ -2095,7 +2095,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 6617,
+        "SubjectID": 6617,
         "SubjectCode": "PRJ301",
         "SyllabusName": "Java Web Application Development_Phát triển ứng dụng Java web",
         "Score": [
@@ -2136,7 +2136,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10031,
+        "SubjectID": 10031,
         "SubjectCode": "IOT102",
         "SyllabusName": "Internet of Things_Internet vạn vật",
         "Score": [
@@ -2169,7 +2169,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10030,
+        "SubjectID": 10030,
         "SubjectCode": "ISC301",
         "SyllabusName": "E-Commerce_Thương mại điện tử",
         "Score": [
@@ -2194,7 +2194,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10177,
+        "SubjectID": 10177,
         "SubjectCode": "ITE302c",
         "SyllabusName": "Ethics in IT_Đạo đức trong CNTT",
         "Score": [
@@ -2211,7 +2211,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10208,
+        "SubjectID": 10208,
         "SubjectCode": "ITA203c",
         "SyllabusName": "Information System Overview_Nhập môn HTTT",
         "Score": [
@@ -2228,7 +2228,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10297,
+        "SubjectID": 10297,
         "SubjectCode": "SEP490",
         "SyllabusName": "SE Capstone Project_Đồ án tốt nghiệp KTPM",
         "Score": [
@@ -2246,7 +2246,7 @@
         
     },
     {
-        "SyllabusID": 10347,
+        "SubjectID": 10347,
         "SubjectCode": "SWP391",
         "SyllabusName": "Software development project_Dự án phát triển phần mềm",
         "Score": [
@@ -2271,7 +2271,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9426,
+        "SubjectID": 9426,
         "SubjectCode": "FER201m",
         "SyllabusName": "Front-End web development with React_Phát triển web Front-End với React",
         "Score": [
@@ -2304,7 +2304,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10104,
+        "SubjectID": 10104,
         "SubjectCode": "ENW492c",
         "SyllabusName": "Academic Writing Skills_Kỹ năng viết học thuật",
         "Score": [
@@ -2321,7 +2321,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 9964,
+        "SubjectID": 9964,
         "SubjectCode": "MMA301",
         "SyllabusName": "Multiplatform Mobile App Development_Phát triển ứng dụng di động đa nền tảng",
         "Score": [
@@ -2354,7 +2354,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10128,
+        "SubjectID": 10128,
         "SubjectCode": "PMG201c",
         "SyllabusName": "Project management_Quản trị dự án",
         "Score": [
@@ -2379,7 +2379,7 @@
         "IsActive": true
     },
     {
-        "SyllabusID": 10178,
+        "SubjectID": 10178,
         "SubjectCode": "PMG202c",
         "SyllabusName": "Project Management_Quản trị dự án",
         "Score": [
