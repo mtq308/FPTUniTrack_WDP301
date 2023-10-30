@@ -36,6 +36,8 @@ const SemesterDetail = () => {
 
 
   const params = useParams().semesterId;
+  console.log(params);
+
   let semesterData = null;
   //database lookup using id
   // if (params === '1') {
@@ -83,7 +85,7 @@ const SemesterDetail = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label={params.id}
+                label={"ID"}
                 onBlur={handleBlur}
                 // onChange={(e) => setName(e.target.value)} 
                 value={params}
