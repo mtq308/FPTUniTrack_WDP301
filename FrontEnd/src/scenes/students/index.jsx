@@ -22,12 +22,14 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import { useNavigate } from "react-router-dom";
 
 import { studentsData } from "../../data/studentData";
 
 const Students = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const navigate = useNavigate();
 
   const [open, setOpen] = React.useState(false);
   const [age, setAge] = React.useState("");
@@ -41,21 +43,9 @@ const Students = () => {
   const columns = [
     { field: "id", headerName: "Roll Number", flex: 0.5 },
     {
-      field: "LastName",
-      headerName: "Last Name",
-      flex: 0.5,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "MiddleName",
-      headerName: "Middle Name",
-      flex: 0.5,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "FirstName",
-      headerName: "First Name",
-      flex: 0.5,
+      field: "Fullname",
+      headerName: "Full Name",
+      flex: 1,
       cellClassName: "name-column--cell",
     },
     {
@@ -69,8 +59,8 @@ const Students = () => {
       flex: 1,
     },
     {
-      field: "MobilePhone",
-      headerName: "Tel",
+      field: "Phone",
+      headerName: "Phone",
       flex: 1,
     },
     {
@@ -79,8 +69,8 @@ const Students = () => {
       flex: 1,
     },
     {
-      field: "ChuyenNganh",
-      headerName: "Chuyen Nganh",
+      field: "Specialization",
+      headerName: "Specialization",
       flex: 0.5,
     },
   ];
@@ -145,21 +135,9 @@ const Students = () => {
             <Stack direction="row">
               <TextField
                 id="outlined-basic"
-                label="Last name"
+                label="Full name"
                 variant="outlined"
-                sx={{ mt: 3 }}
-              />
-              <TextField
-                id="outlined-basic"
-                label="Middle name"
-                variant="outlined"
-                sx={{ mt: 3, ml: 3 }}
-              />
-              <TextField
-                id="outlined-basic"
-                label="First name"
-                variant="outlined"
-                sx={{ mt: 3, mb: 3, ml: 3 }}
+                sx={{ mt: 3, mb: 2, width: 300 }}
               />
               <FormControl sx={{ ml: 3, mt: 3.5 }}>
                 <Stack direction="row">
@@ -227,7 +205,7 @@ const Students = () => {
             <Stack direction="row">
               <TextField
                 type="number"
-                label="Mobile phone"
+                label="Phone"
                 variant="outlined"
                 sx={{ mt: 3, width: 420 }}
               />
@@ -339,6 +317,11 @@ const Students = () => {
           rows={studentsData}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
+          onRowClick={(params) => {
+            const studentId = params.row.id;
+            // Navigate to the student detail page
+            navigate(`/students/${studentId}`);
+          }}
         />
       </Box>
       {/* This is the end of the table view student list */}
