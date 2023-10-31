@@ -7,6 +7,7 @@ function generateToken(user) {
   const payload = {
     id: user.id,
     role: user.role,
+    time: Date.now()
   };
   return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: process.env.EXPIRED });
 }
@@ -67,7 +68,6 @@ async function adminLogin(req, res) {
       if (!user) {
         return res.status(401).json({ message: 'Not found admin' });
       }
-  
       // Verify the password
       if (await bcrypt.compareSync(password, user.password)) {
         // Passwords match, user is authenticated

@@ -1,4 +1,5 @@
 const Admin = require('../Models/adminModel');
+const Student = require('../Models/studentModel')
 
 async function adminProfile(req, res) {
   const adminId = req.Admin.id;
@@ -18,23 +19,18 @@ async function adminProfile(req, res) {
 }
 
 async function updateStudentProfile(req, res) {
-  const studentId = req.Admin.id; // Get the student's ID from the JWT token
-  const { fullname, address, phone, email } = req.body; // Assuming these are the fields to update
-
+  const studentId = req.user.id;
+  const { fullname, address, phone, email } = req.body; 
   try {
-    // Check if the requester is an admin
-    if (req.Admin.role !== 'admin') {
+    if (req.user.role !== 'admin') {
       return res.status(403).json({ message: 'Permission denied. Only admin Admins can update student profiles.' });
     }
 
-    // Find the student by ID
     const student = await Student.findOne({ id: studentId });
 
     if (!student) {
       return res.status(404).json({ message: 'Student not found' });
     }
-
-    // Update the student's profile data
     if (fullname) {
       student.fullname = fullname;
     }
@@ -58,9 +54,12 @@ async function updateStudentProfile(req, res) {
   }
 }
 
-async function getAllStudents(res) {
+async function getAllStudents(req, res) {
   try {
-    const students = await Student.find({}); // Assuming Student is your model
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can update student profiles.' });
+    }
+    const students = await Student.find({});
     res.json(students);
   } catch (err) {
     console.error(err);
