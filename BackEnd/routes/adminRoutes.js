@@ -1,9 +1,14 @@
-const express = require("express");
-const router = express.Router();
-const { isAdmin } = require('../middlewares/authorizationMiddleware.js');
-const getUserRoles = require('../middlewares/getUserRoles.js'); 
-const adminController = require('../controllers/adminController.js');
+const express = require('express');
+const adminController = require('../controllers/adminController');
+const verifyToken = require('../middlewares/authMiddleware');
 
-router.post('/updatePassword/:username', isAdmin, getUserRoles, adminController.updatePassword);
+const router = express.Router();
+
+// Protected route for admin's profile
+router.get('/profile/:id', verifyToken, adminController.adminProfile);
+// Route to get all students' information
+router.get('/students', verifyToken, adminController.getAllStudents);
+// Router.put('/students/:studentId/profile', adminController.updateStudentProfile);
+router.put('/students/:id/profile', verifyToken, adminController.updateStudentProfile);
 
 module.exports = router;

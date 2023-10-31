@@ -1,85 +1,89 @@
-const User = require('../Models/userModel.ts');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const UserRole = require('../Models/userRoleModel.ts');
-const Role = require('../Models/roleModel.ts');
+const bcrypt = require('bcrypt');
+const User = require('../Models/userModel');
 
-async function login(req, res, next) {
+// Function to generate JWT token
+function generateToken(user) {
+  const payload = {
+    id: user.id,
+    role: user.role,
+  };
+  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: process.env.EXPIRED });
+}
+
+async function studentLogin(req, res) {
+  const { id, password } = req.body;
   try {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
-
+    const user = await User.findOne({ id, role: 'student' });
     if (!user) {
-      return res.status(401).json({ msg: 'Incorrect Username or Password', status: false });
+      return res.status(401).json({ message: 'Not found student' });
     }
-
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-
-    if (!isPasswordValid) {
-      return res.status(401).json({ msg: 'Incorrect Username or Password', status: false });
+    if (await bcrypt.compareSync(password, user.password)) {
+      // Passwords match, user is authenticated
+      const token = generateToken(user);
+      return res.json({ token });
+    } else {
+      return res.status(401).json({ message: 'Authentication failed' });
     }
-
-    const userRole = await UserRole.findOne({ username });
-
-    if (!userRole) {
-      return res.status(400).json({ msg: 'Invalid user role', status: false });
-    }
-
-    const role = await Role.findOne({ roleId: userRole.role });
-
-    if (!role) {
-      return res.status(400).json({ msg: 'Invalid role', status: false });
-    }
-
-    const token = jwt.sign({ username: user.username, role: role.roleName }, process.env.SECRET_KEY, {
-      expiresIn: process.env.EXPIRED,
-    });
-
-    res.json({ status: true, user: { username: user.username, role: role.roleName }, token });
-  } catch (ex) {
-    next(ex);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
   }
 }
 
-async function register(req, res, next) {
-  try {
-    const { username, password } = req.body;
-
-    if (req.user.role !== 'admin') {
-      return res.status(403).json({ msg: 'Permission denied', status: false });
+// Lecturer login
+async function lecturerLogin(req, res) {
+    const { id, password } = req.body;
+  
+    try {
+      // Find the user by ID and role
+      const user = await User.findOne({ id, role: 'lecturer' });
+  
+      if (!user) {
+        return res.status(401).json({ message: 'Not found lecturer' });
+      }
+  
+      // Verify the password
+      if (await bcrypt.compareSync(password, user.password)) {
+        // Passwords match, user is authenticated
+        const token = generateToken(user);
+        return res.json({ token });
+      } else {
+        return res.status(401).json({ message: 'Authentication failed' });
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Server error' });
     }
-
-    const usernameCheck = await User.findOne({ username });
-
-    if (usernameCheck) {
-      return res.status(400).json({ msg: 'Username already used', status: false });
-    }
-
-    const userRole = await UserRole.findOne({ username });
-
-    if (!userRole) {
-      return res.status(400).json({ msg: 'Invalid user role', status: false });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const user = await User.create({
-      username,
-      password: hashedPassword,
-      role: userRole.role,
-    });
-
-    const token = jwt.sign({ username: user.username, role: user.role }, process.env.SECRET_KEY, {
-      expiresIn: process.env.EXPIRED,
-    });
-
-    res.json({ status: true, user: { username: user.username, role: user.role }, token });
-  } catch (ex) {
-    next(ex);
   }
-}
+
+// Admin login
+async function adminLogin(req, res) {
+    const { id, password } = req.body;
+  
+    try {
+      // Find the user by ID and role
+      const user = await User.findOne({ id, role: 'admin' });
+      if (!user) {
+        return res.status(401).json({ message: 'Not found admin' });
+      }
+  
+      // Verify the password
+      if (await bcrypt.compareSync(password, user.password)) {
+        // Passwords match, user is authenticated
+        const token = generateToken(user);
+        return res.json({ token });
+      } else {
+        return res.status(401).json({ message: 'Authentication failed' });
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Server error' });
+    }
+  }
 
 module.exports = {
-  login,
-  register,
+  studentLogin,
+  lecturerLogin,
+  adminLogin,
 };

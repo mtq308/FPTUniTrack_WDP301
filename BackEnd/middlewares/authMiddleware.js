@@ -1,14 +1,19 @@
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 
-module.exports.isAuthenticated = (req, res, next) => {
-  const token = req.header("x-auth-token");
-  if (!token) return res.status(401).json({ msg: "No token, authorization denied" });
+function verifyToken(req, res, next) {
+  const token = req.headers['authorization'];
 
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  if (!token) {
+    return res.status(403).json({ message: 'No token provided' });
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ message: 'Failed to authenticate token' });
+    }
     req.user = decoded;
     next();
-  } catch (e) {
-    res.status(400).json({ msg: "Token is not valid" });
-  }
-};
+  });
+}
+
+module.exports = verifyToken;

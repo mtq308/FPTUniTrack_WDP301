@@ -1,11 +1,10 @@
-const express = require("express");
-const router = express.Router();
-const authorizationMiddleware = require("../middlewares/authorizationMiddleware.js");
+    const express = require('express');
+    const studentController = require('../controllers/studentController');
+    const verifyToken = require('../middlewares/authMiddleware');
 
-router.get("/courses", authorizationMiddleware.isStudent, (req, res) => {
-  // Student-specific courses route
-});
+    const router = express.Router();
 
-// Add more student-specific routes
-
-module.exports = router;
+    // Protected route for student's profile
+    router.get('/profile/:id', verifyToken, studentController.studentProfile);
+    router.get('/getStudentClasses/:id', verifyToken, studentController.getStudentClasses);
+    module.exports = router;
