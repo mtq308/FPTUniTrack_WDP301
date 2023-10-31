@@ -20,7 +20,6 @@ async function adminProfile(req, res) {
 
 async function updateStudentProfile(req, res) {
   const studentId = req.user.id;
-  const { fullname, address, phone, email } = req.body; 
   try {
     if (req.user.role !== 'admin') {
       return res.status(403).json({ message: 'Permission denied. Only admin Admins can update student profiles.' });
@@ -28,22 +27,7 @@ async function updateStudentProfile(req, res) {
 
     const student = await Student.findOne({ id: studentId });
 
-    if (!student) {
-      return res.status(404).json({ message: 'Student not found' });
-    }
-    if (fullname) {
-      student.fullname = fullname;
-    }
-    if (address) {
-      student.address = address;
-    }
-    if (phone) {
-      student.phone = phone;
-    }
-    if (email) {
-      student.email = email;
-    }
-
+    Object.assign(student, req.body);
     // Save the updated student data
     await student.save();
 

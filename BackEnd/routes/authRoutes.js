@@ -7,7 +7,8 @@ const router = express.Router();
 router.post('/login/student', authController.studentLogin);
 router.post('/login/lecturer', authController.lecturerLogin);
 router.post('/login/admin', authController.adminLogin);
-
+router.post('/logout', authController.logout);
+router.post('/logoutAll', authController.logoutAll)
 //router.get('/student/profile', verifyToken, authController.studentProfile);
 
 module.exports = router;
