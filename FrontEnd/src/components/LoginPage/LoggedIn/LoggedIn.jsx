@@ -11,6 +11,8 @@ import Contacts from "../../../scenes/contacts";
 import Form from "../../../scenes/form";
 import Calendar from "../../../scenes/calendar";
 import Students from "../../../scenes/students";
+import StudentDetail from "../../../scenes/students/studentDetail";
+import StudentEditProfile from "../../../scenes/students/studentEditProfile";
 import Syllabus from "../../../scenes/syllabus";
 import Curriculum from "../../../scenes/curriculum";
 import Semester from "../../../scenes/semester";
@@ -38,6 +40,11 @@ const LoggedIn = ({ logout }) => {
               <Route path="/team" element={<Team />} />
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/students" element={<Students />} />
+              <Route path="/students/:studentId" element={<StudentDetail />} />
+              <Route
+                path="/students/:studentId/edit"
+                element={<StudentEditProfile />}
+              />
               <Route path="/syllabus" element={<Syllabus />} />
               <Route path="/curriculum" element={<Curriculum />} />
               <Route path="/semester" element={<Semester />} />
