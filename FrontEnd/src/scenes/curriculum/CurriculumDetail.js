@@ -12,7 +12,7 @@ const CurrriculumDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/json/Curriculum.json');
+        const response = await fetch('/json/curriculum.json');
 
         if (response.ok) {
           const data = await response.json();

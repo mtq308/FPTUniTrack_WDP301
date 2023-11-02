@@ -1,4 +1,4 @@
-import { Box, useTheme, Button, Stack } from "@mui/material";
+import { Box, useTheme, Button } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { Link } from "react-router-dom";
@@ -8,21 +8,47 @@ import TextField from '@mui/material/TextField';
 import Header from "../../components/Header";
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+// import { cl } from "@fullcalendar/core/internal-common";
 const Semester = () => {
   const [semesterData, setSemesterData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newSemester, setNewSemester] = useState({
+    semesterID: "",
+    name: "",
+    startDate: "",
+    endDate: "",
+  });
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-
+  const handleAddSemester = () => {
+    // Send a POST request to your backend API to add the new semester
+    fetch('http://localhost:3000/semester', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newSemester),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Update the semesterData with the newly added semester
+        setSemesterData([...semesterData, data]);
+        setIsModalOpen(false); // Close the modal
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/json/Semester.json');
-
+        // const response = await fetch('/json/Semester.json');
+        const response = await fetch('http://localhost:3000/semester');
         // Use the relative path to the JSON file
         if (response.ok) {
           const data = await response.json();
@@ -34,38 +60,45 @@ const Semester = () => {
         console.error('Error:', error);
       }
     };
-
     fetchData();
   }, []);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  console.log(semesterData);
 
   const columns = [
-    { field: "ID", headerName: "ID" },
+    { field: "semesterID", headerName: "ID" },
     {
-      field: "Name",
+      field: "name",
       headerName: "Name",
       flex: 1,
       cellClassName: "name-column--cell",
       renderCell: (params) => (
-        <Link to={`/semester/${params.row.ID}`}>{params.row.Name}</Link>
+        <Link to={`/semester/${params.row.semesterID}`}>{params.row.name}</Link>
       ),
     },
     {
-      field: "StartDate",
+      field: "startDate",
       headerName: "Start Date",
-      type: "number",
+      type: "date",
+      valueGetter: (params) => {
+        // Transform your end date value into a Date object
+        return new Date(params.row.startDate);
+      },
       headerAlign: "left",
       align: "left",
     },
     {
-      field: "EndDate",
+      field: "endDate",
       headerName: "End Date",
+      type: "date",
+      valueGetter: (params) => {
+        // Transform your end date value into a Date object
+        return new Date(params.row.endDate);
+      },
       flex: 1,
     },
-
   ];
-
 
   return (
     <Box m="20px">
@@ -79,44 +112,63 @@ const Semester = () => {
         aria-labelledby="add-semester-modal"
         aria-describedby="add-semester-form"
       >
-        <Box sx={style}>
-          <IconButton
-            edge="end"
-            color="inherit"
-            onClick={handleCloseModal}
-            sx={{ marginLeft: "90%" }}
-          >
-            <CloseIcon />
-          </IconButton>
-          <TextField
-            label="Semester Name"
-            variant="outlined"
-            margin="normal"
-            fullWidth
+        <form onSubmit={handleAddSemester}>
+          <Box sx={style}>
+            <IconButton
+              edge="end"
+              color="inherit"
+              onClick={handleCloseModal}
+              sx={{ marginLeft: "90%" }}
+            >
+              <CloseIcon />
+            </IconButton>
 
-          />
-          <div style={rowStyle}>
             <TextField
-              label="Start Date"
+              label="Semester Name"
               variant="outlined"
               margin="normal"
-              style={{ flex: 1, marginRight: '8px' }}
+              fullWidth
+              value={newSemester.name}
+              onChange={(e) => setNewSemester({ ...newSemester, name: e.target.value })}
 
             />
+            <div style={rowStyle}>
+              <TextField
+                label="Start Date"
+                variant="outlined"
+                type="date"
+                margin="normal"
+                style={{ flex: 1, marginRight: '8px' }}
+                value={newSemester.startDate}
+                onChange={(e) => setNewSemester({ ...newSemester, startDate: e.target.value })}
+              />
+              <TextField
+                label="End Date"
+                variant="outlined"
+                type="date"
+                margin="normal"
+                style={{ flex: 1 }}
+                value={newSemester.endDate}
+                onChange={(e) => setNewSemester({ ...newSemester, endDate: e.target.value })}
+              />
+            </div>
             <TextField
-              label="End Date"
+              label="SemesterID"
+              disabled
               variant="outlined"
               margin="normal"
-              style={{ flex: 1 }}
+              fullWidth
+              value={newSemester.name.trim()}
+              onChange={(e) => setNewSemester({ ...newSemester, semesterID: e.target.value.trim() })}
 
             />
-          </div>
-          <div style={{ textAlign: 'center' }}>
-            <Button variant="contained" color="primary" onClick={""} type="submit" style={{ marginTop: '10px', padding: '10px' }}>
-              Add the semester
-            </Button>
-          </div>
-        </Box>
+            <div style={{ textAlign: 'center' }}>
+              <Button variant="contained" color="primary" type="submit" style={{ marginTop: '10px', padding: '10px' }}>
+                Add the semester
+              </Button>
+            </div>
+          </Box>
+        </form>
       </Modal>
       <Box
         m="40px 0 0 0"
@@ -144,7 +196,7 @@ const Semester = () => {
           },
         }}
       >
-        <DataGrid getRowId={(row) => row.ID} rows={semesterData} columns={columns} />
+        <DataGrid getRowId={(row) => row.semesterID} rows={semesterData} columns={columns} />
       </Box>
 
     </Box>
