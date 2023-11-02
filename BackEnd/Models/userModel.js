@@ -15,6 +15,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  accessToken: [{
+    token: {
+        type: String,
+        required: true
+    }
+}]
 }, { collection: 'User' });
 
 const User = mongoose.model('User', userSchema);

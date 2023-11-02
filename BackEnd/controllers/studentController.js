@@ -27,6 +27,10 @@ async function getStudentClasses(req, res) {
     res.status(500).json({ message: 'Server error' });
   }
 }
+
+async function getStudentTimeTable(req, res){
+  const studentId = req.user.id;
+}
 module.exports = {
   studentProfile,
   getStudentClasses

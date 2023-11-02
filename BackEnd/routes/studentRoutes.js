@@ -7,4 +7,5 @@
     // Protected route for student's profile
     router.get('/profile/:id', verifyToken, studentController.studentProfile);
     router.get('/getStudentClasses/:id', verifyToken, studentController.getStudentClasses);
+
     module.exports = router;
