@@ -1,36 +1,33 @@
-//Lib
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-//Routes
-const authRoutes = require("./routes/authRoutes.js");
-const adminRoutes = require("./routes/adminRoutes");
-const studentRoutes = require("./routes/studentRoutes");
-const lecturerRoutes = require("./routes/lecturerRoutes");
-//Main
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const studentRoutes = require('./routes/studentRoutes');
+const lecturerRoutes = require('./routes/lecturerRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+const authRoutes = require('./routes/authRoutes');
+const swaggerRoute = require('./configs/swaggerRoute');
 const app = express();
-require("dotenv").config();
 
-app.use(cors());
+// Middleware
+app.use(bodyParser.json());
 app.use(express.json());
-
-mongoose
-  .connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+// Database connection
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log("DB Connetion Successfull");
+    console.log('Connected to MongoDB');
   })
-  .catch((err) => {
-    console.log(err.message);
+  .catch(err => {
+    console.error('MongoDB connection error: ' + err);
   });
 
-app.use("/api/auth", authRoutes);
-app.use("/admin", adminRoutes);
-app.use("/student", studentRoutes);
-app.use("/lecturer", lecturerRoutes);
-
-const server = app.listen(process.env.PORT, () =>
-  console.log(`Server started on ${process.env.PORT}`)
-);
+// Routes
+app.use('/auth', authRoutes); 
+app.use('/student', studentRoutes); 
+app.use('/lecturer', lecturerRoutes); 
+app.use('/admin', adminRoutes); 
+app.use('/', swaggerRoute);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

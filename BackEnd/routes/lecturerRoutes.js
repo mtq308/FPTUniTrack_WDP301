@@ -1,11 +1,10 @@
-const express = require("express");
+const express = require('express');
+const lecturerController = require('../controllers/lecturerController');
+const verifyToken = require('../middlewares/authMiddleware');
+
 const router = express.Router();
-const authorizationMiddleware = require("../middlewares/authorizationMiddleware.js");
 
-router.get("/teaching", authorizationMiddleware.isLecturer, (req, res) => {
-  // Lecturer-specific teaching route
-});
-
-// Add more lecturer-specific routes
+// Protected route for lecturer's profile
+router.get('/profile/:id', verifyToken, lecturerController.lecturerProfile);
 
 module.exports = router;
