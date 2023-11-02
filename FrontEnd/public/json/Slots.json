@@ -5,6 +5,7 @@
         "DayID": "1",
         "ClassID": "SE1701",
         "SemesterID": "Fall2023",
+        "SubjectID": "9569",
         "RoomCode": "101",
         "WeekNumber": "1",
         "LecturerUserName": "HoangLTH"
@@ -14,6 +15,7 @@
         "PeriodID": "2",
         "DayID": "2",
         "ClassID": "SE1701",
+        "SubjectID": "10326",
         "SemesterID": "Fall2023",
         "RoomCode": "101",
         "WeekNumber": "1",

@@ -1,19 +1,19 @@
 const mongoose = require('mongoose');
 
 const semesterSchema = new mongoose.Schema({
-  semesterID: {
+  SemesterID: {
     type: String,
     required: true,
   },
-  name: {
+  Name: {
     type: String,
     required: true,
   },
-  startDate: {
+  StartDate: {
     type: Date,
     required: true,
   },
-  endDate: {
+  EndDate: {
     type: Date,
     required: true,
   },

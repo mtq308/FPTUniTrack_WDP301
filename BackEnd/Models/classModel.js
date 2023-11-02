@@ -1,35 +1,35 @@
 const mongoose = require('mongoose');
 
 const classSchema = new mongoose.Schema({
-  classID: {
+  ClassID: {
     type: String,
     required: true,
   },
-  subjectID: {
+  SubjectID: {
     type: Number,
     required: true,
   },
-  studentID: {
+  StudentID: {
     type: [String],
     required: true,
   },
-  roomCode: {
+  RoomCode: {
     type: String,
     required: true,
   },
-  semesterID: {
+  SemesterID: {
     type: String,
     required: true,
   },
-  name: {
+  Name: {
     type: String,
     required: true,
   },
-  startTime: {
+  StartTime: {
     type: Date,
     required: true,
   },
-  endTime: {
+  EndTime: {
     type: Date,
     required: true,
   },
