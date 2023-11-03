@@ -16,6 +16,8 @@ import Curriculum from "../../../scenes/curriculum";
 import Semester from "../../../scenes/semester";
 import Lecture from "../../../scenes/lecture";
 import Notification from "../../../scenes/notification";
+import LectureDetail from "../../../scenes/lecture/LectureDetail";
+
 
 const LoggedIn = ({ logout }) => {
   const [theme, colorMode] = useMode();
@@ -38,6 +40,7 @@ const LoggedIn = ({ logout }) => {
               <Route path="/form" element={<Form />} />
               <Route path="/calendar" element={<Calendar />} />
               <Route path="/lecture" element={<Lecture />} />
+              <Route path="/lecture/:lectureId" element={<LectureDetail />} />
               <Route path="/notification" element={<Notification />} />
             </Routes>
           </main>

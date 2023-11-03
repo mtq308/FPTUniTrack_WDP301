@@ -1,35 +1,13 @@
 [
     {
-        "Username": "Username1",
-        "FirstName": "First Name",
-        "Middle": "Middle",
-        "Last": "Last",
-        "DoB": "Date of Birth",
-        "Phone": "Phone",
-        "Address": "Address",
+        "Username": "",
+        "FirstName": "",
+        "Middle": "",
+        "Last": "",
+        "DoB": "",
+        "Phone": "",
+        "Address": "",
         "Gender": 0,
-        "IsActive": "Is Active"
-    },
-    {
-        "Username": "Username2",
-        "FirstName": "First Name",
-        "Middle": "Middle",
-        "Last": "Last",
-        "DoB": "Date of Birth",
-        "Phone": "Phone",
-        "Address": "Address",
-        "Gender": 0,
-        "IsActive": "Is Active"
-    },
-    {
-        "Username": "Username3",
-        "FirstName": "First Name",
-        "Middle": "Middle",
-        "Last": "Last",
-        "DoB": "Date of Birth",
-        "Phone": "Phone",
-        "Address": "Address",
-        "Gender": 0,
-        "IsActive": "Is Active"
+        "IsActive":  ""
     }
 ]
