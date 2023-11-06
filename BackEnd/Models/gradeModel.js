@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// Define the schema for the Score model
 const scoreSchema = new mongoose.Schema({
   scoreName: String,
   grade: String,
@@ -17,7 +16,7 @@ const studentGradesSchema = new mongoose.Schema({
 const gradeSchema = new mongoose.Schema({
   ClassID: String,
   StudentGrades: [studentGradesSchema],
-});
+},  { collection: 'Grade' });
 
 // Create the Grade model
 const Grade = mongoose.model('Grade', gradeSchema);
