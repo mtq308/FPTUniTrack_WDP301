@@ -1,77 +1,102 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
-import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
-const initialValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  contact: "",
-  address1: "",
-  address2: "",
-};
-
-const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
-const userSchema = yup.object().shape({
-  firstName: yup.string().required("First name is required"),
-  lastName: yup.string().required("Last name is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
-  contact: yup
-    .string()
-    .matches(phoneRegExp, "Phone number is not valid")
-    .required("Contact is required"),
-  address1: yup.string().required("Address is required"),
-  address2: yup.string().required("Address is required"),
-});
+import { useEffect, useState } from "react";
+import dayjs from 'dayjs';
 const SemesterDetail = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  const handleFormSubmit = (values) => {
-    console.log(values);
-  };
 
+  const [semester, setSemester] = useState([]);
+  const [idValue, setIdValue] = useState("");
+  const [nameValue, setNameValue] = useState("");
 
   const params = useParams().semesterId;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/semester/${params}`);
+        if (response.ok) {
+          const data = await response.json();
+          setSemester(data);
+          setIdValue(params);
+          setNameValue(data.name);
+        } else {
+          console.error('Failed to fetch data');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+    fetchData();
+  }, []);
+  const handleFormSubmit = async (values) => {
+    try {
+      const updatedSemester = {
+        name: nameValue, // Get the updated name from the state
+        semesterID: idValue// Include other fields you want to update here
+      };
+
+      const response = await fetch(`http://localhost:3000/semester/${params}`, {
+        method: 'PUT', // Use PUT method to update the semester
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedSemester), // Send the updated data
+      });
+
+      if (response.status === 200) {
+        // Update the state or perform any other actions upon a successful update
+        console.log('Semester updated successfully');
+      } else {
+        console.error('Failed to update semester');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  const handleDeleteSemester = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/semester/${params}`, {
+        method: 'DELETE',
+      });
+
+      if (response.status === 200) {
+        // Handle the successful deletion, e.g., navigate to a different page
+        console.log('Semester deleted successfully');
+      } else {
+        console.error('Failed to delete semester');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const handleNameChange = (event) => {
+    const name = event.target.value;
+    const id = name.replace(/\s/g, '');
+    setNameValue(name); // Update the Name field
+    setIdValue(id);
+  };
+
+  console.log(semester);
   console.log(params);
-
-  let semesterData = null;
-  //database lookup using id
-  // if (params === '1') {
-  //   semesterData = {
-  //     Name: 'Fall2023',
-  //     StartDate: "23/09/2023",
-  //     EndDate: "24/10/2023"
-  //   }
-  // }
-  semesterData = {
-    Name: 'Fall2023',
-    StartDate: "23/09/2023",
-    EndDate: "24/10/2023"
-  }
-  const [Name, setName] = useState(semesterData.Name);
-
   return (
     <Box m="20px">
       <Header title="SEMESTER DETAIL" subtitle="FPTUniTrackSemester" />
 
       <Formik
         onSubmit={handleFormSubmit}
-        initialValues={initialValues}
-        validationSchema={userSchema}
+
       >
         {({
-          values,
-          errors,
-          touched,
           handleBlur,
           handleChange,
-          handleSubmit,
+
         }) => (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleFormSubmit}>
             <Box
               m="40px 0 0 0"
               display="grid"
@@ -87,50 +112,54 @@ const SemesterDetail = () => {
                 type="text"
                 label={"ID"}
                 onBlur={handleBlur}
-                // onChange={(e) => setName(e.target.value)} 
-                value={params}
+                value={idValue}
                 name="semesterId"
-                // error={!!touched.firstName && !!errors.firstName}
-                // helperText={touched.firstName && errors.firstName}
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
                 fullWidth
                 variant="filled"
                 type="text"
-                label={semesterData.Name}
+                label={"Name"}
                 onBlur={handleBlur}
-                onChange={(e) => setName(e.target.value)}
-                value={Name}
+                onChange={handleNameChange}
+                value={nameValue} // Use the state variable for Name field
                 name="Name"
-                // error={!!touched.lastName && !!errors.lastName}
-                // helperText={touched.lastName && errors.lastName}
+                InputLabelProps={{
+                  shrink: true,
+                }}
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
+                disabled
                 fullWidth
                 variant="filled"
-                type="text"
-                label={semesterData.StartDate}
+                type="date"
+                label={"StartDate"}
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={semesterData.StartDate}
+                InputLabelProps={{
+                  shrink: true, // Keeps the label in the "floating" position
+                }}
                 name="StartDate"
-                // error={!!touched.email && !!errors.email}
-                // helperText={touched.email && errors.email}
+
+                value={dayjs(semester.startDate).format("YYYY-MM-DD")}
+
                 sx={{ gridColumn: "span 4" }}
               />
               <TextField
+                disabled
                 fullWidth
                 variant="filled"
-                type="text"
-                label={semesterData.EndDate}
+                type="date"
+                label={"EndDate"}
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={semesterData.EndDate}
+                value={dayjs(semester.endDate).format("YYYY-MM-DD")}
                 name="EndDate"
-                // error={!!touched.contact && !!errors.contact}
-                // helperText={touched.contact && errors.contact}
+                InputLabelProps={{
+                  shrink: true, // Keeps the label in the "floating" position
+                }}
                 sx={{ gridColumn: "span 4" }}
               />
 
@@ -139,7 +168,7 @@ const SemesterDetail = () => {
               <Button type="submit" color="secondary" variant="contained">
                 Update Semester
               </Button>
-              <Button type="" color="redAccent" variant="contained">
+              <Button onClick={handleDeleteSemester} type="" color="redAccent" variant="contained">
                 Delete Semester
               </Button>
 
@@ -153,21 +182,3 @@ const SemesterDetail = () => {
 
 export default SemesterDetail;
 
-// import { useParams } from "react-router-dom";
-
-// const SemesterDetail = () => {
-//   const { semesterId } = useParams();
-
-//   // Fetch semester data based on semesterId from your data source
-//   // You can use this semester data to display the information on the page
-
-//   return (
-//     <div>
-//       <h2>semester Details</h2>
-//       <p>semester ID: {semesterId}</p>
-//       {/* Display other student information here */}
-//     </div>
-//   );
-// }
-
-// export default SemesterDetail;

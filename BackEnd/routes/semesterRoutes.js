@@ -5,12 +5,12 @@ const verifyToken = require('../middlewares/authMiddleware'); // Replace with th
 const router = express.Router();
 
 // Define your semester routes here
-
-
 router.get('/', semesterController.getAllSemesters);
 router.post('/', semesterController.createSemester);
-router.get('/:semesterID', semesterController.getSemesterById);
-router.put('/:id', verifyToken, semesterController.updateSemester);
-router.delete('/:id', verifyToken, semesterController.deleteSemester);
+router.get('/:id', semesterController.getSemesterById);
+router.put('/:id', semesterController.updateSemester);
+router.delete('/:id', semesterController.deleteSemester);
 
 module.exports = router;
+
+

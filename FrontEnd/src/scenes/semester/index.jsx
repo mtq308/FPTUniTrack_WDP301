@@ -26,6 +26,7 @@ const Semester = () => {
     setIsModalOpen(false);
   };
   const handleAddSemester = () => {
+    console.log(newSemester);
     // Send a POST request to your backend API to add the new semester
     fetch('http://localhost:3000/semester', {
       method: 'POST',
@@ -38,7 +39,7 @@ const Semester = () => {
       .then((data) => {
         // Update the semesterData with the newly added semester
         setSemesterData([...semesterData, data]);
-        setIsModalOpen(false); // Close the modal
+        // setIsModalOpen(false); // Close the modal
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -62,6 +63,7 @@ const Semester = () => {
     };
     fetchData();
   }, []);
+
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   console.log(semesterData);
@@ -129,7 +131,14 @@ const Semester = () => {
               margin="normal"
               fullWidth
               value={newSemester.name}
-              onChange={(e) => setNewSemester({ ...newSemester, name: e.target.value })}
+              onChange={(e) => {
+                const newName = e.target.value;
+                setNewSemester({
+                  ...newSemester,
+                  name: newName,
+                  semesterID: newName.replace(/\s/g, ""),
+                });
+              }}
 
             />
             <div style={rowStyle}>
@@ -140,6 +149,9 @@ const Semester = () => {
                 margin="normal"
                 style={{ flex: 1, marginRight: '8px' }}
                 value={newSemester.startDate}
+                InputLabelProps={{
+                  shrink: true, // Keeps the label in the "floating" position
+                }}
                 onChange={(e) => setNewSemester({ ...newSemester, startDate: e.target.value })}
               />
               <TextField
@@ -149,6 +161,9 @@ const Semester = () => {
                 margin="normal"
                 style={{ flex: 1 }}
                 value={newSemester.endDate}
+                InputLabelProps={{
+                  shrink: true, // Keeps the label in the "floating" position
+                }}
                 onChange={(e) => setNewSemester({ ...newSemester, endDate: e.target.value })}
               />
             </div>
@@ -158,10 +173,12 @@ const Semester = () => {
               variant="outlined"
               margin="normal"
               fullWidth
-              value={newSemester.name.trim()}
-              onChange={(e) => setNewSemester({ ...newSemester, semesterID: e.target.value.trim() })}
+              value={newSemester.name.replace(/\s/g, "")}
+              onChange={(e) => setNewSemester({ ...newSemester, semesterID: e.target.value })}
 
             />
+            {console.log(newSemester)}
+
             <div style={{ textAlign: 'center' }}>
               <Button variant="contained" color="primary" type="submit" style={{ marginTop: '10px', padding: '10px' }}>
                 Add the semester
