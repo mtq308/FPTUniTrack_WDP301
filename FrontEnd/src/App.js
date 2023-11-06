@@ -16,7 +16,6 @@ function App() {
     <div className="login {!isLoggedIn && 'login'}">
       {isLoggedIn ? (
         <LoggedIn logout={logout} />
-        // <LoggedIn setIsLoggedIn={setIsLoggedIn} />
       ) : (
         <LoginForm setIsLoggedIn={setIsLoggedIn} />
       )}

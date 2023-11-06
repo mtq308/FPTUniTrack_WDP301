@@ -13,6 +13,9 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import BookIcon from '@mui/icons-material/Book';
 import ArticleIcon from '@mui/icons-material/Article';
+import HailOutlinedIcon from '@mui/icons-material/HailOutlined';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -197,14 +200,14 @@ const Sidebar = () => {
             <Item
               title="Lecture"
               to="/lecture"
-              icon={<CalendarTodayOutlinedIcon />}
+              icon={<HailOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Notification"
               to="/notification"
-              icon={<CalendarTodayOutlinedIcon />}
+              icon={<NotificationsNoneOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

@@ -23,6 +23,8 @@ import CurriculumDetail from "../../../scenes/curriculum/CurriculumDetail";
 
 import Lecture from "../../../scenes/lecture";
 import Notification from "../../../scenes/notification";
+import LectureDetail from "../../../scenes/lecture/LectureDetail";
+
 
 
 const LoggedIn = ({ logout }) => {
@@ -55,6 +57,7 @@ const LoggedIn = ({ logout }) => {
               <Route path="/curriculum/:curriculumId" element={<CurriculumDetail />} />
 
               <Route path="/lecture" element={<Lecture />} />
+              <Route path="/lecture/:lectureId" element={<LectureDetail />} />
               <Route path="/notification" element={<Notification />} />
 
             </Routes>
