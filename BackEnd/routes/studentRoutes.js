@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Protected route for student's profile
 router.get('/profile/:id', verifyToken, studentController.studentProfile);
-router.get('/getStudentClasses/:id', verifyToken, studentController.getStudentClasses);
+router.get('/getStudentClasses/:id', studentController.getStudentClasses);
 router.post('/getSlotsOfWeek', verifyToken, studentController.getSlotsByWeekNumber);
-router.post('/getGrade', verifyToken, studentController.getGrade);
+router.post('/getGrade', studentController.getGrade);
 module.exports = router;

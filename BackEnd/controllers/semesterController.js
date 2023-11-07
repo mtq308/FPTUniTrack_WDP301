@@ -21,7 +21,7 @@ const createSemester = async (req, res) => {
 
 const getSemesterById = async (req, res) => {
   try {
-    const semester = await Semester.findOne({ semesterID: req.params.id });
+    const semester = await Semester.findOne({ SemesterID: req.params.id });
     if (!semester) {
       return res.status(404).json({ error: 'Semester not found' });
     }
@@ -33,7 +33,7 @@ const getSemesterById = async (req, res) => {
 
 const updateSemester = async (req, res) => {
   try {
-    const semester = await Semester.findOneAndUpdate({ semesterID: req.params.id }, req.body, { new: true });
+    const semester = await Semester.findOneAndUpdate({ SemesterID: req.params.id }, req.body, { new: true });
 
     if (!semester) {
       return res.status(404).json({ error: 'Semester not found' });
@@ -47,7 +47,7 @@ const updateSemester = async (req, res) => {
 
 const deleteSemester = async (req, res) => {
   try {
-    const semester = await Semester.findOneAndDelete({ semesterID: req.params.id });
+    const semester = await Semester.findOneAndDelete({ SemesterID: req.params.id });
 
     if (!semester) {
       return res.status(404).json({ error: 'Semester not found' });

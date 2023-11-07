@@ -13,7 +13,7 @@ const SemesterDetail = () => {
   const [nameValue, setNameValue] = useState("");
 
   const params = useParams().semesterId;
-
+  console.log(params)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -22,7 +22,7 @@ const SemesterDetail = () => {
           const data = await response.json();
           setSemester(data);
           setIdValue(params);
-          setNameValue(data.name);
+          setNameValue(data.Name);
         } else {
           console.error('Failed to fetch data');
         }
@@ -35,8 +35,8 @@ const SemesterDetail = () => {
   const handleFormSubmit = async (values) => {
     try {
       const updatedSemester = {
-        name: nameValue, // Get the updated name from the state
-        semesterID: idValue// Include other fields you want to update here
+        Name: nameValue, // Get the updated name from the state
+        SemesterID: idValue// Include other fields you want to update here
       };
 
       const response = await fetch(`http://localhost:3000/semester/${params}`, {
@@ -143,7 +143,7 @@ const SemesterDetail = () => {
                 }}
                 name="StartDate"
 
-                value={dayjs(semester.startDate).format("YYYY-MM-DD")}
+                value={dayjs(semester.StartDate).format("YYYY-MM-DD")}
 
                 sx={{ gridColumn: "span 4" }}
               />
@@ -155,7 +155,7 @@ const SemesterDetail = () => {
                 label={"EndDate"}
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={dayjs(semester.endDate).format("YYYY-MM-DD")}
+                value={dayjs(semester.EndDate).format("YYYY-MM-DD")}
                 name="EndDate"
                 InputLabelProps={{
                   shrink: true, // Keeps the label in the "floating" position

@@ -23,9 +23,9 @@ async function studentProfile(req, res, next) {
 }
 
 async function getStudentClasses(req, res, next) {
-  const studentId = req.user.id;
+  const studentId = req.body.id;
   try {
-    const classes = await Class.find({ StudentID: { $in: [studentId] }});
+    const classes = await Class.find({ StudentID: { $in: [studentId] } });
     res.json(classes);
   } catch (error) {
     console.error(error);
@@ -58,8 +58,8 @@ async function getSlotsByWeekNumber(req, res, next) {
     const [periods, days, semesters, subjects] = await Promise.all([
       Period.find({}),
       Day.find({ DayID: { $in: slots.map((slot) => slot.DayID) } }),
-      Semester.find({ SemesterID: { $in: slots.map((slot) => slot.SemesterID) }}),
-      Subject.find({ SubjectID: { $in: slots.map((slot) => slot.SubjectID) }}),
+      Semester.find({ SemesterID: { $in: slots.map((slot) => slot.SemesterID) } }),
+      Subject.find({ SubjectID: { $in: slots.map((slot) => slot.SubjectID) } }),
     ]);
 
     const slotsWithModels = slots.map((slot) => ({
@@ -77,7 +77,7 @@ async function getSlotsByWeekNumber(req, res, next) {
   }
 }
 
-async function getGrade(req, res, next){
+async function getGrade(req, res, next) {
   try {
     const { studentId, subjectId } = req.body;
 

@@ -8,7 +8,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessages, setErrorMessages] = useState({});
-
+  console.log("hi 2")
   const errors = {
     username: "* Invalid email",
     password: "* Invalid password",

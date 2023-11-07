@@ -13,10 +13,10 @@ const Semester = () => {
   const [semesterData, setSemesterData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newSemester, setNewSemester] = useState({
-    semesterID: "",
-    name: "",
-    startDate: "",
-    endDate: "",
+    SemesterID: "",
+    Name: "",
+    StartDate: "",
+    EndDate: "",
   });
 
   const handleOpenModal = () => {
@@ -69,34 +69,34 @@ const Semester = () => {
   console.log(semesterData);
 
   const columns = [
-    { field: "semesterID", headerName: "ID" },
+    { field: "SemesterID", headerName: "ID" },
     {
-      field: "name",
+      field: "Name",
       headerName: "Name",
       flex: 1,
       cellClassName: "name-column--cell",
       renderCell: (params) => (
-        <Link to={`/semester/${params.row.semesterID}`}>{params.row.name}</Link>
+        <Link to={`/semester/${params.row.SemesterID}`}>{params.row.Name}</Link>
       ),
     },
     {
-      field: "startDate",
+      field: "StartDate",
       headerName: "Start Date",
       type: "date",
       valueGetter: (params) => {
         // Transform your end date value into a Date object
-        return new Date(params.row.startDate);
+        return new Date(params.row.StartDate);
       },
       headerAlign: "left",
       align: "left",
     },
     {
-      field: "endDate",
+      field: "EndDate",
       headerName: "End Date",
       type: "date",
       valueGetter: (params) => {
         // Transform your end date value into a Date object
-        return new Date(params.row.endDate);
+        return new Date(params.row.EndDate);
       },
       flex: 1,
     },
@@ -130,13 +130,13 @@ const Semester = () => {
               variant="outlined"
               margin="normal"
               fullWidth
-              value={newSemester.name}
+              value={newSemester.Name}
               onChange={(e) => {
                 const newName = e.target.value;
                 setNewSemester({
                   ...newSemester,
-                  name: newName,
-                  semesterID: newName.replace(/\s/g, ""),
+                  Name: newName,
+                  SemesterID: newName.replace(/\s/g, ""),
                 });
               }}
 
@@ -148,11 +148,11 @@ const Semester = () => {
                 type="date"
                 margin="normal"
                 style={{ flex: 1, marginRight: '8px' }}
-                value={newSemester.startDate}
+                value={newSemester.StartDate}
                 InputLabelProps={{
                   shrink: true, // Keeps the label in the "floating" position
                 }}
-                onChange={(e) => setNewSemester({ ...newSemester, startDate: e.target.value })}
+                onChange={(e) => setNewSemester({ ...newSemester, StartDate: e.target.value })}
               />
               <TextField
                 label="End Date"
@@ -160,11 +160,11 @@ const Semester = () => {
                 type="date"
                 margin="normal"
                 style={{ flex: 1 }}
-                value={newSemester.endDate}
+                value={newSemester.EndDate}
                 InputLabelProps={{
                   shrink: true, // Keeps the label in the "floating" position
                 }}
-                onChange={(e) => setNewSemester({ ...newSemester, endDate: e.target.value })}
+                onChange={(e) => setNewSemester({ ...newSemester, EndDate: e.target.value })}
               />
             </div>
             <TextField
@@ -173,8 +173,8 @@ const Semester = () => {
               variant="outlined"
               margin="normal"
               fullWidth
-              value={newSemester.name.replace(/\s/g, "")}
-              onChange={(e) => setNewSemester({ ...newSemester, semesterID: e.target.value })}
+              value={newSemester.Name.replace(/\s/g, "")}
+              onChange={(e) => setNewSemester({ ...newSemester, SemesterID: e.target.value })}
 
             />
             {console.log(newSemester)}
@@ -213,7 +213,7 @@ const Semester = () => {
           },
         }}
       >
-        <DataGrid getRowId={(row) => row.semesterID} rows={semesterData} columns={columns} />
+        <DataGrid getRowId={(row) => row.SemesterID} rows={semesterData} columns={columns} />
       </Box>
 
     </Box>

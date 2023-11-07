@@ -26,6 +26,7 @@ import Notification from "../../../scenes/notification";
 
 
 const LoggedIn = ({ logout }) => {
+  console.log("hi")
   const [theme, colorMode] = useMode();
   return (
     <ColorModeContext.Provider value={colorMode}>
