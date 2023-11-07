@@ -6,35 +6,35 @@ const lecturerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  lectureUsername: {
+  LectureUsername: {
     type: String,
     required: true,
   },
-  dateOfBirth: {
+  DateOfBirth: {
     type: Date,
     required: true,
   },
-  gender: {
+  Gender: {
     type: Boolean,
     required: true,
   },
-  idCard: {
+  IdCard: {
     type: String,
     required: true,
   },
-  address: {
+  Address: {
     type: String,
     required: true,
   },
-  phone: {
+  Phone: {
     type: String,
     required: true,
   },
-  email: {
+  Email: {
     type: String,
     required: true,
   },
-  fullname: {
+  Fullname: {
     type: String,
     required: true,
   },

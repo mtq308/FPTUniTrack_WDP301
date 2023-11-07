@@ -1,4 +1,5 @@
 const Admin = require('../Models/adminModel');
+const Lecturer = require('../Models/lecturerModel');
 const Student = require('../Models/studentModel')
 
 async function adminProfile(req, res) {
@@ -28,22 +29,7 @@ async function updateStudentProfile(req, res) {
 
     const student = await Student.findOne({ id: studentId });
 
-    if (!student) {
-      return res.status(404).json({ message: 'Student not found' });
-    }
-    if (fullname) {
-      student.fullname = fullname;
-    }
-    if (address) {
-      student.address = address;
-    }
-    if (phone) {
-      student.phone = phone;
-    }
-    if (email) {
-      student.email = email;
-    }
-
+    Object.assign(student, req.body);
     // Save the updated student data
     await student.save();
 
@@ -57,7 +43,7 @@ async function updateStudentProfile(req, res) {
 async function getAllStudents(req, res) {
   try {
     if (req.user.role !== 'admin') {
-      return res.status(403).json({ message: 'Permission denied. Only admin Admins can update student profiles.' });
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
     }
     const students = await Student.find({});
     res.json(students);
@@ -121,9 +107,43 @@ async function createStudent(req, res) {
 }
 
 
+async function getAllLecturers(req, res) {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all lecturers profiles.' });
+    }
+    const lecturers = await Lecturer.find({});
+    res.json(lecturers);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+async function addStudent(req, res) {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can add students.' });
+    }
+
+    const newStudentData = req.body; 
+
+    const newStudent = new Student(newStudentData);
+
+    await newStudent.save();
+
+    res.json({ message: 'Student added successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
 module.exports = {
   adminProfile,
   getAllStudents,
   updateStudentProfile,
-  createStudent
+  createStudent,
+  addStudent,
+  getAllLecturers
 };

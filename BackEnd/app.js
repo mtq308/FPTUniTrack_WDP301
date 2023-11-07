@@ -1,4 +1,6 @@
+// Load environment variables from a .env file
 require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -15,6 +17,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
+
 // Database connection
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
@@ -30,6 +33,17 @@ app.use('/student', studentRoutes);
 app.use('/lecturer', lecturerRoutes);
 app.use('/admin', adminRoutes);
 app.use('/', swaggerRoute);
+
+// Global Error Handling Middleware
+app.use((err, req, res, next) => {
+  console.error(err);
+
+  if (err) {
+    res.status(err.statusCode).json({ message: err.message });
+  } else {
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
