@@ -25,13 +25,7 @@ async function studentProfile(req, res, next) {
 
 async function getStudentClasses(req, res, next) {
   const studentId = req.body.id;
-<<<<<<< HEAD
-  console.log(studentId);
-  try {
-    const classes = await Class.find({ StudentID: { $in: [studentId] } });
-    console.log(classes)
-    res.json(classes);
-=======
+
   try {
     const classes = await Class.find({ StudentID: { $in: [studentId] } });
     const subjectIds = classes.map((cls) => cls.SubjectID);
@@ -48,7 +42,7 @@ async function getStudentClasses(req, res, next) {
     });
 
     res.json(classWithSubjects);
->>>>>>> origin/NhanTV
+
   } catch (error) {
     console.error(error);
     next(error); // Pass the error to the next middleware or error handler
