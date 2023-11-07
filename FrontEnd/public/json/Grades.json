@@ -1,25 +1,73 @@
-const mongoose = require('mongoose');
-
-// Define the schema for the Score model
-const scoreSchema = new mongoose.Schema({
-  scoreName: String,
-  grade: String,
-});
-
-// Define the schema for the StudentGrades model
-const studentGradesSchema = new mongoose.Schema({
-  StudentID: String,
-  SubjectID: Number,
-  Score: [scoreSchema],
-});
-
-// Define the schema for the Grade model
-const gradeSchema = new mongoose.Schema({
-  ClassID: String,
-  StudentGrades: [studentGradesSchema],
-});
-
-// Create the Grade model
-const Grade = mongoose.model('Grade', gradeSchema);
-
-module.exports = Grade;
+[
+    {
+        "ClassID": "SE1701",
+        "StudentGrades": [
+            {
+                "StudentID": "HE170001",
+                "SubjectID": 10326,
+                "Score": [
+                    {
+                        "scoreName": "Assignments/Exercises",
+                        "grade": "9"
+                    },
+                    {
+                        "scoreName": "Progress Test",
+                        "grade": "9"
+                    },
+                    {
+                        "scoreName": "Final exam",
+                        "grade": "9"
+                    },
+                    {
+                        "scoreName": "Final Exam Resit",
+                        "grade": ""
+                    }
+                ]
+            },
+            {
+                "StudentID": "HE170002",
+                "SubjectID": 10326,
+                "Score": [
+                    {
+                        "scoreName": "Assignments/Exercises",
+                        "grade": "9"
+                    },
+                    {
+                        "scoreName": "Progress Test",
+                        "grade": "9"
+                    },
+                    {
+                        "scoreName": "Final exam",
+                        "grade": "9"
+                    },
+                    {
+                        "scoreName": "Final Exam Resit",
+                        "grade": ""
+                    }
+                ]
+            },
+            {
+                "StudentID": "HE170003",
+                "SubjectID": 10326,
+                "Score": [
+                    {
+                        "scoreName": "Assignments/Exercises",
+                        "grade": "9"
+                    },
+                    {
+                        "scoreName": "Progress Test",
+                        "grade": "9"
+                    },
+                    {
+                        "scoreName": "Final exam",
+                        "grade": "9"
+                    },
+                    {
+                        "scoreName": "Final Exam Resit",
+                        "grade": ""
+                    }
+                ]
+            }
+        ]
+    }
+]

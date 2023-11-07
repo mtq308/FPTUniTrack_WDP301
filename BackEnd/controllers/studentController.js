@@ -6,6 +6,7 @@ const Day = require('../Models/dayModel.js');
 const Semester = require('../Models/semesterModel.js');
 const Subject = require('../Models/subjectModel.js');
 const Grade = require('../Models/gradeModel.js')
+
 async function studentProfile(req, res, next) {
   const studentId = req.user.id;
   try {
@@ -85,9 +86,6 @@ async function getGrade(req, res, next){
       "StudentGrades.StudentID": studentId,
       "StudentGrades.SubjectID": subjectId
     });
-    console.log(studentId)
-    console.log(subjectId)
-    console.log(result)
     if (!result) {
       return null;
     }
