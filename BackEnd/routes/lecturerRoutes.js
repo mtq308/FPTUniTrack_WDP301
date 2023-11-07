@@ -15,4 +15,5 @@ router.post('/getGradeByStudentId', verifyToken, lecturerController.getGradeBySt
 
 router.post('/getGradeByClass', verifyToken, lecturerController.getGradeByClass)
 
+router.post('/getStudentBySubjectId', lecturerController.getAllStudentInClassBySubjectId)
 module.exports = router;

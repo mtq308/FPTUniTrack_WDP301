@@ -20,7 +20,7 @@ async function adminProfile(req, res) {
 }
 
 async function updateStudentProfile(req, res) {
-  const studentId = req.user.id;
+  const studentId = req.body.id;
   const { fullname, address, phone, email } = req.body;
   try {
     if (req.user.role !== 'admin') {
