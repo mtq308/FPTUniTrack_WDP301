@@ -149,10 +149,55 @@ async function updateStudentGrade(req, res) {
   }
 }
 
+async function getStudentClasses(req, res, next) {
+  const studentId = req.body.id;
+  try {
+    const classes = await Class.find({ StudentID: { $in: [studentId] } });
+    const subjectIds = classes.map((cls) => cls.SubjectID);
+    const subjects = await Subject.find({ SubjectID: { $in: subjectIds } });
+
+    const classWithSubjects = classes.map((cls) => {
+      const subject = subjects.find((subj) => subj.SubjectID === cls.SubjectID);
+      return {
+        ...cls.toObject(),
+        ClassID: cls.ClassID,
+        SubjectCode: subject.SubjectCode || null,
+        SyllabusName: subject.SyllabusName || null // Attach the subject to the class
+      };
+    });
+
+    res.json(classWithSubjects);
+  } catch (error) {
+    console.error(error);
+    next(error); // Pass the error to the next middleware or error handler
+  }
+}
+
+async function getAllStudentInClassBySubjectId(req, res, next) {
+  const {classId, subjectId} = req.body;
+  try {
+    const classes = await Class.find({ ClassID: { $in: [classId] }, SubjectID: { $in: [subjectId]} });
+    const classWithSubjects = classes.map((cls) => {
+      return {
+        ClassID: cls.ClassID,
+        SubjectID: cls.SubjectID,
+        StudentID:  cls.StudentID
+      };
+    });
+
+    res.json(classWithSubjects);
+  } catch (error) {
+    console.error(error);
+    next(error); // Pass the error to the next middleware or error handler
+  }
+}
+
 module.exports = {
   lecturerProfile,
   getSlotsByWeekNumber,
   getGradeByClass,
   getGradeByStudentId,
-  updateStudentGrade
+  updateStudentGrade,
+  getStudentClasses,
+  getAllStudentInClassBySubjectId
 };
