@@ -34,53 +34,54 @@ async function studentLogin(req, res) {
 
 // Lecturer login
 async function lecturerLogin(req, res) {
-    const { id, password } = req.body;
-  
-    try {
-      // Find the user by ID and role
-      const user = await User.findOne({ id, role: 'lecturer' });
-  
-      if (!user) {
-        return res.status(401).json({ message: 'Not found lecturer' });
-      }
-  
-      // Verify the password
-      if (await bcrypt.compareSync(password, user.password)) {
-        // Passwords match, user is authenticated
-        const token = generateToken(user);
-        return res.json({ token });
-      } else {
-        return res.status(401).json({ message: 'Authentication failed' });
-      }
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Server error' });
+  const { id, password } = req.body;
+
+  try {
+    // Find the user by ID and role
+    const user = await User.findOne({ id, role: 'lecturer' });
+
+    if (!user) {
+      return res.status(401).json({ message: 'Not found lecturer' });
     }
+
+    // Verify the password
+    if (await bcrypt.compareSync(password, user.password)) {
+      // Passwords match, user is authenticated
+      const token = generateToken(user);
+      return res.json({ token });
+    } else {
+      return res.status(401).json({ message: 'Authentication failed' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
   }
+}
 
 // Admin login
 async function adminLogin(req, res) {
-    const { id, password } = req.body;
-  
-    try {
-      // Find the user by ID and role
-      const user = await User.findOne({ id, role: 'admin' });
-      if (!user) {
-        return res.status(401).json({ message: 'Not found admin' });
-      }
-      // Verify the password
-      if (await bcrypt.compareSync(password, user.password)) {
-        // Passwords match, user is authenticated
-        const token = generateToken(user);
-        return res.json({ token });
-      } else {
-        return res.status(401).json({ message: 'Authentication failed' });
-      }
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Server error' });
+  const { id, password } = req.body;
+
+  try {
+    const user = await User.findOne({ id, role: 'admin' });
+    if (!user) {
+      console.log('Admin not found');
+      return res.status(401).json({ message: 'Not found admin' });
     }
+    // Verify the password
+    if (await bcrypt.compareSync(password, user.password)) {
+      // Passwords match, user is authenticated
+      const token = generateToken(user);
+      return res.json({ token });
+    } else {
+      console.log('Password does not match'); // Add this
+      return res.status(401).json({ message: 'Authentication failed' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
   }
+}
 
 module.exports = {
   studentLogin,
