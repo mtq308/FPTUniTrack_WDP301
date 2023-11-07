@@ -9,9 +9,12 @@ const lecturerRoutes = require('./routes/lecturerRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const authRoutes = require('./routes/authRoutes');
 const swaggerRoute = require('./configs/swaggerRoute');
+const cors = require('cors');
+
 const app = express();
 
 // Middleware
+app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
 
@@ -25,10 +28,10 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
   });
 
 // Routes
-app.use('/auth', authRoutes); 
-app.use('/student', studentRoutes); 
-app.use('/lecturer', lecturerRoutes); 
-app.use('/admin', adminRoutes); 
+app.use('/auth', authRoutes);
+app.use('/student', studentRoutes);
+app.use('/lecturer', lecturerRoutes);
+app.use('/admin', adminRoutes);
 app.use('/', swaggerRoute);
 
 // Global Error Handling Middleware

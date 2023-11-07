@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
@@ -25,6 +25,7 @@ import Select from "@mui/material/Select";
 import { useNavigate } from "react-router-dom";
 
 import { studentsData } from "../../data/studentData";
+import axios from "axios";
 
 const Students = () => {
   const theme = useTheme();
@@ -32,12 +33,27 @@ const Students = () => {
   const navigate = useNavigate();
 
   const [open, setOpen] = React.useState(false);
+  const [name, setName] = useState("");
   const [age, setAge] = React.useState("");
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleChange = (event) => {
     setAge(event.target.value);
+  };
+
+  const submit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/admin/students/create",
+        { name }
+      );
+      console.log("Request successful:", response.data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const columns = [
@@ -105,180 +121,184 @@ const Students = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: { lg: 900, xs: 700 },
-            bgcolor:
-              theme.palette.mode === "dark" ? colors.blueAccent[900] : "white", // Adjust the color here
-            color:
-              theme.palette.mode === "dark" ? colors.primary[100] : "black", // Adjust the text color here
-            border: "2px solid #000",
-            boxShadow: 24,
-            p: 4,
-          }}
-          style={{ maxHeight: 700, overflow: "auto" }}
-        >
-          <Typography
-            id="modal-modal-title"
-            variant="h4"
-            component="h2"
-            sx={{ fontWeight: 700 }}
+        <form action="POST">
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: { lg: 900, xs: 700 },
+              bgcolor:
+                theme.palette.mode === "dark"
+                  ? colors.blueAccent[900]
+                  : "white", // Adjust the color here
+              color:
+                theme.palette.mode === "dark" ? colors.primary[100] : "black", // Adjust the text color here
+              border: "2px solid #000",
+              boxShadow: 24,
+              p: 4,
+            }}
+            style={{ maxHeight: 700, overflow: "auto" }}
           >
-            CREATE NEW STUDENT
-          </Typography>
+            <Typography
+              id="modal-modal-title"
+              variant="h4"
+              component="h2"
+              sx={{ fontWeight: 700 }}
+            >
+              CREATE NEW STUDENT
+            </Typography>
 
-          <Stack direction="column">
-            <Stack direction="row">
+            <Stack direction="column">
+              <Stack direction="row">
+                <TextField
+                  label="Full name"
+                  variant="outlined"
+                  sx={{ mt: 3, mb: 2, width: 300 }}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
+                />
+                <FormControl sx={{ ml: 3, mt: 3.5 }}>
+                  <Stack direction="row">
+                    <RadioGroup
+                      aria-labelledby="demo-radio-buttons-group-label"
+                      defaultValue="female"
+                      name="radio-buttons-group"
+                      sx={{ ml: 3 }}
+                    >
+                      <Stack direction="row">
+                        <FormControlLabel
+                          value="female"
+                          control={
+                            <Radio
+                              sx={{
+                                "&, &.Mui-checked": {
+                                  color: "silver",
+                                },
+                              }}
+                            />
+                          }
+                          label="Female"
+                        />
+                        <FormControlLabel
+                          value="male"
+                          control={
+                            <Radio
+                              sx={{
+                                "&, &.Mui-checked": {
+                                  color: "silver",
+                                },
+                              }}
+                            />
+                          }
+                          label="Male"
+                        />
+                      </Stack>
+                    </RadioGroup>
+                  </Stack>
+                </FormControl>
+              </Stack>
+
+              <Stack direction="row">
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DemoContainer components={["DatePicker"]}>
+                    <DatePicker label="Date of Birth" />
+                  </DemoContainer>
+                </LocalizationProvider>
+                <TextField
+                  type="number"
+                  id="outlined-basic"
+                  label="ID Card"
+                  variant="outlined"
+                  sx={{ ml: 3, mt: 1, width: 600 }}
+                />
+              </Stack>
+
               <TextField
                 id="outlined-basic"
-                label="Full name"
+                label="Address"
                 variant="outlined"
-                sx={{ mt: 3, mb: 2, width: 300 }}
+                sx={{ mt: 3, width: 830 }}
               />
-              <FormControl sx={{ ml: 3, mt: 3.5 }}>
-                <Stack direction="row">
-                  <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="female"
-                    name="radio-buttons-group"
-                    sx={{ ml: 3 }}
+
+              <Stack direction="row">
+                <TextField
+                  type="number"
+                  label="Phone"
+                  variant="outlined"
+                  sx={{ mt: 3, width: 420 }}
+                />
+                <TextField
+                  type="email"
+                  label="Email"
+                  variant="outlined"
+                  sx={{ mt: 3, ml: 3, width: 420 }}
+                />
+              </Stack>
+              <Stack direction="row">
+                <TextField
+                  label="Member code"
+                  variant="outlined"
+                  sx={{ mt: 3, width: 250 }}
+                />
+                <FormControl sx={{ mt: 3, ml: 3, width: 150 }}>
+                  <InputLabel id="demo-simple-select-label">
+                    Specialization
+                  </InputLabel>
+                  <Select
+                    value={age}
+                    label="Specialization"
+                    onChange={handleChange}
                   >
-                    <Stack direction="row">
-                      <FormControlLabel
-                        value="female"
-                        control={
-                          <Radio
-                            sx={{
-                              "&, &.Mui-checked": {
-                                color: "silver",
-                              },
-                            }}
-                          />
-                        }
-                        label="Female"
-                      />
-                      <FormControlLabel
-                        value="male"
-                        control={
-                          <Radio
-                            sx={{
-                              "&, &.Mui-checked": {
-                                color: "silver",
-                              },
-                            }}
-                          />
-                        }
-                        label="Male"
-                      />
-                    </Stack>
-                  </RadioGroup>
-                </Stack>
-              </FormControl>
+                    <MenuItem value={10}>SE</MenuItem>
+                    <MenuItem value={20}>IA</MenuItem>
+                    <MenuItem value={30}>GD</MenuItem>
+                    <MenuItem value={30}>AI</MenuItem>
+                    <MenuItem value={30}>IB</MenuItem>
+                    <MenuItem value={30}>IS</MenuItem>
+                  </Select>
+                </FormControl>
+              </Stack>
+
+              {/* Tam thoi khong can Full name vi ta co the lay Last name + Middle name + First name la se ra Full name */}
             </Stack>
 
-            <Stack direction="row">
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer components={["DatePicker"]}>
-                  <DatePicker label="Date of Birth" />
-                </DemoContainer>
-              </LocalizationProvider>
-              <TextField
-                type="number"
-                id="outlined-basic"
-                label="ID Card"
+            <Stack direction="row" sx={{ mt: 5, ml: 80 }}>
+              <Button
+                type="submit"
                 variant="outlined"
-                sx={{ ml: 3, mt: 1, width: 600 }}
-              />
+                onClick={submit}
+                sx={{
+                  bgcolor:
+                    theme.palette.mode === "dark" ? colors.grey[400] : "white",
+                  color:
+                    theme.palette.mode === "dark"
+                      ? colors.primary[100]
+                      : "black",
+                  mr: 3,
+                }}
+              >
+                Create
+              </Button>
+              <Button
+                variant="outlined"
+                onClick={handleClose}
+                sx={{
+                  bgcolor:
+                    theme.palette.mode === "dark" ? colors.grey[400] : "white",
+                  color:
+                    theme.palette.mode === "dark"
+                      ? colors.primary[100]
+                      : "black",
+                }}
+              >
+                Cancel
+              </Button>
             </Stack>
-
-            <TextField
-              id="outlined-basic"
-              label="Address"
-              variant="outlined"
-              sx={{ mt: 3, width: 830 }}
-            />
-
-            <Stack direction="row">
-              <TextField
-                type="number"
-                label="Phone"
-                variant="outlined"
-                sx={{ mt: 3, width: 420 }}
-              />
-              <TextField
-                type="email"
-                label="Email"
-                variant="outlined"
-                sx={{ mt: 3, ml: 3, width: 420 }}
-              />
-            </Stack>
-            <Stack direction="row">
-              <TextField
-                label="Member code"
-                variant="outlined"
-                sx={{ mt: 3, width: 250 }}
-              />
-              <FormControl sx={{ mt: 3, ml: 3, width: 150 }}>
-                <InputLabel id="demo-simple-select-label">
-                  Chuyen nganh
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={age}
-                  label="Chuyen nganh"
-                  onChange={handleChange}
-                >
-                  <MenuItem value={10}>SE</MenuItem>
-                  <MenuItem value={20}>IA</MenuItem>
-                  <MenuItem value={30}>GD</MenuItem>
-                  <MenuItem value={30}>AI</MenuItem>
-                  <MenuItem value={30}>IB</MenuItem>
-                  <MenuItem value={30}>IS</MenuItem>
-                  <MenuItem value={30}>...</MenuItem>
-                  <MenuItem value={30}>...</MenuItem>
-                  <MenuItem value={30}>...</MenuItem>
-                  <MenuItem value={30}>...</MenuItem>
-                  <MenuItem value={30}>...</MenuItem>
-                </Select>
-              </FormControl>
-            </Stack>
-
-            {/* Tam thoi khong can Full name vi ta co the lay Last name + Middle name + First name la se ra Full name */}
-          </Stack>
-
-          <Stack direction="row" sx={{ mt: 5, ml: 80 }}>
-            <Button
-              variant="outlined"
-              onClick={() => {}}
-              sx={{
-                bgcolor:
-                  theme.palette.mode === "dark" ? colors.grey[400] : "white",
-                color:
-                  theme.palette.mode === "dark" ? colors.primary[100] : "black",
-                mr: 3,
-              }}
-            >
-              Create
-            </Button>
-            <Button
-              variant="outlined"
-              onClick={handleClose}
-              sx={{
-                bgcolor:
-                  theme.palette.mode === "dark" ? colors.grey[400] : "white",
-                color:
-                  theme.palette.mode === "dark" ? colors.primary[100] : "black",
-              }}
-            >
-              Cancel
-            </Button>
-          </Stack>
-        </Box>
+          </Box>
+        </form>
       </Modal>
       {/* This is the end of the modal */}
 

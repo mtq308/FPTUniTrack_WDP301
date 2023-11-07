@@ -58,8 +58,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center">
               <Typography variant="h5">Date of Birth:</Typography>
               <TextField
-                disabled
-                label={student.DateOfBirth}
+                defaultValue={student.DateOfBirth}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -70,8 +69,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center" sx={{ ml: 10 }}>
               <Typography variant="h5">Gender:</Typography>
               <TextField
-                disabled
-                label={student.Gender ? "Male" : "Female"}
+                defaultValue={student.Gender ? "Male" : "Female"}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -84,8 +82,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center">
               <Typography variant="h5">ID Card:</Typography>
               <TextField
-                disabled
-                label={student.IDCard}
+                defaultValue={student.IDCard}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -96,8 +93,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center" sx={{ ml: 10 }}>
               <Typography variant="h5">Phone:</Typography>
               <TextField
-                disabled
-                label={student.Phone}
+                defaultValue={student.Phone}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -109,8 +105,7 @@ const StudentDetail = () => {
           <Stack direction="row" alignItems="center" sx={{ mt: 3 }}>
             <Typography variant="h5">Address:</Typography>
             <TextField
-              disabled
-              label={student.Address}
+              defaultValue={student.Address}
               InputProps={{
                 readOnly: true,
               }}
@@ -122,8 +117,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center">
               <Typography variant="h5">Email:</Typography>
               <TextField
-                disabled
-                label={student.Email}
+                defaultValue={student.Email}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -134,8 +128,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center" sx={{ ml: 4 }}>
               <Typography variant="h5">Student username:</Typography>
               <TextField
-                disabled
-                label={student.StudentUsername}
+                defaultValue={student.StudentUsername}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -148,8 +141,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center">
               <Typography variant="h5">Specialization:</Typography>
               <TextField
-                disabled
-                label={student.Specialization}
+                defaultValue={student.Specialization}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -160,8 +152,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center" sx={{ ml: 28.9 }}>
               <Typography variant="h5">Is active:</Typography>
               <TextField
-                disabled
-                label={student.IsActive ? "Yes" : "No"}
+                defaultValue={student.IsActive ? "Yes" : "No"}
                 InputProps={{
                   readOnly: true,
                 }}

@@ -53,7 +53,6 @@ const Topbar = ({ logout }) => {
         <IconButton
           onClick={() => {
             logout();
-            navigate("/login");
           }}
         >
           <LogoutIcon />
