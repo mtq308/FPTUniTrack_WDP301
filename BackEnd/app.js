@@ -13,6 +13,7 @@ const semesterRoutes = require('./routes/semesterRoutes');
 const app = express();
 const cors = require('cors');
 // Middleware
+app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
