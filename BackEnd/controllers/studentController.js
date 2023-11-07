@@ -25,8 +25,10 @@ async function studentProfile(req, res, next) {
 
 async function getStudentClasses(req, res, next) {
   const studentId = req.body.id;
+  console.log(studentId);
   try {
     const classes = await Class.find({ StudentID: { $in: [studentId] } });
+    console.log(classes)
     res.json(classes);
   } catch (error) {
     console.error(error);

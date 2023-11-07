@@ -173,6 +173,13 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
 
+            <Item
+              title="Grade"
+              to="/grade"
+              icon={<ArticleIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
             <Typography
               variant="h6"
               color={colors.grey[300]}

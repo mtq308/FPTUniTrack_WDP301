@@ -25,6 +25,7 @@ import CurriculumDetail from "../../../scenes/curriculum/CurriculumDetail";
 
 import Lecture from "../../../scenes/lecture";
 import Notification from "../../../scenes/notification";
+import Grade from "../../../scenes/grade";
 
 const LoggedIn = ({ logout }) => {
   console.log("hi")
@@ -85,6 +86,7 @@ const LoggedIn = ({ logout }) => {
 
               <Route path="/lecture" element={<Lecture />} />
               <Route path="/notification" element={<Notification />} />
+              <Route path="/grade" element={<Grade />} />
             </Routes>
           </main>
         </div>
