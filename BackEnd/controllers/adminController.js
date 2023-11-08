@@ -95,7 +95,7 @@ async function viewStudentProfile(req, res) {
     }
 
     // Find the student with the specified ID
-    const student = await Student.findOne({ id: studentId });
+    const student = await Student.find({ id: studentId });
 
     if (!student) {
       return res.status(404).json({ message: 'Student not found' });
@@ -103,6 +103,7 @@ async function viewStudentProfile(req, res) {
 
     res.json(student);
   } catch (error) {
+
     console.error(error);
     res.status(500).json({ message: 'Server error' });
   }
