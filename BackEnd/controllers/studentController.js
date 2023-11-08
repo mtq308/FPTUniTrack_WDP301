@@ -5,11 +5,12 @@ const Period = require('../Models/periodModel.js');
 const Day = require('../Models/dayModel.js');
 const Semester = require('../Models/semesterModel.js');
 const Subject = require('../Models/subjectModel.js');
-const Grade = require('../Models/gradeModel.js')
+const Grade = require('../Models/gradeModel.js');
 
 async function studentProfile(req, res, next) {
   const studentId = req.user.id;
   try {
+
     const student = await Student.findOne({ id: studentId });
 
     if (!student) {

@@ -53,60 +53,6 @@ async function getAllStudents(req, res) {
   }
 }
 
-async function createStudent(req, res) {
-  const {
-    id,
-    dateOfBirth,
-    gender,
-    idCard,
-    address,
-    phone,
-    email,
-    studentUsername,
-    specialization,
-    isActive,
-    fullname,
-  } = req.body;
-
-  try {
-    // Check if the request is coming from an admin
-    if (req.user.role !== 'admin') {
-      return res.status(403).json({ message: 'Permission denied. Only admin Admins can create student profiles.' });
-    }
-
-    // Check if a student with the provided email already exists
-    const existingStudent = await Student.findOne({ email });
-
-    if (existingStudent) {
-      return res.status(400).json({ message: 'A student with this email already exists' });
-    }
-
-    // Create a new student object
-    const newStudent = new Student({
-      id,
-      dateOfBirth,
-      gender,
-      idCard,
-      address,
-      phone,
-      email,
-      studentUsername,
-      specialization,
-      isActive,
-      fullname,
-    });
-
-    // Save the new student to the database
-    await newStudent.save();
-
-    res.json({ message: 'Student profile created successfully' });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-}
-
-
 async function getAllLecturers(req, res) {
   try {
     if (req.user.role !== 'admin') {
@@ -126,7 +72,7 @@ async function addStudent(req, res) {
       return res.status(403).json({ message: 'Permission denied. Only admin Admins can add students.' });
     }
 
-    const newStudentData = req.body; 
+    const newStudentData = req.body;
 
     const newStudent = new Student(newStudentData);
 
@@ -139,11 +85,34 @@ async function addStudent(req, res) {
   }
 }
 
+async function viewStudentProfile(req, res) {
+  const studentId = req.params.id; // Assuming the student ID is passed as a route parameter
+
+  try {
+    // Check if the request is coming from an admin
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Permission denied. Only admins can view student profiles.' });
+    }
+
+    // Find the student with the specified ID
+    const student = await Student.findOne({ id: studentId });
+
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    res.json(student);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
 module.exports = {
   adminProfile,
   getAllStudents,
   updateStudentProfile,
-  createStudent,
   addStudent,
-  getAllLecturers
+  getAllLecturers,
+  viewStudentProfile
 };

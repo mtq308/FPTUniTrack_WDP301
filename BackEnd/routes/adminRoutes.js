@@ -7,17 +7,14 @@ const router = express.Router();
 // Protected route for admin's profile
 router.get('/profile/:id', verifyAdmin, adminController.adminProfile);
 // Route to get all students' information
-<<<<<<< HEAD
-router.get('/students', verifyToken, adminController.getAllStudents);
-//Route to create new student's information
-router.post('/students/create', verifyToken, adminController.createStudent);
-=======
 router.get('/getAllStudents', verifyAdmin, adminController.getAllStudents);
->>>>>>> NhanTV
+
+router.get('/student/profile/:id', verifyAdmin, adminController.viewStudentProfile);
 // Router.put('/students/:studentId/profile', adminController.updateStudentProfile);
 router.put('/updateStudent/:id/profile', verifyAdmin, adminController.updateStudentProfile);
 //Router.post
 router.post('/addStudent', verifyAdmin, adminController.addStudent);
 //Router.post
-router.get('/getAllLecturers', verifyAdmin, adminController.getAllLecturers)
+router.get('/getAllLecturers', verifyAdmin, adminController.getAllLecturers);
+
 module.exports = router;

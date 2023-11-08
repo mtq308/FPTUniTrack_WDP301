@@ -47,7 +47,6 @@ const LoginForm = ({ setIsLoggedIn, handleLogin }) => {
       const token = response.data.token;
       // Save the token in local storage or as needed for authentication
       localStorage.setItem("token", token);
-
       // Determine the appropriate route based on the selected userRole
       let route = "";
 

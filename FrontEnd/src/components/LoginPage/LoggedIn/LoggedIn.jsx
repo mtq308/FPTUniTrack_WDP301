@@ -17,7 +17,6 @@ import StudentEditProfile from "../../../scenes/students/studentEditProfile";
 import Syllabus from "../../../scenes/syllabus";
 import Curriculum from "../../../scenes/curriculum";
 import Semester from "../../../scenes/semester";
-import AdminRoutes from "../../../routes/AdminRoutes";
 
 // import SemesterDetail from "../../../scenes/SemesterDetail";
 import SemesterDetail from "../../../scenes/semester/SemesterDetail";
@@ -59,14 +58,14 @@ const LoggedIn = ({ logout }) => {
               <Route path="/team" element={<Team />} />
               <Route path="/contacts" element={<Contacts />} />
 
-              <Route path="/admin/*" element={<AdminRoutes />} />
+              {/* <Route path="/admin/*" element={<AdminRoutes />} /> */}
 
-              {/* <Route path="/students" element={<Students />} />
+              <Route path="/students" element={<Students />} />
               <Route path="/students/:studentId" element={<StudentDetail />} />
               <Route
                 path="/students/:studentId/edit"
                 element={<StudentEditProfile />}
-              /> */}
+              />
               <Route path="/syllabus" element={<Syllabus />} />
               <Route path="/curriculum" element={<Curriculum />} />
               <Route path="/semester" element={<Semester />} />
