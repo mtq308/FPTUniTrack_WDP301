@@ -1,4 +1,4 @@
-import { Box, useTheme, Button } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useEffect, useState } from 'react';
 import Header from "../../components/Header";
@@ -10,7 +10,16 @@ const Grade = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/json/TestGrade.json');
+        const response = await fetch('http://localhost:3000/student/getGrade', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            studentId: 'HE170001',
+            subjectId: 10326
+          }),
+        });
 
         // Use the relative path to the JSON file
         if (response.ok) {

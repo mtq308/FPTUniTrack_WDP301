@@ -11,9 +11,9 @@ router.post('/getSlotsByWeek/', verifyToken, lecturerController.getSlotsByWeekNu
 
 router.put('/grade/update/:studentId/:subjectId/:scoreName', lecturerController.updateStudentGrade);
 
-router.post('/getGradeByStudentId', verifyToken, lecturerController.getGradeByStudentId)
+router.post('/getGradeByStudentId', lecturerController.getGradeByStudentId)
 
-router.post('/getGradeByClass', verifyToken, lecturerController.getGradeByClass)
+router.post('/getGradeByClass', lecturerController.getGradeByClass)
 
 router.post('/getStudentBySubjectId', lecturerController.getAllStudentInClassBySubjectId)
 module.exports = router;
