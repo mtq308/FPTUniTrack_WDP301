@@ -7,7 +7,7 @@ async function adminProfile(req, res) {
   const adminId = req.Admin.id;
 
   try {
-    const admin = await Admin.findOne({ id: adminId, role: 'Admin' });
+    const admin = await Admin.findOne({ id: adminId, role: roles.ADMIN });
 
     if (!admin) {
       return res.status(404).json({ message: 'Admin not found' });
@@ -24,7 +24,7 @@ async function updateStudentProfile(req, res) {
   const studentId = req.body.id;
   const { fullname, address, phone, email } = req.body;
   try {
-    if (req.user.role !== 'Admin') {
+    if (req.user.role !== roles.ADMIN) {
       return res.status(403).json({ message: 'Permission denied. Only admin Admins can update student profiles.' });
     }
 
@@ -43,7 +43,7 @@ async function updateStudentProfile(req, res) {
 
 async function getAllStudents(req, res) {
   try {
-    if (req.user.role !== 'Admin') {
+    if (req.body.role !== roles.ADMIN) {
       return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
     }
     const students = await Student.find({});
@@ -56,8 +56,8 @@ async function getAllStudents(req, res) {
 
 async function getAllLecturers(req, res) {
   try {
-    if (req.user.role !== 'Admin') {
-      return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all lecturers profiles.' });
+    if (req.body.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
     }
     const lecturers = await Lecturer.find({});
     res.json(lecturers);
@@ -69,8 +69,8 @@ async function getAllLecturers(req, res) {
 
 async function addStudent(req, res) {
   try {
-    if (req.user.role !== 'Admin') {
-      return res.status(403).json({ message: 'Permission denied. Only admin Admins can add students.' });
+    if (req.body.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
     }
 
     const newStudentData = req.body;
