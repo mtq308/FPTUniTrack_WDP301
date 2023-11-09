@@ -1,23 +1,21 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import LoggedIn from "./components/LoginPage/LoggedIn/LoggedIn";
+import React, { useState } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
 import LoginForm from "./components/LoginPage/LoginForm/LoginForm";
+import LoggedIn from "./components/LoginPage/LoggedIn/LoggedIn";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
 
-  const logout = () => {
-    setIsLoggedIn(false);
-    navigate("/login");
-  }
+  const handleLogin = (userRole) => {
+    setIsLoggedIn(true);
+  };
 
   return (
-    <div className="login {!isLoggedIn && 'login'}">
+    <div className="app">
       {isLoggedIn ? (
-        <LoggedIn logout={logout} />
+        <LoggedIn setIsLoggedIn={setIsLoggedIn} />
       ) : (
-        <LoginForm setIsLoggedIn={setIsLoggedIn} />
+        <LoginForm setIsLoggedIn={setIsLoggedIn} handleLogin={handleLogin} />
       )}
     </div>
   );

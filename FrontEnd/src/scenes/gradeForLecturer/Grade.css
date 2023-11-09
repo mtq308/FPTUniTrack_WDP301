@@ -1,0 +1,14 @@
+.centered-table {
+  width: 50%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.centered-cell {
+  padding: 8px;
+  text-align: center;
+}
+.left-aligned-cell {
+  padding: 8px;
+  text-align: left;
+}

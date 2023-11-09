@@ -176,6 +176,27 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
 
+            <Item
+              title="GradeStudent"
+              to="/grade"
+              icon={<ArticleIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            {/* <Item
+              title="GradeLecturer"
+              to="/gradeClass"
+              icon={<ArticleIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            /> */}
+            <Item
+              title="GradeLecturer"
+              to="/AllClass"
+              icon={<ArticleIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
             <Typography
               variant="h6"
               color={colors.grey[300]}

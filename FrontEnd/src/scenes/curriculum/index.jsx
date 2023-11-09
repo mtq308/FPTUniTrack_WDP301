@@ -1,14 +1,25 @@
-import { Box, useTheme } from "@mui/material";
+import { Box, useTheme, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-
+import { Link } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
-
-
+import TextField from '@mui/material/TextField';
+import Modal from '@mui/material/Modal';
 import Header from "../../components/Header";
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Curriculum = () => {
   const [curriculumData, setCurriculumData] = useState([]);
+  console.log(curriculumData);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -18,6 +29,7 @@ const Curriculum = () => {
         if (response.ok) {
           const data = await response.json();
           setCurriculumData(data);
+
         } else {
           console.error('Failed to fetch data');
         }
@@ -38,6 +50,9 @@ const Curriculum = () => {
       headerName: "CODE",
       flex: 1,
       cellClassName: "name-column--cell",
+      renderCell: (params) => (
+        <Link to={`/curriculum/${params.row.Id}`}>{params.row.Code}</Link>
+      ),
     },
     {
       field: "Name",
@@ -45,6 +60,8 @@ const Curriculum = () => {
       type: "string",
       headerAlign: "left",
       align: "left",
+      cellClassName: "name-column--cell",
+
     },
     {
       field: "Description",
@@ -67,6 +84,83 @@ const Curriculum = () => {
   return (
     <Box m="20px">
       <Header title="TEAM" subtitle="Managing the Curriculum" />
+      <Button variant="contained" onClick={handleOpenModal}>
+        Add Curriculum
+      </Button>
+      <Modal
+        open={isModalOpen}
+        onClose={handleCloseModal}
+        aria-labelledby="add-semester-modal"
+        aria-describedby="add-semester-form"
+      >
+        <form>
+          <Box sx={style}
+            display="grid"
+            gap="10px"
+            gridTemplateColumns="1fr 1fr"
+          >
+            <IconButton
+              edge="end"
+              color="inherit"
+              onClick={handleCloseModal}
+              sx={{ marginLeft: "330%" }}
+
+            >
+              <CloseIcon />
+            </IconButton>
+            <TextField
+              label="Name"
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              sx={{ gridColumn: "span 4" }}
+            />
+
+            <TextField
+              fullWidth
+              label="Code"
+              variant="outlined"
+              margin="normal"
+              style={{ flex: 1, marginRight: '8px' }}
+              sx={{ gridColumn: "span 2" }}
+            />
+            <TextField
+              fullWidth
+              label="Total Credits"
+              variant="outlined"
+              margin="normal"
+              style={{ flex: 1 }}
+              sx={{ gridColumn: "span 2" }}
+            />
+            <TextField
+              fullWidth
+              multiline
+              label="Description"
+              variant="outlined"
+              rows={6}
+              margin="normal"
+              style={{ flex: 1 }}
+              sx={{ gridColumn: "span 4" }}
+            />
+            <TextField
+              fullWidth
+              label="DescriptionNo"
+              variant="outlined"
+              margin="normal"
+              style={{ flex: 1 }}
+              sx={{ gridColumn: "span 4" }}
+            />
+
+
+            <div style={{ marginLeft: "120%" }}>
+              <Button variant="contained" color="primary" onClick={""} type="submit" style={{ marginTop: '10px', padding: '5px 40px' }}>
+                Add the curriculum
+              </Button>
+            </div>
+
+          </Box>
+        </form>
+      </Modal>
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -98,5 +192,20 @@ const Curriculum = () => {
     </Box>
   );
 };
+const style = {
+
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 600,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  pt: 2,
+  px: 4,
+  pb: 3,
+};
+
 
 export default Curriculum;
