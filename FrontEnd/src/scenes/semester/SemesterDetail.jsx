@@ -17,7 +17,7 @@ const SemesterDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/semester/${params}`);
+        const response = await fetch(`http://localhost:3456/semester/${params}`);
         if (response.ok) {
           const data = await response.json();
           setSemester(data);
@@ -39,7 +39,7 @@ const SemesterDetail = () => {
         SemesterID: idValue// Include other fields you want to update here
       };
 
-      const response = await fetch(`http://localhost:3000/semester/${params}`, {
+      const response = await fetch(`http://localhost:3456/semester/${params}`, {
         method: 'PUT', // Use PUT method to update the semester
         headers: {
           'Content-Type': 'application/json',

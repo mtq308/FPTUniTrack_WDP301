@@ -15,7 +15,7 @@ const AllClass = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/lecturer/allClassIds');
+        const response = await fetch('http://localhost:3456/lecturer/allClassIds');
 
         if (response.ok) {
           const data = await response.json();

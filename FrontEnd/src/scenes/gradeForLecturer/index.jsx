@@ -16,7 +16,7 @@ const GradeClass = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/lecturer/gradeByClassIdAndSubjectId', {
+        const response = await fetch('http://localhost:3456/lecturer/gradeByClassIdAndSubjectId', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

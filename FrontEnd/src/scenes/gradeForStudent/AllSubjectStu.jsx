@@ -14,7 +14,7 @@ const AllSubjectStu = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/student/getSubjectByStudentId', {
+        const response = await fetch('http://localhost:3456/student/getSubjectByStudentId', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
