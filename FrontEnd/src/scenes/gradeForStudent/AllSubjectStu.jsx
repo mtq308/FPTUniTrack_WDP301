@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Header from "../../components/Header";
 import { Link } from 'react-router-dom';
-
 import "./Class.css";
 
-const AllClass = () => {
-  const [classData, setClassData] = useState([]);
+const AllSubjectStu = () => {
+  const [subjectData, setSubjectData] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [uniqueClassIDs, setUniqueClassIDs] = useState([]);
+  const studentId = "HE170001";
   const handleItemClick = (item) => {
     setSelectedItem(item);
   };
@@ -15,13 +14,20 @@ const AllClass = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/lecturer/allClassIds');
+        const response = await fetch('http://localhost:3000/student/getSubjectByStudentId', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            studentId: studentId,
+          }),
+        });
 
         if (response.ok) {
           const data = await response.json();
-          setClassData(data);
-          const uniqueIDs = [...new Set(data.map(item => item.ClassID))];
-          setUniqueClassIDs(uniqueIDs);
+          setSubjectData(data);
+
         } else {
           console.error('Failed to fetch data');
         }
@@ -32,31 +38,25 @@ const AllClass = () => {
 
     fetchData();
   }, []);
-  console.log(classData)
-  console.log(uniqueClassIDs);
+  console.log(subjectData)
   return (
     <div className="all-class-container">
       <Header />
       <div className="class-list">
-        <h2>Class List</h2>
+        <h2>Subjects for Student</h2>
         <ul>
-          {uniqueClassIDs.map((item, index) => (
+          {subjectData.map((item, index) => (
             <li key={index}>
-              {/* <Link to={`/class/${item}`} onClick={() => handleItemClick(item)}>
-                {item}
-              </Link> */}
-              <Link to={`/AllSubject/${item}`} onClick={() => handleItemClick(item)}>
-                {item}
+              <Link to={`/grade/${studentId}&${item.subjectId}`} onClick={() => handleItemClick(item)}>
+                {item.syllabusName} - {item.subjectCode}
               </Link>
             </li>
           ))}
         </ul>
       </div>
-      {selectedItem && (
-        <p>Selected item: {selectedItem}</p>
-      )}
+
     </div>
   );
 };
 
-export default AllClass;
+export default AllSubjectStu;

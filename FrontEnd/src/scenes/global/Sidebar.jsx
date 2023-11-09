@@ -175,7 +175,7 @@ const Sidebar = () => {
 
             <Item
               title="GradeStudent"
-              to="/grade"
+              to="/AllSubjectStu"
               icon={<ArticleIcon />}
               selected={selected}
               setSelected={setSelected}

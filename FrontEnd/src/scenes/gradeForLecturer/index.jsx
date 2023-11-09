@@ -3,27 +3,33 @@ import React, { useEffect, useState } from 'react';
 import Header from "../../components/Header";
 import { tokens } from "../../theme";
 import "./Grade.css";
-
+import { useParams } from "react-router-dom";
 const GradeClass = () => {
   const [gradeData, setGradeData] = useState([]);
-  console.log(gradeData);
 
+  const gradeId = useParams().gradeId;
+  const [subjectId, classId] = gradeId.split('&');
+
+  console.log("Subject ID:", subjectId);
+  console.log("Class ID:", classId);
+  console.log(gradeId)
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/lecturer/getGradeByClass', {
+        const response = await fetch('http://localhost:3000/lecturer/gradeByClassIdAndSubjectId', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            classID: 'SE1701',
+            classId: classId,
+            subjectId: subjectId
           }),
         });
 
         if (response.ok) {
           const data = await response.json();
-          setGradeData(data[0].StudentGrades);
+          setGradeData(data);
         } else {
           console.error('Failed to fetch data');
         }
@@ -31,23 +37,21 @@ const GradeClass = () => {
         console.error('Error:', error);
       }
     };
-
-
     fetchData();
   }, []);
-
+  console.log(gradeData);
   const theme = tokens("light");
   // const colors = tokens(theme.palette.mode);
 
   return (
     <div>
-      <Header title="TEAM" subtitle="Managing the Grade" />
-      <h1>Grade Section</h1>
+      <Header title="Grade" subtitle={`The Grade Of ${classId}`} />
       {gradeData && gradeData.length > 0 ? (
         <table className="centered-table">
           <thead>
             <tr style={{ backgroundColor: theme.blueAccent[700], color: theme.greenAccent[300] }}>
               <th>Student ID</th>
+              <th>Student Name</th>
               <th className="left-aligned-cell">Score Name</th>
               <th>Grade</th>
             </tr>
@@ -56,10 +60,13 @@ const GradeClass = () => {
             {gradeData.map((student) => (
               student.Score.map((scoreItem, index) => (
                 <tr key={scoreItem._id} style={{ borderBottom: "1px solid #ccc" }}>
+
                   {index === 0 ? (
-                    <td className="centered-cell" rowSpan={student.Score.length}>
+                    <><td className="centered-cell" rowSpan={student.Score.length}>
                       {student.StudentID}
-                    </td>
+                    </td><td className="centered-cell" rowSpan={student.Score.length}>
+                        {student.StudentName}
+                      </td></>
                   ) : null}
                   <td className="left-aligned-cell">{scoreItem.scoreName}</td>
                   <td className="centered-cell">{scoreItem.grade}</td>

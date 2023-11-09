@@ -3,9 +3,16 @@ import { DataGrid } from "@mui/x-data-grid";
 import React, { useEffect, useState } from 'react';
 import Header from "../../components/Header";
 import { tokens } from "../../theme";
+import { useParams } from "react-router-dom";
+
 const Grade = () => {
   const [gradeData, setGradeData] = useState([]);
   console.log(gradeData);
+  const gradeId = useParams().gradeId;
+  const [studentId, subjectId] = gradeId.split('&');
+
+  console.log("Student ID:", studentId);
+  console.log("Subject ID:", subjectId);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,12 +23,10 @@ const Grade = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            studentId: 'HE170001',
-            subjectId: 10326
+            studentId: studentId,
+            subjectId: Number(subjectId),
           }),
         });
-
-        // Use the relative path to the JSON file
         if (response.ok) {
           const data = await response.json();
           setGradeData(data);
@@ -54,13 +59,11 @@ const Grade = () => {
       headerAlign: "left",
       align: "left",
       cellClassName: "name-column--cell",
-
     }
   ];
   return (
     <Box m="20px">
-      <Header title="TEAM" subtitle="Managing the Grade" />
-      <h1>Grade Part</h1>
+      <Header title="GRADE" subtitle="Your Grade" />
       <Box
         m="40px 0 0 0"
         height="50vh"
@@ -82,13 +85,10 @@ const Grade = () => {
           "& .MuiDataGrid-virtualScroller": {
             backgroundColor: colors.primary[400],
           },
-          "& .MuiDataGrid-footerContainer": {
-            borderTop: "none",
-            backgroundColor: colors.blueAccent[700],
-          },
+
         }}
       >
-        <DataGrid getRowId={(row) => row.scoreName} rows={gradeData} columns={columns} />
+        <DataGrid getRowId={(row) => row.scoreName} rows={gradeData} columns={columns} hideFooterPagination />
       </Box>
     </Box>
   );
