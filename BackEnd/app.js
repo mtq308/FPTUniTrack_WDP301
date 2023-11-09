@@ -8,15 +8,15 @@ const studentRoutes = require('./routes/studentRoutes');
 const lecturerRoutes = require('./routes/lecturerRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const authRoutes = require('./routes/authRoutes');
-const swaggerRoute = require('./configs/swaggerRoute');
-const cors = require('cors');
-
+const swaggerRoute = require('./routes/swaggerRoute');
+const semesterRoutes = require('./routes/semesterRoutes');
 const app = express();
-
+const cors = require('cors');
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
+app.use(cors());
 
 // Database connection
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -44,6 +44,9 @@ app.use((err, req, res, next) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
+
+app.use('/semester', semesterRoutes);
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

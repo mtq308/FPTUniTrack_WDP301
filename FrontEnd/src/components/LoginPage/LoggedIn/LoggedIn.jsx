@@ -24,8 +24,12 @@ import CurriculumDetail from "../../../scenes/curriculum/CurriculumDetail";
 
 import Lecture from "../../../scenes/lecture";
 import Notification from "../../../scenes/notification";
+import Grade from "../../../scenes/grade";
+import GradeClass from "../../../scenes/gradeForLecturer";
+import AllClass from "../../../scenes/gradeForLecturer/AllClass";
 
 const LoggedIn = ({ logout }) => {
+  console.log("hi")
   const [theme, colorMode] = useMode();
   const navigate = useNavigate();
   // Define the handleLogout function
@@ -83,6 +87,9 @@ const LoggedIn = ({ logout }) => {
 
               <Route path="/lecture" element={<Lecture />} />
               <Route path="/notification" element={<Notification />} />
+              <Route path="/grade" element={<Grade />} />
+              <Route path="/gradeClass" element={<GradeClass />} />
+              <Route path="/AllClass" element={<AllClass />} />
             </Routes>
           </main>
         </div>

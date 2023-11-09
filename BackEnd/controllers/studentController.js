@@ -25,15 +25,56 @@ async function studentProfile(req, res, next) {
 }
 
 async function getStudentClasses(req, res, next) {
-  const studentId = req.user.id;
+  const studentId = req.body.id;
+
   try {
-    const classes = await Class.find({ StudentID: { $in: [studentId] }});
-    res.json(classes);
+    const classes = await Class.find({ StudentID: { $in: [studentId] } });
+    const subjectIds = classes.map((cls) => cls.SubjectID);
+    const subjects = await Subject.find({ SubjectID: { $in: subjectIds } });
+
+    const classWithSubjects = classes.map((cls) => {
+      const subject = subjects.find((subj) => subj.SubjectID === cls.SubjectID);
+      return {
+        ...cls.toObject(),
+        ClassID: cls.ClassID,
+        SubjectCode: subject.SubjectCode || null,
+        SyllabusName: subject.SyllabusName || null // Attach the subject to the class
+      };
+    });
+
+    res.json(classWithSubjects);
+
   } catch (error) {
     console.error(error);
     next(error); // Pass the error to the next middleware or error handler
   }
 }
+
+async function getStudentBySubjectID(req, res, next) {
+  const subjectId = req.body.id;
+  try {
+    const classes = await Class.find({ SubjectID: { $in: [subjectId] } });
+    console.log(classes)
+    const subjectIds = classes.map((cls) => cls.SubjectID);
+    const subjects = await Subject.find({ SubjectID: { $in: subjectIds } });
+
+    const classWithSubjects = classes.map((cls) => {
+      const subject = subjects.find((subj) => subj.SubjectID === cls.SubjectID);
+      return {
+        ...cls.toObject(),
+        ClassID: cls.ClassID,
+        SubjectCode: subject.SubjectCode || null,
+        SyllabusName: subject.SyllabusName || null // Attach the subject to the class
+      };
+    });
+
+    res.json(classWithSubjects);
+  } catch (error) {
+    console.error(error);
+    next(error); // Pass the error to the next middleware or error handler
+  }
+}
+
 
 async function getSlotsByWeekNumber(req, res, next) {
   const studentId = req.body.id;
@@ -60,8 +101,8 @@ async function getSlotsByWeekNumber(req, res, next) {
     const [periods, days, semesters, subjects] = await Promise.all([
       Period.find({}),
       Day.find({ DayID: { $in: slots.map((slot) => slot.DayID) } }),
-      Semester.find({ SemesterID: { $in: slots.map((slot) => slot.SemesterID) }}),
-      Subject.find({ SubjectID: { $in: slots.map((slot) => slot.SubjectID) }}),
+      Semester.find({ SemesterID: { $in: slots.map((slot) => slot.SemesterID) } }),
+      Subject.find({ SubjectID: { $in: slots.map((slot) => slot.SubjectID) } }),
     ]);
 
     const slotsWithModels = slots.map((slot) => ({
@@ -79,7 +120,7 @@ async function getSlotsByWeekNumber(req, res, next) {
   }
 }
 
-async function getGrade(req, res, next){
+async function getGrade(req, res, next) {
   try {
     const { studentId, subjectId } = req.body;
 
@@ -110,9 +151,41 @@ async function getGrade(req, res, next){
   }
 }
 
+async function getSubjectIdByStudentId(req, res, next) {
+  try {
+    const studentId = req.body.studentId;
+    const classes = await Class.find({ StudentID: studentId });
+
+    if (classes.length === 0) {
+      return res.status(404).json({ message: 'Student not found or not associated with any subject.' });
+    }
+
+    const subjectIds = [...new Set(classes.map((cls) => cls.SubjectID))];
+    const subjects = await Subject.find({ SubjectID: { $in: subjectIds } });
+
+    const subjectInfo = subjectIds.map(subjectId => {
+      const subject = subjects.find(s => s.SubjectID === subjectId);
+      return {
+        subjectId,
+        subjectCode: subject ? subject.SubjectCode || null : null,
+        syllabusName: subject ? subject.SyllabusName || null : null
+      };
+    });
+
+    res.json(subjectInfo);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+}
+
+
+
 module.exports = {
   studentProfile,
   getStudentClasses,
   getSlotsByWeekNumber,
+  getStudentBySubjectID,
+  getSubjectIdByStudentId,
   getGrade
 };

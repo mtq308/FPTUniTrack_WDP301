@@ -1,72 +1,77 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
-import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
-const initialValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  contact: "",
-  address1: "",
-  address2: "",
-};
+import { useState, useEffect } from "react";
 
-const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
-const userSchema = yup.object().shape({
-  firstName: yup.string().required("First name is required"),
-  lastName: yup.string().required("Last name is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
-  contact: yup
-    .string()
-    .matches(phoneRegExp, "Phone number is not valid")
-    .required("Contact is required"),
-  address1: yup.string().required("Address is required"),
-  address2: yup.string().required("Address is required"),
-});
 const CurrriculumDetail = () => {
+  const [curriculumData, setCurriculumData] = useState([]);
+  const [curriculum, setCurriculum] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/json/curriculum.json');
+
+        if (response.ok) {
+          const data = await response.json();
+          setCurriculumData(data);
+        } else {
+          console.error('Failed to fetch data');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const handleFormSubmit = (values) => {
     console.log(values);
   };
+  const params = useParams().curriculumId;
 
-
-  const params = useParams().Id;
-  let currriculumData = null;
   //database lookup using id
-  // if (params === '1') {
-  //   currriculumData = {
-  //     Name: 'Fall2023',
-  //     StartDate: "23/09/2023",
-  //     EndDate: "24/10/2023"
-  //   }
-  // }
-  currriculumData = {
-    Name: 'Fall2023',
-    StartDate: "23/09/2023",
-    EndDate: "24/10/2023"
-  }
-  const [Name, setName] = useState(currriculumData.Name);
+  console.log(params);
+  console.log("1");
+
+  useEffect(() => {
+    // Database lookup using id
+    const c = curriculumData.find((curriculum) => curriculum.Id === parseInt(params)) || [];
+
+    if (Object.keys(c).length > 0) {
+      // Once curriculum is available, set the state variables
+      setName(c.Name);
+      setDescriptionNo(c.DescriptionNo);
+      setCode(c.Code);
+      setTotalCredit(c.TotalCredit);
+      setCurriculum(c);
+      setDescription(c.Description);
+    }
+  }, [params, curriculumData]);
+
+  console.log(curriculumData);
+  console.log(curriculum);
+
+  const [Name, setName] = useState(curriculum.Name);
+  const [DescriptionNo, setDescriptionNo] = useState(curriculum.DescriptionNo);
+  const [Description, setDescription] = useState(curriculum.Description);
+  const [Code, setCode] = useState(curriculum.Code);
+  const [TotalCredit, setTotalCredit] = useState(curriculum.TotalCredit);
+  console.log("DSD" + Description);
 
   return (
     <Box m="20px">
-      <Header title="currriculum DETAIL" subtitle="FPTUniTrackcurrriculum" />
+      <Header title="CURRICULUM DETAIL" subtitle="FPTUniTrackcurrriculum" />
 
       <Formik
         onSubmit={handleFormSubmit}
-        initialValues={initialValues}
-        validationSchema={userSchema}
+
       >
         {({
-          values,
-          errors,
-          touched,
           handleBlur,
-          handleChange,
           handleSubmit,
         }) => (
           <form onSubmit={handleSubmit}>
@@ -79,59 +84,93 @@ const CurrriculumDetail = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
+
+
               <TextField
                 fullWidth
                 variant="filled"
                 type="text"
-                label={params}
+                label={"ID"}
                 onBlur={handleBlur}
-                // onChange={(e) => setName(e.target.value)} 
                 value={params}
-                name="currriculumId"
-                // error={!!touched.firstName && !!errors.firstName}
-                // helperText={touched.firstName && errors.firstName}
+                name="Id"
+
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
                 fullWidth
                 variant="filled"
                 type="text"
-                label={currriculumData.Name}
+                label={"Code"}
+                onBlur={handleBlur}
+                onChange={(e) => setCode(e.target.value)}
+                value={Code}
+                name="Code"
+                InputLabelProps={{
+                  shrink: true, // Keeps the label in the "floating" position
+                }}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label={"Name"}
                 onBlur={handleBlur}
                 onChange={(e) => setName(e.target.value)}
                 value={Name}
                 name="Name"
-                // error={!!touched.lastName && !!errors.lastName}
-                // helperText={touched.lastName && errors.lastName}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label={currriculumData.StartDate}
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={currriculumData.StartDate}
-                name="StartDate"
-                // error={!!touched.email && !!errors.email}
-                // helperText={touched.email && errors.email}
-                sx={{ gridColumn: "span 4" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label={currriculumData.EndDate}
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={currriculumData.EndDate}
-                name="EndDate"
-                // error={!!touched.contact && !!errors.contact}
-                // helperText={touched.contact && errors.contact}
+                InputLabelProps={{
+                  shrink: true, // Keeps the label in the "floating" position
+                }}
                 sx={{ gridColumn: "span 4" }}
               />
 
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                multiline
+                rows={6}
+                label={"Description"}
+                onBlur={handleBlur}
+                onChange={(e) => setDescription(e.target.value)}
+                value={Description}
+                name="Description"
+                InputLabelProps={{
+                  shrink: true, // Keeps the label in the "floating" position
+                }}
+                sx={{ gridColumn: "span 4" }}
+              />
+              <TextField
+                fullWidth
+
+                variant="filled"
+                type="text"
+                label={"DescriptionNo"}
+                onBlur={handleBlur}
+                onChange={(e) => setDescriptionNo(e.target.value)}
+                value={DescriptionNo}
+                name="DescriptionNo"
+                InputLabelProps={{
+                  shrink: true, // Keeps the label in the "floating" position
+                }}
+                sx={{ gridColumn: "span 2" }} />
+              <TextField
+                fullWidth
+
+                variant="filled"
+                type="text"
+                label={"Credit"}
+                onBlur={handleBlur}
+                onChange={(e) => setTotalCredit(e.target.value)}
+                value={TotalCredit}
+                name="TotalCredit"
+                InputLabelProps={{
+                  shrink: true, // Keeps the label in the "floating" position
+                }}
+                sx={{ gridColumn: "span 2" }}
+              />
             </Box>
             <Box display="flex" justifyContent="end" mt="20px" gap="10px">
               <Button type="submit" color="secondary" variant="contained">
@@ -140,7 +179,6 @@ const CurrriculumDetail = () => {
               <Button type="" color="redAccent" variant="contained">
                 Delete currriculum
               </Button>
-
             </Box>
           </form>
         )}
@@ -151,21 +189,4 @@ const CurrriculumDetail = () => {
 
 export default CurrriculumDetail;
 
-// import { useParams } from "react-router-dom";
 
-// const currriculumDetail = () => {
-//   const { semesterId } = useParams();
-
-//   // Fetch semester data based on semesterId from your data source
-//   // You can use this semester data to display the information on the page
-
-//   return (
-//     <div>
-//       <h2>semester Details</h2>
-//       <p>semester ID: {semesterId}</p>
-//       {/* Display other student information here */}
-//     </div>
-//   );
-// }
-
-// export default SemesterDetail;

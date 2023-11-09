@@ -1,4 +1,4 @@
-import { Box, useTheme, Button, Stack } from "@mui/material";
+import { Box, useTheme, Button } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { Link } from "react-router-dom";
@@ -8,21 +8,48 @@ import TextField from '@mui/material/TextField';
 import Header from "../../components/Header";
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+// import { cl } from "@fullcalendar/core/internal-common";
 const Semester = () => {
   const [semesterData, setSemesterData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newSemester, setNewSemester] = useState({
+    SemesterID: "",
+    Name: "",
+    StartDate: "",
+    EndDate: "",
+  });
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-
+  const handleAddSemester = () => {
+    console.log(newSemester);
+    // Send a POST request to your backend API to add the new semester
+    fetch('http://localhost:3000/semester', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newSemester),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Update the semesterData with the newly added semester
+        setSemesterData([...semesterData, data]);
+        // setIsModalOpen(false); // Close the modal
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/json/Semester.json');
-
+        // const response = await fetch('/json/Semester.json');
+        const response = await fetch('http://localhost:3000/semester');
         // Use the relative path to the JSON file
         if (response.ok) {
           const data = await response.json();
@@ -34,38 +61,46 @@ const Semester = () => {
         console.error('Error:', error);
       }
     };
-
     fetchData();
   }, []);
+
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  console.log(semesterData);
 
   const columns = [
-    { field: "ID", headerName: "ID" },
+    { field: "SemesterID", headerName: "ID" },
     {
       field: "Name",
       headerName: "Name",
       flex: 1,
       cellClassName: "name-column--cell",
       renderCell: (params) => (
-        <Link to={`/semester/${params.row.ID}`}>{params.row.Name}</Link>
+        <Link to={`/semester/${params.row.SemesterID}`}>{params.row.Name}</Link>
       ),
     },
     {
       field: "StartDate",
       headerName: "Start Date",
-      type: "number",
+      type: "date",
+      valueGetter: (params) => {
+        // Transform your end date value into a Date object
+        return new Date(params.row.StartDate);
+      },
       headerAlign: "left",
       align: "left",
     },
     {
       field: "EndDate",
       headerName: "End Date",
+      type: "date",
+      valueGetter: (params) => {
+        // Transform your end date value into a Date object
+        return new Date(params.row.EndDate);
+      },
       flex: 1,
     },
-
   ];
-
 
   return (
     <Box m="20px">
@@ -79,44 +114,78 @@ const Semester = () => {
         aria-labelledby="add-semester-modal"
         aria-describedby="add-semester-form"
       >
-        <Box sx={style}>
-          <IconButton
-            edge="end"
-            color="inherit"
-            onClick={handleCloseModal}
-            sx={{ marginLeft: "90%" }}
-          >
-            <CloseIcon />
-          </IconButton>
-          <TextField
-            label="Semester Name"
-            variant="outlined"
-            margin="normal"
-            fullWidth
+        <form onSubmit={handleAddSemester}>
+          <Box sx={style}>
+            <IconButton
+              edge="end"
+              color="inherit"
+              onClick={handleCloseModal}
+              sx={{ marginLeft: "90%" }}
+            >
+              <CloseIcon />
+            </IconButton>
 
-          />
-          <div style={rowStyle}>
             <TextField
-              label="Start Date"
+              label="Semester Name"
               variant="outlined"
               margin="normal"
-              style={{ flex: 1, marginRight: '8px' }}
+              fullWidth
+              value={newSemester.Name}
+              onChange={(e) => {
+                const newName = e.target.value;
+                setNewSemester({
+                  ...newSemester,
+                  Name: newName,
+                  SemesterID: newName.replace(/\s/g, ""),
+                });
+              }}
 
             />
+            <div style={rowStyle}>
+              <TextField
+                label="Start Date"
+                variant="outlined"
+                type="date"
+                margin="normal"
+                style={{ flex: 1, marginRight: '8px' }}
+                value={newSemester.StartDate}
+                InputLabelProps={{
+                  shrink: true, // Keeps the label in the "floating" position
+                }}
+                onChange={(e) => setNewSemester({ ...newSemester, StartDate: e.target.value })}
+              />
+              <TextField
+                label="End Date"
+                variant="outlined"
+                type="date"
+                margin="normal"
+                style={{ flex: 1 }}
+                value={newSemester.EndDate}
+                InputLabelProps={{
+                  shrink: true, // Keeps the label in the "floating" position
+                }}
+                onChange={(e) => setNewSemester({ ...newSemester, EndDate: e.target.value })}
+              />
+            </div>
             <TextField
-              label="End Date"
+              label="SemesterID"
+              disabled
               variant="outlined"
               margin="normal"
-              style={{ flex: 1 }}
+              fullWidth
+              value={newSemester.Name.replace(/\s/g, "")}
+              onChange={(e) => setNewSemester({ ...newSemester, SemesterID: e.target.value })}
 
             />
-          </div>
-          <div style={{ textAlign: 'center' }}>
-            <Button variant="contained" color="primary" onClick={""} type="submit" style={{ marginTop: '10px', padding: '10px' }}>
-              Add the semester
-            </Button>
-          </div>
-        </Box>
+            {console.log(newSemester)}
+
+            <div style={{ textAlign: 'center' }}>
+              <Button variant="contained" color="primary" type="submit" style={{ marginTop: '10px', padding: '10px' }}>
+                Add the semester
+              </Button>
+            </div>
+          </Box>
+        </form>
       </Modal>
       <Box
         m="40px 0 0 0"
@@ -144,7 +213,7 @@ const Semester = () => {
           },
         }}
       >
-        <DataGrid getRowId={(row) => row.ID} rows={semesterData} columns={columns} />
+        <DataGrid getRowId={(row) => row.SemesterID} rows={semesterData} columns={columns} />
       </Box>
 
     </Box>
