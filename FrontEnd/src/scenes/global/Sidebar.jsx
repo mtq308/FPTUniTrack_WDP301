@@ -13,6 +13,8 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import BookIcon from '@mui/icons-material/Book';
 import ArticleIcon from '@mui/icons-material/Article';
+import userImage from '../../assets/user.jpg';
+
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -92,7 +94,7 @@ const Sidebar = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={`../../assets/user.jpg`}
+                  src={userImage}
                   // Ảnh user không lên vì chưa có ảnh
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
@@ -118,28 +120,6 @@ const Sidebar = () => {
               title="Dashboard"
               to="/"
               icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Data
-            </Typography>
-            <Item
-              title="Manage Team"
-              to="/team"
-              icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Contacts Information"
-              to="/contacts"
-              icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -191,20 +171,6 @@ const Sidebar = () => {
               title="GradeLecturer"
               to="/AllClass"
               icon={<ArticleIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Pages
-            </Typography>
-            <Item
-              title="Profile Form"
-              to="/form"
-              icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

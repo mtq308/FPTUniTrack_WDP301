@@ -8,8 +8,7 @@ import Sidebar from "../../../scenes/global/Sidebar";
 import Topbar from "../../../scenes/global/Topbar";
 import Dashboard from "../../../scenes/dashboard";
 import Team from "../../../scenes/team";
-import Contacts from "../../../scenes/contacts";
-import Form from "../../../scenes/form";
+import Contacts from "../../../scenes/contacts";;
 import Calendar from "../../../scenes/calendar";
 import Students from "../../../scenes/students";
 import StudentDetail from "../../../scenes/students/studentDetail";
@@ -73,7 +72,6 @@ const LoggedIn = ({ logout }) => {
               <Route path="/syllabus" element={<Syllabus />} />
               <Route path="/curriculum" element={<Curriculum />} />
               <Route path="/semester" element={<Semester />} />
-              <Route path="/form" element={<Form />} />
               <Route path="/calendar" element={<Calendar />} />
 
               <Route

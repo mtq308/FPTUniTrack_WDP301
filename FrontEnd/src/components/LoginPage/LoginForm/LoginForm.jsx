@@ -38,7 +38,7 @@ const LoginForm = ({ setIsLoggedIn, handleLogin }) => {
 
     try {
       const response = await axios.post(
-        `http://localhost:3000/auth/login/${userRole}`,
+        `http://localhost:3456/auth/login`,
         {
           id: username,
           password: password,
@@ -100,7 +100,7 @@ const LoginForm = ({ setIsLoggedIn, handleLogin }) => {
             {renderErrorMsg("noPassword")}
           </div>
 
-          <div className="radio_group">
+          {/* <div className="radio_group">
             <p>Select User Role:</p>
             <label>
               <input
@@ -129,7 +129,7 @@ const LoginForm = ({ setIsLoggedIn, handleLogin }) => {
               />
               Admin
             </label>
-          </div>
+          </div> */}
 
           <input type="submit" value="Log In" className="login_button" />
         </form>

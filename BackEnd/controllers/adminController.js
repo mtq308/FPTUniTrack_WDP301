@@ -1,7 +1,7 @@
 const Admin = require('../Models/adminModel');
 const Lecturer = require('../Models/lecturerModel');
-const Student = require('../Models/studentModel')
-const roles = require('../configs/roleConfig')
+const Student = require('../Models/studentModel');
+const roles = require('../configs/roleConfig');
 
 async function adminProfile(req, res) {
   const adminId = req.Admin.id;
@@ -43,7 +43,7 @@ async function updateStudentProfile(req, res) {
 
 async function getAllStudents(req, res) {
   try {
-    if (req.body.role !== roles.ADMIN) {
+    if (userRole !== roles.ADMIN) {
       return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
     }
     const students = await Student.find({});
