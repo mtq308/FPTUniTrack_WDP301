@@ -90,7 +90,7 @@ async function viewStudentProfile(req, res) {
 
   try {
     // Check if the request is coming from an admin
-    if (req.user.role !== 'admin') {
+    if (req.user.role !== 'Admin') {
       return res.status(403).json({ message: 'Permission denied. Only admins can view student profiles.' });
     }
 
