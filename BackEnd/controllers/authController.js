@@ -137,60 +137,58 @@ async function login(req, res, next) {
     if (!user) {
       return res.status(401).json({ error: 'User not found' });
     }
+
     // Check the password
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordMatch) {
       return res.status(401).json({ error: 'Incorrect password' });
     }
+
     // Find the user's role
     const userRole = await UserRole.findOne({ Username: id });
 
     if (!userRole) {
       return res.status(401).json({ error: 'Something error, contact admin' });
     }
+
     // Find the role name
     const role = await Role.findOne({ RoleID: userRole.RoleID });
 
     if (!role) {
-      return res.status(401).json({ error: 'Something error, contact admin'});
+      return res.status(401).json({ error: 'Something error, contact admin' });
     }
+
+    const token = generateToken(user);
+    user.accessToken = user.accessToken.concat({ token });
+    await user.save();
+
+    let userData;
 
     switch (role.RoleName) {
       case 'Admin':
+        userData = await Admin.findOne({ id });
+        break;
       case 'Lecturer':
+        userData = await Lecturer.findOne({ id });
+        break;
       case 'Student':
-        const token = generateToken(user);
-        user.accessToken = user.accessToken.concat({ token });
-        await user.save();
-    
-        let userData;
-        switch (role.RoleName) {
-          case 'Admin':
-            userData = await Admin.findOne({ id });
-            break;
-          case 'Lecturer':
-            userData = await Lecturer.findOne({ id });
-            break;
-          case 'Student':
-            userData = await Student.findOne({ id });
-            break;
-        }
-    
-        if (userData) {
-          return res.json({ user: userData, role: role.RoleName, token });
-        } else {
-          return res.status(404).json({ error: `${role.RoleName} not found` });
-        }
-    
+        userData = await Student.findOne({ id });
+        break;
       default:
         return res.status(401).json({ error: 'Invalid role' });
     }
-    
+
+    if (userData) {
+      return res.json({ user: userData, role: role.RoleName, token });
+    } else {
+      return res.status(404).json({ error: `${role.RoleName} not found` });
+    }
   } catch (error) {
     next(error);
   }
 }
+
 
 
 module.exports = {
