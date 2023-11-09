@@ -10,4 +10,5 @@ router.get('/getStudentClasses/:id', verifyToken, studentController.getStudentCl
 router.get('/getStudentSubjectId/:id', verifyToken, studentController.getStudentBySubjectID)
 router.post('/getSlotsOfWeek', verifyToken, studentController.getSlotsByWeekNumber);
 router.post('/getGrade', verifyToken, studentController.getGrade);
+router.post('/getSubjectByStudentId', verifyToken, studentController.getSubjectIdByStudentId)
 module.exports = router;

@@ -192,6 +192,71 @@ async function getAllStudentInClassBySubjectId(req, res, next) {
   }
 }
 
+async function getAllClassId(req, res, next) {
+  try {
+      const classes = await Class.find({});
+      res.json(classes);
+  } catch (err) {
+      console.error(error);
+      next(error);
+  }
+}
+
+async function getAllSubjectByClassId(req, res, next) {
+  try {
+      const classId = req.body.classId;
+      console.log(classId)
+      const classes = await Class.find({ ClassID: classId });
+      console.log(classes)
+      const subjectIds = classes.map((cls) => cls.SubjectID);
+      const subjects = await Subject.find({ SubjectID: { $in: subjectIds } });
+
+      const classWithSubjects = classes.map((cls) => {
+          const subject = subjects.find((subj) => subj.SubjectID === cls.SubjectID);
+          return {
+              SubjectID: subject?.SubjectID || null,
+              SubjectCode: subject?.SubjectCode || null,
+              SyllabusName: subject?.SyllabusName || null, // Attach the subject to the class
+          };
+      });
+
+      res.json(classWithSubjects);
+  } catch (error) {
+      console.error(error);
+      next(error);
+  }
+}
+
+async function getGradeByClassIdAndSubjectId(req, res, next) {
+  try {
+      const classId = req.body.classId;
+      const subjectId = req.body.subjectId;
+      const result = await Grade.find({
+          ClassID: classId,
+          "StudentGrades.SubjectID": subjectId,
+      });
+      const studentGrades = result?.[0]?.StudentGrades || [];
+
+    // Fetch student names based on StudentID
+    const students = await Promise.all(
+      studentGrades.map(async (grade) => {
+        const studentId = grade.StudentID;
+        const student = await Student.findOne({ id: studentId });
+        return {
+          StudentName: student?.Fullname || null,
+          ...grade.toObject(),
+        };
+      })
+    );
+    res.json(students);
+    
+  } catch (error) {
+      console.error(error);
+      next(error);
+  }
+}
+
+
 module.exports = {
   lecturerProfile,
   getSlotsByWeekNumber,
@@ -199,5 +264,8 @@ module.exports = {
   getGradeByStudentId,
   updateStudentGrade,
   getStudentClasses,
-  getAllStudentInClassBySubjectId
+  getAllStudentInClassBySubjectId,
+  getAllClassId,
+  getAllSubjectByClassId,
+  getGradeByClassIdAndSubjectId
 };
