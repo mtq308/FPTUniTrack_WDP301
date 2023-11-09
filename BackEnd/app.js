@@ -32,6 +32,7 @@ app.use('/auth', authRoutes);
 app.use('/student', studentRoutes);
 app.use('/lecturer', lecturerRoutes);
 app.use('/admin', adminRoutes);
+app.use('/semester', semesterRoutes);
 app.use('/', swaggerRoute);
 
 // Global Error Handling Middleware
@@ -45,7 +46,6 @@ app.use((err, req, res, next) => {
   }
 });
 
-app.use('/semester', semesterRoutes);
 
 
 const PORT = process.env.PORT || 3000;

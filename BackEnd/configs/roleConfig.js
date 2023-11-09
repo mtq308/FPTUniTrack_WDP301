@@ -1,7 +1,9 @@
-const roles = [
-    { RoleID: 1, RoleName: 'Admin' },
-    { RoleID: 2, RoleName: 'Lecturer' },
-    { RoleID: 3, RoleName: 'Student' },
-  ];
+// roles.js
+const roles = {
+    ADMIN: 'Admin',
+    LECTURER: 'Lecturer',
+    STUDENT: 'Student',
+  };
   
 module.exports = roles;
+  
