@@ -59,7 +59,7 @@ const SemesterDetail = () => {
   };
   const handleDeleteSemester = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/semester/${params}`, {
+      const response = await fetch(`http://localhost:3456/semester/${params}`, {
         method: 'DELETE',
       });
 

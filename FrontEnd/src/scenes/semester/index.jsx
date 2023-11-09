@@ -8,8 +8,11 @@ import TextField from '@mui/material/TextField';
 import Header from "../../components/Header";
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+// import { useAuth0 } from '@auth0/auth0-react';
 // import { cl } from "@fullcalendar/core/internal-common";
 const Semester = () => {
+
+
   const [semesterData, setSemesterData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newSemester, setNewSemester] = useState({

@@ -9,10 +9,11 @@ const Grade = () => {
   const [gradeData, setGradeData] = useState([]);
   console.log(gradeData);
   const gradeId = useParams().gradeId;
-  const [studentId, subjectId] = gradeId.split('&');
+  const [studentId, subjectId, subjectCode] = gradeId.split('&');
 
   console.log("Student ID:", studentId);
   console.log("Subject ID:", subjectId);
+  console.log("Subject Code:", subjectCode);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,7 +64,7 @@ const Grade = () => {
   ];
   return (
     <Box m="20px">
-      <Header title="GRADE" subtitle="Your Grade" />
+      <Header title="GRADE" subtitle={`Your Grade for ${subjectCode}`} />
       <Box
         m="40px 0 0 0"
         height="50vh"

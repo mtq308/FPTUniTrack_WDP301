@@ -4,8 +4,10 @@ import Card from "../Card/Card";
 import GoogleIcon from "@mui/icons-material/Google";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useUser } from '../../../UserContext';
 
 const LoginForm = ({ setIsLoggedIn, handleLogin }) => {
+  const { setUsername1 } = useUser();
   const [userRole, setUserRole] = useState("student");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -58,6 +60,7 @@ const LoginForm = ({ setIsLoggedIn, handleLogin }) => {
       } else if (userRole === "admin") {
         route = "/admin";
       }
+      setUsername1(username);
 
       // Use the navigate function to go to the determined route after successful login
       navigate(route);

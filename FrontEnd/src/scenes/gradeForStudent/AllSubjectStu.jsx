@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import Header from "../../components/Header";
 import { Link } from 'react-router-dom';
 import "./Class.css";
-
+import { useUser } from '../../UserContext';
 const AllSubjectStu = () => {
+  const { username1 } = useUser();
   const [subjectData, setSubjectData] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
-  const studentId = "HE170001";
+  const studentId = username1;
   const handleItemClick = (item) => {
     setSelectedItem(item);
   };
-
+  console.log(`Context:${username1}`)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,7 +48,7 @@ const AllSubjectStu = () => {
         <ul>
           {subjectData.map((item, index) => (
             <li key={index}>
-              <Link to={`/grade/${studentId}&${item.subjectId}`} onClick={() => handleItemClick(item)}>
+              <Link to={`/grade/${studentId}&${item.subjectId}&${item.subjectCode}`} onClick={() => handleItemClick(item)}>
                 {item.syllabusName} - {item.subjectCode}
               </Link>
             </li>
