@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   useTheme,
   Button,
@@ -9,19 +10,55 @@ import {
 import { tokens } from "../../theme";
 import { useNavigate, useParams } from "react-router-dom";
 import { lecturersData } from "../../data/lectureData";
-import React from "react";
 import Header from "../../components/Header";
+import dayjs from "dayjs";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-const LectureDetail = () => {
-  const { lectureId } = useParams();
+const LectureEditProfile = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
+  const { lectureId } = useParams();
   const lecture = lecturersData.find((lecture) => lecture.id === lectureId);
 
+  const [editedLecture, setEditedLecture] = useState(lecture);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEditedLecture({
+      ...editedLecture,
+      [name]: value,
+    });
+  };
+  const handleSave = () => {
+    // Assuming you have an API to save the edited lecture data
+    fetch(`/api/lectures/${lectureId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(editedLecture),
+    })
+      .then((response) => {
+        console.log(response); // Log the API response
+        if (response.ok) {
+          // Data was successfully saved
+          navigate(`/lecture/${lectureId}`);
+        } else {
+          // Handle any errors or show a message to the user
+          console.error('Failed to save data');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
   return (
     <Box sx={{ ml: 5 }}>
-      <Header title="LECTURER DETAILS" />
+      <Header title="EDIT LECTURER PROFILE" />
       {lecture ? (
         <Stack direction="column">
           <Stack direction="row" alignItems="center">
@@ -29,10 +66,9 @@ const LectureDetail = () => {
               Lecturer ID:{" "}
             </Typography>
             <TextField
-              value={lecture.id}
-              InputProps={{
-                readOnly: true,
-              }}
+              name="id"
+              value={editedLecture.id}
+              onChange={handleChange}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -40,10 +76,8 @@ const LectureDetail = () => {
               ID Card:{" "}
             </Typography>
             <TextField
-              value={lecture.IDCard}
-              InputProps={{
-                readOnly: true,
-              }}
+              value={editedLecture.IDCard}
+              onChange={handleChange}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -53,10 +87,8 @@ const LectureDetail = () => {
               Full name:{" "}
             </Typography>
             <TextField
-              value={lecture.Fullname}
-              InputProps={{
-                readOnly: true,
-              }}
+              value={editedLecture.Fullname}
+              onChange={handleChange}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -66,10 +98,8 @@ const LectureDetail = () => {
               First Name:{" "}
             </Typography>
             <TextField
-              value={lecture.FirstName}
-              InputProps={{
-                readOnly: true,
-              }}
+              value={editedLecture.FirstName}
+              onChange={handleChange}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -79,10 +109,8 @@ const LectureDetail = () => {
               Middle Name:{" "}
             </Typography>
             <TextField
-              value={lecture.MiddleName}
-              InputProps={{
-                readOnly: true,
-              }}
+              value={editedLecture.MiddleName}
+              onChange={handleChange}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -92,10 +120,8 @@ const LectureDetail = () => {
               Last Name:{" "}
             </Typography>
             <TextField
-              value={lecture.LastName}
-              InputProps={{
-                readOnly: true,
-              }}
+              value={editedLecture.LastName}
+              onChange={handleChange}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -105,21 +131,17 @@ const LectureDetail = () => {
               Date of Birth:{" "}
             </Typography>
             <TextField
-              value={lecture.DateOfBirth}
-              InputProps={{
-                readOnly: true,
-              }}
+              value={editedLecture.DateOfBirth}
+              onChange={handleChange}
               sx={{ ml: 1 }}
               size="small"
             >
-              {new Date(lecture.DateOfBirth).toLocaleDateString()}
+              {new Date(editedLecture.DateOfBirth).toLocaleDateString()}
             </TextField>
             <Typography sx={{ width: 60, ml: 3 }} variant="h5"> Gender: </Typography>
             <TextField
-              value={lecture.Gender ? "Male" : "Female"}
-              InputProps={{
-                readOnly: true,
-              }}
+              value={editedLecture.Gender ? "Male" : "Female"}
+              onChange={handleChange}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -129,10 +151,8 @@ const LectureDetail = () => {
               Address:{" "}
             </Typography>
             <TextField
-              value={lecture.Address}
-              InputProps={{
-                readOnly: true,
-              }}
+              value={editedLecture.Address}
+              onChange={handleChange}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -142,10 +162,8 @@ const LectureDetail = () => {
               Mobile Phone:{" "}
             </Typography>
             <TextField
-              value={lecture.MobilePhone}
-              InputProps={{
-                readOnly: true,
-              }}
+              value={editedLecture.MobilePhone}
+              onChange={handleChange}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -155,10 +173,8 @@ const LectureDetail = () => {
               Email:{" "}
             </Typography>
             <TextField
-              value={lecture.Email}
-              InputProps={{
-                readOnly: true,
-              }}
+              value={editedLecture.Email}
+              onChange={handleChange}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -166,21 +182,17 @@ const LectureDetail = () => {
           <Stack sx={{ mt: 1 }} direction="row" alignItems="center">
             <Typography sx={{ width: 100 }} variant="h5"> Active: </Typography>
                 <TextField
-                  value={lecture.IsActive ? "Yes" : "No"}
-                InputProps={{
-                    readOnly: true,
-                }}
-                sx={{ ml: 1 }}
-                size="small"
+                  value={editedLecture.IsActive ? "Yes" : "No"}
+                  onChange={handleChange}
+                  sx={{ ml: 1 }}
+                  size="small"
                 />
           </Stack>
           <Stack direction="row" sx={{ mt: 5, ml: 80 }}>
             <Button
               variant="contained"
               size="large"
-              onClick={() => {
-                navigate(`/lecture/${lectureId}/edit`);
-              }}
+              onClick={handleSave}
               sx={{
                 borderRadius: "20px",
                 backgroundColor:
@@ -193,12 +205,12 @@ const LectureDetail = () => {
                 mr: 2
               }}
             >
-              Edit
+              Save
             </Button>
             <Button
               variant="outlined"
               onClick={() => {
-                navigate('/lecture')
+                navigate(`/lecture/${lectureId}`)
               }}
               sx={{
                 borderRadius: "20px",
@@ -211,7 +223,7 @@ const LectureDetail = () => {
                 },
               }}
             >
-              Back
+              Cancel
             </Button>
           </Stack>
         </Stack>
@@ -222,4 +234,4 @@ const LectureDetail = () => {
   );
 };
 
-export default LectureDetail;
+export default LectureEditProfile;

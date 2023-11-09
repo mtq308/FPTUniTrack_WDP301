@@ -11,7 +11,6 @@ import {
   Box,
   TextField,
 } from "@mui/material";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -19,27 +18,19 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
+
 
 import Header from "../../components/Header";
 import { lecturersData } from "../../data/lectureData";
 import { useNavigate } from "react-router";
-import { actions, addLecture, setInput } from "../store";
-import { useDispatch, useSelector } from "react-redux";
 import Context from "../store/Context";
-import { initialState } from "../store/reducer";
 
 const Lecture = () => {
   const [open, setOpen] = useState(false);
-  const [age, setAge] = useState("");
   const navigate = useNavigate();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  // const handleChange = (event) => {
-  //   setAge(event.target.value);
-  // };
+ 
   const handleLectureDetail = (params) => {
     const lectureId = params.row.id;
     navigate(`/lecture/${lectureId}`);

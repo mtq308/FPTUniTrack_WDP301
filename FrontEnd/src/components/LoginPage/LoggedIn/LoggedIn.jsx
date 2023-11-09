@@ -17,6 +17,7 @@ import Semester from "../../../scenes/semester";
 import Lecture from "../../../scenes/lecture";
 import Notification from "../../../scenes/notification";
 import LectureDetail from "../../../scenes/lecture/LectureDetail";
+import LectureEditProfile from "../../../scenes/lecture/LectureEditProfile";
 
 
 const LoggedIn = ({ logout }) => {
@@ -41,6 +42,7 @@ const LoggedIn = ({ logout }) => {
               <Route path="/calendar" element={<Calendar />} />
               <Route path="/lecture" element={<Lecture />} />
               <Route path="/lecture/:lectureId" element={<LectureDetail />} />
+              <Route path="/lecture/:lectureId/edit" element={<LectureEditProfile />} />
               <Route path="/notification" element={<Notification />} />
             </Routes>
           </main>
