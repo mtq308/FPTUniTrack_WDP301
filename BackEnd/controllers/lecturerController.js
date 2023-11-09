@@ -11,7 +11,7 @@ async function lecturerProfile(req, res) {
 
   const lecturerId = req.user.id;
   try {
-    const lecturer = await Lecturer.findOne({ id: lecturerId, role: 'lecturer' });
+    const lecturer = await Lecturer.findOne({ id: lecturerId, role: 'Lecturer' });
 
     if (!lecturer) {
       return res.status(404).json({ message: 'Lecturer not found' });

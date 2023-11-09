@@ -6,21 +6,16 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  role: {
-    type: String,
-    required: true,
-    enum: ['student', 'lecturer', 'admin'],
-  },
   password: {
     type: String,
     required: true,
   },
   accessToken: [{
     token: {
-        type: String,
-        required: true
-    }
-}]
+      type: String,
+      required: true,
+    },
+  }],
 }, { collection: 'User' });
 
 const User = mongoose.model('User', userSchema);

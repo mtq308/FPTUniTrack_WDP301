@@ -13,7 +13,7 @@ const adminSchema = new mongoose.Schema({
   isActive:{
     type: Boolean,
   }
-}, { collection: 'User' });
+}, { collection: 'Admin' });
 
 const Admin = mongoose.model('Admin', adminSchema);
 
