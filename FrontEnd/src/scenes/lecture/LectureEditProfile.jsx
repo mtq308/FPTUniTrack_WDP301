@@ -25,37 +25,34 @@ const LectureEditProfile = () => {
 
   const [editedLecture, setEditedLecture] = useState(lecture);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleDateChange = (date) => {
     setEditedLecture({
       ...editedLecture,
-      [name]: value,
+      DateOfBirth: date.toISOString(),
     });
   };
   const handleSave = () => {
-    // Assuming you have an API to save the edited lecture data
-    fetch(`/api/lectures/${lectureId}`, {
-      method: 'PUT',
+    fetch(`/api/lecturers/${lectureId}`, {
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(editedLecture),
     })
       .then((response) => {
-        console.log(response); // Log the API response
+        console.log(response);
         if (response.ok) {
-          // Data was successfully saved
-          navigate(`/lecture/${lectureId}`);
+          navigate(`/lecture/`);
         } else {
-          // Handle any errors or show a message to the user
-          console.error('Failed to save data');
+          console.error("Failed to save data");
         }
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.error("Error:", error);
       });
   };
   
+
   return (
     <Box sx={{ ml: 5 }}>
       <Header title="EDIT LECTURER PROFILE" />
@@ -67,8 +64,8 @@ const LectureEditProfile = () => {
             </Typography>
             <TextField
               name="id"
+              disabled
               value={editedLecture.id}
-              onChange={handleChange}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -76,8 +73,8 @@ const LectureEditProfile = () => {
               ID Card:{" "}
             </Typography>
             <TextField
+            disabled
               value={editedLecture.IDCard}
-              onChange={handleChange}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -87,8 +84,7 @@ const LectureEditProfile = () => {
               Full name:{" "}
             </Typography>
             <TextField
-              value={editedLecture.Fullname}
-              onChange={handleChange}
+              defaultValue={editedLecture.Fullname}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -98,8 +94,7 @@ const LectureEditProfile = () => {
               First Name:{" "}
             </Typography>
             <TextField
-              value={editedLecture.FirstName}
-              onChange={handleChange}
+              defaultValue={editedLecture.FirstName}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -109,8 +104,7 @@ const LectureEditProfile = () => {
               Middle Name:{" "}
             </Typography>
             <TextField
-              value={editedLecture.MiddleName}
-              onChange={handleChange}
+              defaultValue={editedLecture.MiddleName}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -120,8 +114,7 @@ const LectureEditProfile = () => {
               Last Name:{" "}
             </Typography>
             <TextField
-              value={editedLecture.LastName}
-              onChange={handleChange}
+              defaultValue={editedLecture.LastName}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -130,18 +123,21 @@ const LectureEditProfile = () => {
             <Typography sx={{ width: 100 }} variant="h5">
               Date of Birth:{" "}
             </Typography>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                defaultValue={dayjs(editedLecture.DateOfBirth)}
+                onChange={handleDateChange}
+                renderInput={(params) => (
+                  <TextField {...params} sx={{ ml: 1 }} size="small" />
+                )}
+              />
+            </LocalizationProvider>
+            <Typography sx={{ width: 60, ml: 3 }} variant="h5">
+              {" "}
+              Gender:{" "}
+            </Typography>
             <TextField
-              value={editedLecture.DateOfBirth}
-              onChange={handleChange}
-              sx={{ ml: 1 }}
-              size="small"
-            >
-              {new Date(editedLecture.DateOfBirth).toLocaleDateString()}
-            </TextField>
-            <Typography sx={{ width: 60, ml: 3 }} variant="h5"> Gender: </Typography>
-            <TextField
-              value={editedLecture.Gender ? "Male" : "Female"}
-              onChange={handleChange}
+              defaultValue={editedLecture.Gender ? "Male" : "Female"}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -151,8 +147,7 @@ const LectureEditProfile = () => {
               Address:{" "}
             </Typography>
             <TextField
-              value={editedLecture.Address}
-              onChange={handleChange}
+              defaultValue={editedLecture.Address}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -162,8 +157,7 @@ const LectureEditProfile = () => {
               Mobile Phone:{" "}
             </Typography>
             <TextField
-              value={editedLecture.MobilePhone}
-              onChange={handleChange}
+              defaultValue={editedLecture.MobilePhone}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -173,20 +167,21 @@ const LectureEditProfile = () => {
               Email:{" "}
             </Typography>
             <TextField
-              value={editedLecture.Email}
-              onChange={handleChange}
+              defaultValue={editedLecture.Email}
               sx={{ ml: 1 }}
               size="small"
             />
           </Stack>
           <Stack sx={{ mt: 1 }} direction="row" alignItems="center">
-            <Typography sx={{ width: 100 }} variant="h5"> Active: </Typography>
-                <TextField
-                  value={editedLecture.IsActive ? "Yes" : "No"}
-                  onChange={handleChange}
-                  sx={{ ml: 1 }}
-                  size="small"
-                />
+            <Typography sx={{ width: 100 }} variant="h5">
+              {" "}
+              Active:{" "}
+            </Typography>
+            <TextField
+              defaultValue={editedLecture.IsActive ? "Yes" : "No"}
+              sx={{ ml: 1 }}
+              size="small"
+            />
           </Stack>
           <Stack direction="row" sx={{ mt: 5, ml: 80 }}>
             <Button
@@ -199,10 +194,10 @@ const LectureEditProfile = () => {
                   theme.palette.mode === "dark" ? "#3e4396" : "#a4a9fc",
                 color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
                 ":hover": {
-                  bgcolor: "#a4a9fc", 
+                  bgcolor: "#a4a9fc",
                   color: "white",
                 },
-                mr: 2
+                mr: 2,
               }}
             >
               Save
@@ -210,7 +205,7 @@ const LectureEditProfile = () => {
             <Button
               variant="outlined"
               onClick={() => {
-                navigate(`/lecture/${lectureId}`)
+                navigate(`/lecture/${lectureId}`);
               }}
               sx={{
                 borderRadius: "20px",
@@ -218,7 +213,7 @@ const LectureEditProfile = () => {
                   theme.palette.mode === "dark" ? "#3e4396" : "#a4a9fc",
                 color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
                 ":hover": {
-                  bgcolor: "#a4a9fc", 
+                  bgcolor: "#a4a9fc",
                   color: "white",
                 },
               }}
