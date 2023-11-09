@@ -1,12 +1,12 @@
 const Admin = require('../Models/adminModel');
 const Lecturer = require('../Models/lecturerModel');
 const Student = require('../Models/studentModel')
-
+const roles = require('../configs/roleConfig')
 async function adminProfile(req, res) {
   const adminId = req.Admin.id;
 
   try {
-    const admin = await Admin.findOne({ id: adminId, role: 'admin' });
+    const admin = await Admin.findOne({ id: adminId, role: 'Admin' });
 
     if (!admin) {
       return res.status(404).json({ message: 'Admin not found' });
@@ -23,7 +23,7 @@ async function updateStudentProfile(req, res) {
   const studentId = req.body.id;
   const { fullname, address, phone, email } = req.body;
   try {
-    if (req.user.role !== 'admin') {
+    if (req.user.role !== 'Admin') {
       return res.status(403).json({ message: 'Permission denied. Only admin Admins can update student profiles.' });
     }
 
@@ -42,7 +42,7 @@ async function updateStudentProfile(req, res) {
 
 async function getAllStudents(req, res) {
   try {
-    if (req.user.role !== 'admin') {
+    if (req.user.role !== 'Admin') {
       return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
     }
     const students = await Student.find({});
@@ -70,7 +70,7 @@ async function createStudent(req, res) {
 
   try {
     // Check if the request is coming from an admin
-    if (req.user.role !== 'admin') {
+    if (req.user.role !== 'Admin') {
       return res.status(403).json({ message: 'Permission denied. Only admin Admins can create student profiles.' });
     }
 
@@ -109,7 +109,7 @@ async function createStudent(req, res) {
 
 async function getAllLecturers(req, res) {
   try {
-    if (req.user.role !== 'admin') {
+    if (req.user.role !== 'Admin') {
       return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all lecturers profiles.' });
     }
     const lecturers = await Lecturer.find({});
@@ -122,7 +122,7 @@ async function getAllLecturers(req, res) {
 
 async function addStudent(req, res) {
   try {
-    if (req.user.role !== 'admin') {
+    if (req.user.role !== 'Admin') {
       return res.status(403).json({ message: 'Permission denied. Only admin Admins can add students.' });
     }
 
