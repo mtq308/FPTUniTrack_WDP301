@@ -150,10 +150,41 @@ async function getGrade(req, res, next) {
   }
 }
 
+async function getSubjectIdByStudentId(req, res, next) {
+  try {
+    const studentId = req.body.studentId;
+    const classes = await Class.find({ StudentID: studentId });
+
+    if (classes.length === 0) {
+      return res.status(404).json({ message: 'Student not found or not associated with any subject.' });
+    }
+
+    const subjectIds = [...new Set(classes.map((cls) => cls.SubjectID))];
+    const subjects = await Subject.find({ SubjectID: { $in: subjectIds } });
+
+    const subjectInfo = subjectIds.map(subjectId => {
+      const subject = subjects.find(s => s.SubjectID === subjectId);
+      return {
+        subjectId,
+        subjectCode: subject ? subject.SubjectCode || null : null,
+        syllabusName: subject ? subject.SyllabusName || null : null
+      };
+    });
+
+    res.json(subjectInfo);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+}
+
+
+
 module.exports = {
   studentProfile,
   getStudentClasses,
   getSlotsByWeekNumber,
   getStudentBySubjectID,
+  getSubjectIdByStudentId,
   getGrade
 };
