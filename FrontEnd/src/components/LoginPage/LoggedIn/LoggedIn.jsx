@@ -30,7 +30,7 @@ import AllSubjectStu from "../../../scenes/gradeForStudent/AllSubjectStu";
 import GradeClass from "../../../scenes/gradeForLecturer";
 import AllClass from "../../../scenes/gradeForLecturer/AllClass";
 import AllSubject from "../../../scenes/gradeForLecturer/AllSubject";
-
+import CalendarLec from "../../../scenes/calendarForLecturer";
 const LoggedIn = ({ logout }) => {
   console.log("hi")
   const [theme, colorMode] = useMode();
@@ -95,6 +95,7 @@ const LoggedIn = ({ logout }) => {
               <Route path="/AllClass" element={<AllClass />} />
               <Route path="/AllSubject/:classId" element={<AllSubject />} />
               <Route path="/AllSubjectStu" element={<AllSubjectStu />} />
+              <Route path="/calendarLec" element={<CalendarLec />} />
             </Routes>
           </main>
         </div>
