@@ -49,7 +49,6 @@ const LoginForm = ({ setIsLoggedIn, handleLogin }) => {
       const token = response.data.token;
       // Save the token in local storage or as needed for authentication
       localStorage.setItem("token", token);
-
       // Determine the appropriate route based on the selected userRole
       let route = "";
 
@@ -104,7 +103,7 @@ const LoginForm = ({ setIsLoggedIn, handleLogin }) => {
             {renderErrorMsg("noPassword")}
           </div>
 
-          <div className="radio_group">
+          {/* <div className="radio_group">
             <p>Select User Role:</p>
             <label>
               <input
@@ -133,7 +132,7 @@ const LoginForm = ({ setIsLoggedIn, handleLogin }) => {
               />
               Admin
             </label>
-          </div>
+          </div> */}
 
           <input type="submit" value="Log In" className="login_button" />
         </form>
