@@ -38,7 +38,7 @@ const LoginForm = ({ setIsLoggedIn, handleLogin }) => {
 
     try {
       const response = await axios.post(
-        `http://localhost:3000/auth/login/${userRole}`,
+        `http://localhost:3456/auth/login`,
         {
           id: username,
           password: password,
