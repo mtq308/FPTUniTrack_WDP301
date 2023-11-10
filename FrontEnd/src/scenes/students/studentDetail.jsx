@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { tokens } from "../../theme";
-import { studentsData } from "../../data/studentData";
 import {
   useTheme,
   Typography,
@@ -13,16 +12,41 @@ import {
   Button,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Header from "../../components/Header";
 
 const StudentDetail = () => {
+  const { studentId } = useParams();
+  const token = localStorage.getItem("token");
   const theme = useTheme();
   const navigate = useNavigate();
-  // Get the studentId from the URL using useParams
-  const { studentId } = useParams();
+  const [student, setStudent] = useState(null);
+  console.log(studentId);
+  
+  useEffect(() => {
+    const fetchStudentProfile = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3456/admin/student/profile/${studentId}`,
+          {
+            role: "Admin",
+          },
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
 
-  // Find the student data by studentId
-  const student = studentsData.find((student) => student.id === studentId);
+        setStudent(response.data);
+      } catch (error) {
+        console.error("Error fetching student:", error);
+        // Handle error as needed
+      }
+    };
+
+    fetchStudentProfile();
+  }, [studentId, token]);
 
   return (
     <Box sx={{ ml: 5 }}>

@@ -9,7 +9,7 @@ router.get('/profile/:id', verifyToken, adminController.adminProfile);
 // Route to get all students' information
 router.post('/getAllStudents', verifyToken, adminController.getAllStudents);
 
-router.post('/student/profile/:id', verifyToken, adminController.viewStudentProfile);
+router.get('/student/profile/:id', verifyToken, adminController.viewStudentProfile);
 // Router.put('/students/:studentId/profile', adminController.updateStudentProfile);
 router.put('/updateStudent/:id/profile', verifyToken, adminController.updateStudentProfile);
 //Router.post

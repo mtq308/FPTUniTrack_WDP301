@@ -31,7 +31,6 @@ import GradeClass from "../../../scenes/gradeForLecturer";
 import AllClass from "../../../scenes/gradeForLecturer/AllClass";
 
 const LoggedIn = ({ logout }) => {
-  console.log("hi")
   const [theme, colorMode] = useMode();
   const navigate = useNavigate();
   // Define the handleLogout function
