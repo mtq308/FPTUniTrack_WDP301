@@ -13,8 +13,7 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import BookIcon from '@mui/icons-material/Book';
 import ArticleIcon from '@mui/icons-material/Article';
-import HailOutlinedIcon from '@mui/icons-material/HailOutlined';
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import userImage from '../../assets/user.jpg';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -95,7 +94,7 @@ const Sidebar = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={`../../assets/user.jpg`}
+                  src={userImage}
                   // Ảnh user không lên vì chưa có ảnh
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
@@ -121,28 +120,6 @@ const Sidebar = () => {
               title="Dashboard"
               to="/"
               icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Data
-            </Typography>
-            <Item
-              title="Manage Team"
-              to="/team"
-              icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Contacts Information"
-              to="/contacts"
-              icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -197,20 +174,6 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Pages
-            </Typography>
-            <Item
-              title="Profile Form"
-              to="/form"
-              icon={<PersonOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
             <Item
               title="Calendar"
               to="/calendar"
@@ -221,14 +184,14 @@ const Sidebar = () => {
             <Item
               title="Lecture"
               to="/lecture"
-              icon={<HailOutlinedIcon />}
+              icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Notification"
               to="/notification"
-              icon={<NotificationsNoneOutlinedIcon />}
+              icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
