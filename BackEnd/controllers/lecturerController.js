@@ -26,11 +26,9 @@ async function lecturerProfile(req, res) {
 
 async function getSlotsByWeekNumber(req, res) {
   const lecturerId = req.user.id;
-  const weekNumber = req.user.weekNumber;
 
   try {
     const slots = await Slot.find({
-      WeekNumber: weekNumber,
       LecturerUserName: lecturerId,
     });
 
