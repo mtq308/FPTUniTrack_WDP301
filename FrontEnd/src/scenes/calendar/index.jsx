@@ -28,8 +28,7 @@ const Calendar = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            id: "HE170001",
-            weekNumber: "1",
+            id: "HE170001"
           }),
         });
         if (response.ok) {
