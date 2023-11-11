@@ -1,4 +1,6 @@
 .centered-table {
+  margin-top: 2%;
+  margin-left: 0.5%;
   width: 50%;
   border-collapse: collapse;
   text-align: center;
