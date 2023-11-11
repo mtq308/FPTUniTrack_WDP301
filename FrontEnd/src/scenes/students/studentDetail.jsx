@@ -16,17 +16,18 @@ import axios from "axios";
 import Header from "../../components/Header";
 
 const StudentDetail = () => {
-  const { studentId } = useParams();
+  
   const token = localStorage.getItem("token");
   const theme = useTheme();
   const navigate = useNavigate();
-  const [student, setStudent] = useState(null);
+  const [student, setStudent] = useState("");
+  const { studentId } = useParams();
   console.log(studentId);
   
   useEffect(() => {
     const fetchStudentProfile = async () => {
       try {
-        const response = await axios.get(
+        const response = await axios.post(
           `http://localhost:3456/admin/student/profile/${studentId}`,
           {
             role: "Admin",
@@ -39,6 +40,7 @@ const StudentDetail = () => {
         );
 
         setStudent(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching student:", error);
         // Handle error as needed
@@ -57,7 +59,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center">
               <Typography variant="h5">Student ID:</Typography>
               <TextField
-                defaultValue={student.id}
+                defaultValue={student[0].id}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -68,7 +70,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center" sx={{ ml: 10 }}>
               <Typography variant="h5">Full name:</Typography>
               <TextField
-                defaultValue={student.Fullname}
+                defaultValue={student[0].Fullname}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -81,7 +83,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center">
               <Typography variant="h5">Date of Birth:</Typography>
               <TextField
-                defaultValue={student.DateOfBirth}
+                defaultValue={student[0].DateOfBirth}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -92,7 +94,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center" sx={{ ml: 10 }}>
               <Typography variant="h5">Gender:</Typography>
               <TextField
-                defaultValue={student.Gender ? "Male" : "Female"}
+                defaultValue={student[0].Gender ? "Male" : "Female"}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -105,7 +107,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center">
               <Typography variant="h5">ID Card:</Typography>
               <TextField
-                defaultValue={student.IDCard}
+                defaultValue={student[0].IDCard}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -116,7 +118,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center" sx={{ ml: 10 }}>
               <Typography variant="h5">Phone:</Typography>
               <TextField
-                defaultValue={student.Phone}
+                defaultValue={student[0].Phone}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -128,7 +130,7 @@ const StudentDetail = () => {
           <Stack direction="row" alignItems="center" sx={{ mt: 3 }}>
             <Typography variant="h5">Address:</Typography>
             <TextField
-              defaultValue={student.Address}
+              defaultValue={student[0].Address}
               InputProps={{
                 readOnly: true,
               }}
@@ -140,7 +142,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center">
               <Typography variant="h5">Email:</Typography>
               <TextField
-                defaultValue={student.Email}
+                defaultValue={student[0].Email}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -151,7 +153,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center" sx={{ ml: 4 }}>
               <Typography variant="h5">Student username:</Typography>
               <TextField
-                defaultValue={student.StudentUsername}
+                defaultValue={student[0].StudentUsername}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -164,7 +166,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center">
               <Typography variant="h5">Specialization:</Typography>
               <TextField
-                defaultValue={student.Specialization}
+                defaultValue={student[0].Specialization}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -175,7 +177,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center" sx={{ ml: 28.9 }}>
               <Typography variant="h5">Is active:</Typography>
               <TextField
-                defaultValue={student.IsActive ? "Yes" : "No"}
+                defaultValue={student[0].IsActive ? "Yes" : "No"}
                 InputProps={{
                   readOnly: true,
                 }}

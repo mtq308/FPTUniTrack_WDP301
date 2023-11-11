@@ -91,7 +91,7 @@ const Students = () => {
       }
     }; // Fetch students when the component mounts
     fetchStudents();
-  }, []);
+  }, [token]);
 
   const submit = async (e) => {
     e.preventDefault();
@@ -458,9 +458,8 @@ const Students = () => {
           columns={columns}
           components={{ Toolbar: GridToolbar }}
           onRowClick={(params) => {
-            const studentId = params.row.id;
+            const studentId = params.row.id; // use studentId instead of id
             console.log(studentId);
-            // Navigate to the student detail page
             navigate(`/students/${studentId}`);
           }}
         />

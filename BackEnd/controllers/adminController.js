@@ -21,10 +21,12 @@ async function adminProfile(req, res) {
 }
 
 async function updateStudentProfile(req, res) {
-  const studentId = req.body.id;
-  const { fullname, address, phone, email } = req.body;
+  const studentId = req.params.id;
+  const { DateOfBirth, Gender, IdCard, Address, Phone, Email,
+    StudentUsername, Specialization, IsActive, Fullname } = req.body;
+    console.log('User Role:', req.user.role);
   try {
-    if (req.user.role !== roles.ADMIN) {
+    if (req.body.role !== roles.ADMIN) {
       return res.status(403).json({ message: 'Permission denied. Only admin Admins can update student profiles.' });
     }
 
@@ -87,7 +89,6 @@ async function addStudent(req, res) {
 }
 
 async function viewStudentProfile(req, res) {
-  const studentId = req.params.id; // Assuming the student ID is passed as a route parameter
 
   try {
     // Check if the request is coming from an admin
@@ -96,6 +97,7 @@ async function viewStudentProfile(req, res) {
     }
 
     // Find the student with the specified ID
+    const studentId = req.params.id; // Use req.params.id to get the ID from the route parameter
     const student = await Student.find({ id: studentId });
 
     if (!student) {
@@ -104,7 +106,6 @@ async function viewStudentProfile(req, res) {
 
     res.json(student);
   } catch (error) {
-
     console.error(error);
     res.status(500).json({ message: 'Server error' });
   }
