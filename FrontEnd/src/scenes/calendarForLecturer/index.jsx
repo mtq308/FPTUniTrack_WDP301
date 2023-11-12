@@ -15,10 +15,10 @@ import {
 import Header from "../../components/Header";
 import { tokens } from "../../theme";
 import { formatDate } from "@fullcalendar/core";
-const CalendarLec = () => {
-  const [calendarData, setCalendarData] = useState([]);
-  const [newArray2, setNewArray2] = useState([]);
 
+const CalendarLec = () => {
+  const [calenderData, setCalenderData] = useState([]);
+  console.log(calenderData);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,13 +28,18 @@ const CalendarLec = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            id: "HoangLTH",
-            weekNumber: "1",
+            id: "HoangLTH"
           }),
         });
         if (response.ok) {
           const data = await response.json();
-          setCalendarData(data);
+          const filteredData = data.map(item => ({
+            id: item._id,
+            title: `${item.Subject.SubjectCode} - ${item.ClassID} - P${item.RoomCode}`,
+            date: `${item.Day.Date.split('T')[0]}T${item.Period.StartTime}`,
+            end: `${item.Day.Date.split('T')[0]}T${item.Period.EndTime}`,
+          }));
+          setCalenderData(filteredData);
 
         } else {
           console.error('Failed to fetch data');
@@ -46,78 +51,13 @@ const CalendarLec = () => {
 
     fetchData();
   }, []);
-  useEffect(() => {
-    console.log(calendarData);
-    let newArray = calendarData.map(item => ({
-      ID: item.ID,
-      PeriodID: item.PeriodID,
-      RoomCode: item.RoomCode,
-      LecturerUserName: item.LecturerUserName,
-      StartTime: item.Period.StartTime,
-      EndTime: item.Period.EndTime,
-      Date: item.Day.Date,
-      SubjectCode: item.Subject.SubjectCode
-    }));
-    const s = calendarData.map(item => ({
-      id: item.ID,
-      title: item.Subject.SubjectCode,
-      date: item.Day.Date.slice(0, 10),
-    }));
-    setNewArray2(s)
-    console.log(newArray);
-    console.log(s);
-    // Handle other logic or set state based on calendarData
-  }, [calendarData]);
-  // let newArray = calendarData.map(item => ({
-  //   ID: item.ID,
-  //   PeriodID: item.PeriodID,
-  //   RoomCode: item.RoomCode,
-  //   LecturerUserName: item.LecturerUserName,
-  //   StartTime: item.Period.StartTime,
-  //   EndTime: item.Period.EndTime,
-  //   Date: item.Day.Date,
-  //   SubjectCode: item.Subject.SubjectCode
-  // }));
-  // const s = calendarData.map(item => ({
-  //   id: item.ID,
-  //   title: item.Subject.SubjectCode,
-  //   date: item.Day.Date.slice(0, 10),
-  // }));
-  // setNewArray2(s)
-  // console.log(newArray);
-  // console.log(s);
+
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [currentEvents, setCurrentEvents] = useState([]);
-
-  const handleDateClick = (selected) => {
-    const title = prompt("Please enter a new title for your event");
-    const calendarApi = selected.view.calendar;
-    calendarApi.unselect();
-
-    if (title) {
-      calendarApi.addEvent({
-        id: `${selected.dateStr}-${title}`,
-        title,
-        start: selected.startStr,
-        end: selected.endStr,
-        allDay: selected.allDay,
-      });
-    }
-  };
-
-  const handleEventClick = (selected) => {
-    if (
-      window.confirm(
-        `Are you sure you want to delete the event '${selected.event.title}'`
-      )
-    ) {
-      selected.event.remove();
-    }
-  };
   return (
     <Box m="20px">
-      <Header title="CALENDAR" subtitle="Full Calendar Interactive Page" />
+      <Header title="TIMETABLE" subtitle="Class Timetable" />
       <Box display="flex" justifyContent="space-between">
         {/* CALENDAR SIDEBAR */}
         <Box
@@ -126,7 +66,7 @@ const CalendarLec = () => {
           p="15px"
           borderRadius="4px"
         >
-          <Typography variant="h5">Events</Typography>
+          <Typography variant="h5">Slots</Typography>
           <List>
             {currentEvents.map((event) => (
               <ListItem
@@ -156,29 +96,27 @@ const CalendarLec = () => {
 
         {/* CALENDAR */}
         <Box flex="1 1 100%" ml="15px">
-          <FullCalendar
-            height="75vh"
-            plugins={[
-              dayGridPlugin,
-              timeGridPlugin,
-              interactionPlugin,
-              listPlugin
-            ]}
-            headerToolbar={{
-              left: "prev,next today",
-              center: "title",
-              right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
-            }}
-            initialView="dayGridMonth"
-            editable={true}
-            selectable={true}
-            selectMirror={true}
-            dayMaxEvents={true}
-            select={handleDateClick}
-            eventClick={handleEventClick}
-            eventsSet={(events) => setCurrentEvents(events)}
-            initialEvents={newArray2}
-          />
+            <FullCalendar 
+                height="75vh"
+                plugins={[
+                    dayGridPlugin,
+                    timeGridPlugin,
+                    interactionPlugin,
+                    listPlugin
+                ]}
+                headerToolbar={{
+                    left: "prev,next today",
+                    center: "title",
+                    right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
+                }}
+                initialView="dayGridMonth"
+                editable={false}
+                selectable={false}
+                selectMirror={true}
+                dayMaxEvents={true}
+                eventsSet={(events) => setCurrentEvents(events)}
+                events={calenderData}
+            />
         </Box>
       </Box>
     </Box>
