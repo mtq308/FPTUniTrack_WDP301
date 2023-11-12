@@ -54,64 +54,6 @@ async function getAllStudents(req, res) {
   }
 }
 
-async function getAllLecturers(req, res) {
-  try {
-    if (req.body.role !== roles.ADMIN) {
-      return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
-    }
-    const lecturers = await Lecturer.find({});
-    res.json(lecturers);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-}
-
-async function viewLecturerProfile(req, res) {
-  const lecturerId = req.params.id; // Assuming the lecturer ID is passed as a route parameter
-
-  try {
-    // Check if the request is coming from an admin
-    if (req.body.role !== roles.ADMIN) {
-      return res.status(403).json({ message: 'Permission denied. Only admins can view lecturer profiles.' });
-    }
-
-    // Find the lecturer with the specified ID
-    const lecturer = await Lecturer.find({ id: lecturerId });
-
-    if (!lecturer) {
-      return res.status(404).json({ message: 'Lecturer not found' });
-    }
-
-    res.json(lecturer);
-  } catch (error) {
-
-    console.error(error);
-    res.status(500).json({ message: 'Server error' });
-  }
-}
-
-async function updateLecturerProfile(req, res) {
-  const studentId = req.body.id;
-  const { fullname, address, phone, email } = req.body;
-  try {
-    if (req.user.role !== roles.ADMIN) {
-      return res.status(403).json({ message: 'Permission denied. Only admin Admins can update student profiles.' });
-    }
-
-    const student = await Student.findOne({ id: studentId });
-
-    Object.assign(student, req.body);
-    // Save the updated student data
-    await student.save();
-
-    res.json({ message: 'Student profile updated successfully' });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-}
-
 async function addStudent(req, res) {
   try {
     if (req.body.role !== roles.ADMIN) {
@@ -155,14 +97,95 @@ async function viewStudentProfile(req, res) {
   }
 }
 
+async function getAllLecturers(req, res) {
+  try {
+    if (req.body.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
+    }
+    const lecturers = await Lecturer.find({});
+    res.json(lecturers);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+async function viewLecturerProfile(req, res) {
+  const lecturerId = req.params.id; // Assuming the lecturer ID is passed as a route parameter
+
+  try {
+    // Check if the request is coming from an admin
+    if (req.body.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admins can view lecturer profiles.' });
+    }
+
+    // Find the lecturer with the specified ID
+    const lecturer = await Lecturer.find({ id: lecturerId });
+
+    if (!lecturer) {
+      return res.status(404).json({ message: 'Lecturer not found' });
+    }
+
+    res.json(lecturer);
+  } catch (error) {
+
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+async function addLecturer(req, res) {
+  try {
+    if (req.body.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
+    }
+
+    const newLecturerData = req.body;
+
+    const newLecturer = new Lecturer(newLecturerData);
+
+    await newLecturer.save();
+
+    res.json({ message: 'Lecturer added successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+async function updateLecturerProfile(req, res) {
+  const lecturerId = req.body.id;
+  const { fullname, address, phone, email } = req.body;
+  try {
+    if (req.user.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can update student profiles.' });
+    }
+
+    const lecturer = await Lecturer.findOne({ id: lecturerId });
+
+    Object.assign(lecturer, req.body);
+    // Save the updated lecturer data
+    await lecturer.save();
+
+    res.json({ message: 'Lecturer profile updated successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+
+
 
 
 module.exports = {
   adminProfile,
   getAllStudents,
-  viewLecturerProfile,
-  updateStudentProfile,
+  viewStudentProfile,
   addStudent,
+  updateStudentProfile,
   getAllLecturers,
-  viewStudentProfile
+  viewLecturerProfile,
+  addLecturer,
+  updateLecturerProfile
 };

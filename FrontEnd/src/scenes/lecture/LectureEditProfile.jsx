@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useTheme,
   Button,
@@ -15,6 +15,7 @@ import dayjs from "dayjs";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import axios from "axios";
 
 const LectureEditProfile = () => {
   const theme = useTheme();
@@ -24,7 +25,7 @@ const LectureEditProfile = () => {
   const token = localStorage.getItem("token");
   const { lecturerId } = useParams();
   const [lecturer, setLecturer] = useState({});
-
+  
   useEffect(() => {
     const fetchLectureDetail = async () => {
       try {
@@ -50,6 +51,11 @@ const LectureEditProfile = () => {
     fetchLectureDetail();
   }, [lecturerId, token]);
 
+  const handleDateChange = (newDate) => {
+    // Handle the date change, e.g., update the state or perform any necessary logic
+    console.log("New Date:", newDate);
+  };
+
   return (
     <Box sx={{ ml: 5 }}>
       <Header title="EDIT LECTURER PROFILE" />
@@ -62,7 +68,7 @@ const LectureEditProfile = () => {
             <TextField
               name="id"
               disabled
-              value={lecturer.id}
+              value={lecturer[0].id}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -71,7 +77,17 @@ const LectureEditProfile = () => {
             </Typography>
             <TextField
               disabled
-              value={lecturer.IDCard}
+              value={lecturer[0].IDCard}
+              sx={{ ml: 1 }}
+              size="small"
+            />
+          </Stack>
+          <Stack sx={{ mt: 1 }} direction="row" alignItems="center">
+            <Typography sx={{ width: 100 }} variant="h5">
+              Username:{" "}
+            </Typography>
+            <TextField
+              defaultValue={lecturer[0].LectureUserName}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -81,37 +97,7 @@ const LectureEditProfile = () => {
               Full name:{" "}
             </Typography>
             <TextField
-              defaultValue={lecturer.Fullname}
-              sx={{ ml: 1 }}
-              size="small"
-            />
-          </Stack>
-          <Stack sx={{ mt: 1 }} direction="row" alignItems="center">
-            <Typography sx={{ width: 100 }} variant="h5">
-              First Name:{" "}
-            </Typography>
-            <TextField
-              defaultValue={lecturer.FirstName}
-              sx={{ ml: 1 }}
-              size="small"
-            />
-          </Stack>
-          <Stack sx={{ mt: 1 }} direction="row" alignItems="center">
-            <Typography sx={{ width: 100 }} variant="h5">
-              Middle Name:{" "}
-            </Typography>
-            <TextField
-              defaultValue={lecturer.MiddleName}
-              sx={{ ml: 1 }}
-              size="small"
-            />
-          </Stack>
-          <Stack sx={{ mt: 1 }} direction="row" alignItems="center">
-            <Typography sx={{ width: 100 }} variant="h5">
-              Last Name:{" "}
-            </Typography>
-            <TextField
-              defaultValue={lecturer.LastName}
+              defaultValue={lecturer[0].Fullname}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -122,10 +108,11 @@ const LectureEditProfile = () => {
             </Typography>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
-                defaultValue={dayjs(lecturer.DateOfBirth)}
+                sx={{ ml: 1 }}
+                defaultValue={dayjs(lecturer[0].DateOfBirth)}
                 onChange={handleDateChange}
                 renderInput={(params) => (
-                  <TextField {...params} sx={{ ml: 1 }} size="small" />
+                  <TextField {...params}  size="small" />
                 )}
               />
             </LocalizationProvider>
@@ -134,7 +121,7 @@ const LectureEditProfile = () => {
               Gender:{" "}
             </Typography>
             <TextField
-              defaultValue={lecturer.Gender ? "Male" : "Female"}
+              defaultValue={lecturer[0].Gender ? "Male" : "Female"}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -144,17 +131,18 @@ const LectureEditProfile = () => {
               Address:{" "}
             </Typography>
             <TextField
-              defaultValue={lecturer.Address}
+              defaultValue={lecturer[0].Address}
               sx={{ ml: 1 }}
               size="small"
             />
           </Stack>
           <Stack sx={{ mt: 1 }} direction="row" alignItems="center">
             <Typography sx={{ width: 100 }} variant="h5">
-              Mobile Phone:{" "}
+              Phone:{" "}
             </Typography>
             <TextField
-              defaultValue={lecturer.MobilePhone}
+              type="number"
+              defaultValue={lecturer[0].Phone}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -164,7 +152,7 @@ const LectureEditProfile = () => {
               Email:{" "}
             </Typography>
             <TextField
-              defaultValue={lecturer.Email}
+              defaultValue={lecturer[0].Email}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -175,7 +163,7 @@ const LectureEditProfile = () => {
               Active:{" "}
             </Typography>
             <TextField
-              defaultValue={lecturer.IsActive ? "Yes" : "No"}
+              defaultValue={lecturer[0].IsActive ? "Yes" : "No"}
               sx={{ ml: 1 }}
               size="small"
             />
@@ -184,7 +172,7 @@ const LectureEditProfile = () => {
             <Button
               variant="contained"
               size="large"
-              onClick={handleSave}
+              // onClick={handleSave}
               sx={{
                 borderRadius: "20px",
                 backgroundColor:
@@ -202,7 +190,7 @@ const LectureEditProfile = () => {
             <Button
               variant="outlined"
               onClick={() => {
-                navigate(`/lecture/${lectureId}`);
+                navigate(`/lecture/${lecturerId}`);
               }}
               sx={{
                 borderRadius: "20px",

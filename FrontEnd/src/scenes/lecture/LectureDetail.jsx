@@ -180,7 +180,7 @@ const LectureDetail = () => {
               variant="contained"
               size="large"
               onClick={() => {
-                navigate(`/lecture/edit/${lecturerId}`);
+                navigate(`/lecture/${lecturerId}/edit`);
               }}
               sx={{
                 borderRadius: "20px",
