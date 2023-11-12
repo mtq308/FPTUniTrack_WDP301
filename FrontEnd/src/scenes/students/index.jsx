@@ -29,7 +29,7 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const Students = () => {
@@ -65,26 +65,32 @@ const Students = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const fetchStudents = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:3000/admin/getAllStudents",
-        {
-          headers: {
-            Authorization: token, // Send the token in the request headers
-          },
-        }
-      );
-      setStudents(response.data);
-      console.log(response.data); // Set the fetched students in the state
-    } catch (error) {
-      console.error("Error fetching students:", error);
-      // Handle error as needed
-    }
-  };
+
 
   useEffect(() => {
-    fetchStudents(); // Fetch students when the component mounts
+    const fetchStudents = async () => {
+      try {
+
+        const response = await axios.post(
+          "http://localhost:3456/admin/getAllStudents",
+          {
+            role: "Admin", // Include the role data in the request body
+          },
+          {
+            headers: {
+              Authorization: token, // Send the token in the request headers
+            }
+          }
+        );
+
+        setStudents(response.data);
+        console.log(response.data); // Set the fetched students in the state
+      } catch (error) {
+        console.error("Error fetching students:", error);
+        // Handle error as needed
+      }
+    }; // Fetch students when the component mounts
+    fetchStudents();
   }, []);
 
   const submit = async (e) => {
@@ -92,7 +98,7 @@ const Students = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/admin/addStudent",
+        "http://localhost:3456/admin/addStudent",
         {
           id: id, // Use the entered ID
           Fullname: name,
@@ -453,6 +459,7 @@ const Students = () => {
           components={{ Toolbar: GridToolbar }}
           onRowClick={(params) => {
             const studentId = params.row.id;
+            console.log(studentId);
             // Navigate to the student detail page
             navigate(`/students/${studentId}`);
           }}

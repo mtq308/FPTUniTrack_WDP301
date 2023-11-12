@@ -43,7 +43,7 @@ async function updateStudentProfile(req, res) {
 
 async function getAllStudents(req, res) {
   try {
-    if (userRole !== roles.ADMIN) {
+    if (req.body.role !== roles.ADMIN) {
       return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
     }
     const students = await Student.find({});
@@ -91,7 +91,7 @@ async function viewStudentProfile(req, res) {
 
   try {
     // Check if the request is coming from an admin
-    if (req.user.role !== 'Admin') {
+    if (req.body.role !== roles.ADMIN) {
       return res.status(403).json({ message: 'Permission denied. Only admins can view student profiles.' });
     }
 

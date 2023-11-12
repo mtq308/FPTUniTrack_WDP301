@@ -29,11 +29,11 @@ import LectureEditProfile from "../../../scenes/lecture/LectureEditProfile";
 import Grade from "../../../scenes/gradeForStudent";
 import AllSubjectStu from "../../../scenes/gradeForStudent/AllSubjectStu";
 import GradeClass from "../../../scenes/gradeForLecturer";
+
 import AllClass from "../../../scenes/gradeForLecturer/AllClass";
 import AllSubject from "../../../scenes/gradeForLecturer/AllSubject";
 import CalendarLec from "../../../scenes/calendarForLecturer";
 const LoggedIn = ({ logout }) => {
-  console.log("hi")
   const [theme, colorMode] = useMode();
   const navigate = useNavigate();
   // Define the handleLogout function
