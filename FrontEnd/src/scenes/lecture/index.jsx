@@ -1,7 +1,7 @@
-import { DataGrid } from "@mui/x-data-grid";
+import React, { useEffect, useState } from "react";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-
-import React, { useState } from "react";
+import Header from "../../components/Header";
 import {
   useTheme,
   Button,
@@ -11,6 +11,7 @@ import {
   Box,
   TextField,
 } from "@mui/material";
+import { useNavigate } from "react-router";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -20,106 +21,134 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 
 
-import Header from "../../components/Header";
-import { lecturersData } from "../../data/lectureData";
-import { useNavigate } from "react-router";
-import Context from "../store/Context";
+// import Context from "../store/Context";
+import axios from "axios";
 
 const Lecture = () => {
-  const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
- 
-  const handleLectureDetail = (params) => {
-    const lectureId = params.row.id;
-    navigate(`/lecture/${lectureId}`);
-  };
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  //add new lecture funtion
-  const [idCounter, setIdCounter] = useState(1);
-  const [input, setInput] = useState({
-    rollNumber: "",
-    LectureUserName: "",
-    IDCard: "",
-    LastName: "",
-    MiddleName: "",
-    FirstName: "",
-    Gender: false,
-    Address: "",
-    DateOfBirth: null,
-    MobilePhone: "",
-    Email: "",
-  });
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setInput((prevInput) => ({
-      ...prevInput,
-      [name]: value,
-    }));
-  };
-  const [lecturers, setLecturers] = useState(lecturersData);
-  const handleAddLecture = () => {
-    const newLecture = {
-      id: idCounter,
-      rollNumber: input.rollNumber,
-      LectureUserName: input.LectureUserName,
-      IDCard: input.IDCard,
-      LastName: input.LastName,
-      MiddleName: input.MiddleName,
-      FirstName: input.FirstName,
-      Gender: input.Gender,
-      Address: input.Address,
-      DateOfBirth: input.DateOfBirth,
-      MobilePhone: input.MobilePhone,
-      Email: input.Email,
-    };
+  const [lecturers, setLecturers] = useState([]);
+  
+  
+  const [open, setOpen] = React.useState(false);
+  
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-    setLecturers((prevData) => [...prevData, newLecture]);
-    setIdCounter(idCounter + 1);
-    setInput({
-      rollNumber: "",
-      LectureUserName: "",
-      IDCard: "",
-      LastName: "",
-      MiddleName: "",
-      FirstName: "",
-      Gender: "female",
-      Address: "",
-      DateOfBirth: null,
-      MobilePhone: "",
-      Email: "",
-    });
-    setOpen(false);
+  useEffect(() => {
+    const fetchLecturers = async () => {
+      try {
+  
+        const response = await axios.post(
+          "http://localhost:3456/admin/getAllLecturers",
+          {
+            role: "Admin", // Include the role data in the request body
+          },
+          {
+            headers: {
+              Authorization: token, // Send the token in the request headers
+            }
+          }
+        );
+  
+        setLecturers(response.data);
+        console.log(response.data); // Set the fetched lecturers in the state
+      } catch (error) {
+        console.error("Error fetching lecturers:", error);
+        // Handle error as needed
+      }
+    }; // Fetch lecturers when the component mounts
+    fetchLecturers();
+  }, []);
+  const handleLectureDetail = (params) => {
+    const lecturerId = params.row.id;
+    navigate(`/lecture/${lecturerId}`);
   };
+  // add new lecture funtion
+  // const [idCounter, setIdCounter] = useState(1);
+  // const [input, setInput] = useState({
+  //   rollNumber: "",
+  //   LectureUserName: "",
+  //   IDCard: "",
+  //   LastName: "",
+  //   MiddleName: "",
+  //   FirstName: "",
+  //   Gender: false,
+  //   Address: "",
+  //   DateOfBirth: null,
+  //   MobilePhone: "",
+  //   Email: "",
+  // });
 
-  //delete lecture function
-  const [isDeleteConfirmationOpen, setIsDeleteConfirmationOpen] =
-    useState(false);
-  const [lectureToDelete, setLectureToDelete] = useState(null);
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setInput((prevInput) => ({
+  //     ...prevInput,
+  //     [name]: value,
+  //   }));
+  // };
+  // const handleAddLecture = () => {
+  //   const newLecture = {
+  //     id: idCounter,
+  //     rollNumber: input.rollNumber,
+  //     LectureUserName: input.LectureUserName,
+  //     IDCard: input.IDCard,
+  //     LastName: input.LastName,
+  //     MiddleName: input.MiddleName,
+  //     FirstName: input.FirstName,
+  //     Gender: input.Gender,
+  //     Address: input.Address,
+  //     DateOfBirth: input.DateOfBirth,
+  //     MobilePhone: input.MobilePhone,
+  //     Email: input.Email,
+  //   };
 
-  const handleDeleteLecture = (lectureId) => {
-    const lectureToDelete = lecturers.find(
-      (lecture) => lecture.id === lectureId
-    );
-    setLectureToDelete(lectureToDelete);
-    setIsDeleteConfirmationOpen(true);
-  };
-  const confirmDeleteLecture = () => {
-    if (lectureToDelete) {
-      const { id } = lectureToDelete;
-      const updatedData = lecturers.filter(
-        (lecture) => lecture.id !== lectureToDelete.id
-      );
-      setLecturers(updatedData);
-      setIsDeleteConfirmationOpen(false);
-    }
-  };
-  const cancelDeleteLecture = () => {
-    setIsDeleteConfirmationOpen(false);
-  };
+  //   setLecturers((prevData) => [...prevData, newLecture]);
+  //   setIdCounter(idCounter + 1);
+  //   setInput({
+  //     rollNumber: "",
+  //     LectureUserName: "",
+  //     IDCard: "",
+  //     LastName: "",
+  //     MiddleName: "",
+  //     FirstName: "",
+  //     Gender: "female",
+  //     Address: "",
+  //     DateOfBirth: null,
+  //     MobilePhone: "",
+  //     Email: "",
+  //   });
+  //   setOpen(false);
+  // };
+
+  // //delete lecture function
+  // const [isDeleteConfirmationOpen, setIsDeleteConfirmationOpen] =
+  //   useState(false);
+  // const [lectureToDelete, setLectureToDelete] = useState(null);
+
+  // const handleDeleteLecture = (lectureId) => {
+  //   const lectureToDelete = lecturers.find(
+  //     (lecture) => lecture.id === lectureId
+  //   );
+  //   setLectureToDelete(lectureToDelete);
+  //   setIsDeleteConfirmationOpen(true);
+  // };
+  // const confirmDeleteLecture = () => {
+  //   if (lectureToDelete) {
+  //     const { id } = lectureToDelete;
+  //     const updatedData = lecturers.filter(
+  //       (lecture) => lecture.id !== lectureToDelete.id
+  //     );
+  //     setLecturers(updatedData);
+  //     setIsDeleteConfirmationOpen(false);
+  //   }
+  // };
+  // const cancelDeleteLecture = () => {
+  //   setIsDeleteConfirmationOpen(false);
+  // };
 
   //define column
   const columns = [
@@ -137,18 +166,8 @@ const Lecture = () => {
       align: "left",
     },
     {
-      field: "LastName",
-      headerName: "Last",
-      flex: 1,
-    },
-    {
-      field: "MiddleName",
-      headerName: "Middle",
-      flex: 0.5,
-    },
-    {
-      field: "FirstName",
-      headerName: "First Name",
+      field: "Fullname",
+      headerName: "Full Name",
       flex: 1,
     },
     {
@@ -157,7 +176,7 @@ const Lecture = () => {
       flex: 1.5,
     },
     {
-      field: "MobilePhone",
+      field: "Phone",
       headerName: "Phone",
       flex: 1,
     },
@@ -171,25 +190,25 @@ const Lecture = () => {
       headerName: "IsActive",
       flex: 1,
     },
-    {
-      field: "delete",
-      headerName: "Actions",
-      sortable: false,
-      width: 100,
-      renderCell: (params) => (
-        <Button
-          variant="contained"
-          color="error"
-          onClick={() => handleDeleteLecture(params.row.id)}
-        >
-          Delete
-        </Button>
-      ),
-    },
+    // {
+    //   field: "delete",
+    //   headerName: "Actions",
+    //   sortable: false,
+    //   width: 100,
+    //   renderCell: (params) => (
+    //     <Button
+    //       variant="contained"
+    //       color="error"
+    //       onClick={() => handleDeleteLecture(params.row.id)}
+    //     >
+    //       Delete
+    //     </Button>
+    //   ),
+    // },
   ];
 
   return (
-    <Context.Provider>
+    // <Context.Provider>
       <Box m="20px">
         <Stack direction="row">
           <Header title="LECTURERS" subtitle="List of lecturers" />
@@ -212,7 +231,8 @@ const Lecture = () => {
           </Button>
         </Stack>
 
-        <Modal
+        {/* Create lecturer modal*/ }
+        {/* <Modal
           open={open}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
@@ -409,12 +429,10 @@ const Lecture = () => {
               </Stack>
             </Stack>
           </Box>
-        </Modal>
-        {/* This is new lecture modal */}
-        {/* This is update lecutre modal */}
+        </Modal> */}
         
-        {/*This is  cofirm delete modal*/}
-        <Modal
+        {/*This is cofirm delete modal*/}
+        {/* <Modal
           open={isDeleteConfirmationOpen}
           onClose={cancelDeleteLecture}
           aria-labelledby="delete-confirmation-modal-title"
@@ -482,7 +500,7 @@ const Lecture = () => {
               </Button>
             </Stack>
           </Box>
-        </Modal>
+        </Modal> */}
 
         {/* This is the start of the table view lecturers list */}
         <Box
@@ -517,13 +535,14 @@ const Lecture = () => {
               if (params.field === "id") {
                 handleLectureDetail(params);
               }
-            }}
+            }}  
             rows={lecturers}
+            components={{ Toolbar: GridToolbar }}
             columns={columns}
           />
         </Box>
       </Box>
-    </Context.Provider>
+    // </Context.Provider>
   );
 };
 

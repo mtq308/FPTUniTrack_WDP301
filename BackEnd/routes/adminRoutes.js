@@ -15,5 +15,6 @@ router.put('/updateStudent/:id/profile', verifyToken, adminController.updateStud
 //Router.post
 router.post('/addStudent', verifyToken, adminController.addStudent);
 //Router.post
-router.get('/getAllLecturers', verifyToken, adminController.getAllLecturers)
+router.post('/getAllLecturers', verifyToken, adminController.getAllLecturers)
+router.post('/lecturer/profile/:id', verifyToken, adminController.viewLecturerProfile);
 module.exports = router;

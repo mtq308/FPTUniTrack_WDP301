@@ -86,8 +86,8 @@ const LoggedIn = ({ logout }) => {
               />
 
               <Route path="/lecture" element={<Lecture />} />
-              <Route path="/lecture/:lectureId" element={<LectureDetail />} />
-              <Route path="/lecture/:lectureId/edit" element={<LectureEditProfile />} />
+              <Route path="/lecture/:lecturerId" element={<LectureDetail />} />
+              <Route path="/lecture/:lecturerId/edit" element={<LectureEditProfile />} />
               <Route path="/notification" element={<Notification />} />
               <Route path="/grade" element={<Grade />} />
               <Route path="/gradeClass" element={<GradeClass />} />
