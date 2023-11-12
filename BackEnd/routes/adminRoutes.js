@@ -10,10 +10,12 @@ router.get('/profile/:id', verifyToken, adminController.adminProfile);
 router.post('/getAllStudents', verifyToken, adminController.getAllStudents);
 
 router.post('/student/profile/:id', verifyToken, adminController.viewStudentProfile);
-// Router.put('/students/:studentId/profile', adminController.updateStudentProfile);
+
 router.put('/updateStudent/:id/profile', verifyToken, adminController.updateStudentProfile);
+
+router.delete('/deleteStudent/:id', verifyToken, adminController.deleteStudent);
 //Router.post
 router.post('/addStudent', verifyToken, adminController.addStudent);
 //Router.post
-router.get('/getAllLecturers', verifyToken, adminController.getAllLecturers)
+router.get('/getAllLecturers', verifyToken, adminController.getAllLecturers);
 module.exports = router;

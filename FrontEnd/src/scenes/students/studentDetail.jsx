@@ -220,6 +220,9 @@ const StudentDetail = () => {
                   color: "white",
                 },
               }}
+              onClick={() => {
+                navigate(`/students`);
+              }}
             >
               Cancel/Go back
             </Button>
