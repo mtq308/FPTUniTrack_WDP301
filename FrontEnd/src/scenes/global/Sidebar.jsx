@@ -34,6 +34,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 };
 
 const Sidebar = () => {
+  const role = localStorage.getItem("role");
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -123,13 +124,13 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            {role === "Admin" && (<Item
               title="Students"
               to="/students"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            />)}
             <Item
               title="Subject"
               to="/subject"
@@ -137,13 +138,13 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            {(<Item
               title="Semester"
               to="/semester"
               icon={<BookIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            />)}
 
             <Item
               title="Curriculum"
@@ -153,13 +154,13 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
 
-            <Item
+            {role === "Student" && (<Item
               title="GradeStudent"
-              to="/grade"
+              to="/main"
               icon={<ArticleIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            />)}
             {/* <Item
               title="GradeLecturer"
               to="/gradeClass"
@@ -167,27 +168,48 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             /> */}
-            <Item
-              title="GradeLecturer"
+            {role !== "Student" && (<Item
+              title="Grade"
               to="/AllClass"
               icon={<ArticleIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            />)}
+            {role === "Lecturer" && (<Item
+              title="CalendarLecturer"
+              to="calendarLec"
+              icon={<ArticleIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />)}
+            <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Pages
+            </Typography>
             <Item
+              title="Profile Form"
+              to="/form"
+              icon={<PersonOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            {role === "Student" && (<Item
               title="Calendar"
               to="/calendar"
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
-            <Item
+            />)}
+            {role === "Admin" && (<Item
               title="Lecture"
               to="/lecture"
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            />)}
             <Item
               title="Notification"
               to="/notification"

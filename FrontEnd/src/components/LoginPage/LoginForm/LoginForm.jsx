@@ -4,8 +4,11 @@ import Card from "../Card/Card";
 import GoogleIcon from "@mui/icons-material/Google";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useUser } from '../../../UserContext';
 
 const LoginForm = ({ setIsLoggedIn, handleLogin }) => {
+  const { setUsername1 } = useUser();
+  const [userRole, setUserRole] = useState("student");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessages, setErrorMessages] = useState({});
@@ -41,11 +44,13 @@ const LoginForm = ({ setIsLoggedIn, handleLogin }) => {
           password: password,
         }
       );
+      setUsername1(username);
       const token = response.data.token;
       // Save the token in local storage or as needed for authentication
       localStorage.setItem("token", token);
 
       console.log(response.data.role);
+      localStorage.setItem("role", response.data.role);
       // Determine the appropriate route based on the selected userRole
       setIsLoggedIn(true); // Set the login state as successful
     } catch (error) {

@@ -12,7 +12,7 @@ import CloseIcon from '@mui/icons-material/Close';
 const Curriculum = () => {
   const [curriculumData, setCurriculumData] = useState([]);
   console.log(curriculumData);
-
+  const role = localStorage.getItem("role");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -84,9 +84,9 @@ const Curriculum = () => {
   return (
     <Box m="20px">
       <Header title="TEAM" subtitle="Managing the Curriculum" />
-      <Button variant="contained" onClick={handleOpenModal}>
+      {role === "Admin" && (<Button variant="contained" onClick={handleOpenModal}>
         Add Curriculum
-      </Button>
+      </Button>)}
       <Modal
         open={isModalOpen}
         onClose={handleCloseModal}

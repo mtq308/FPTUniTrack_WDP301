@@ -23,10 +23,16 @@ import CurriculumDetail from "../../../scenes/curriculum/CurriculumDetail";
 
 import Lecture from "../../../scenes/lecture";
 import Notification from "../../../scenes/notification";
-import Grade from "../../../scenes/grade";
-import GradeClass from "../../../scenes/gradeForLecturer";
-import AllClass from "../../../scenes/gradeForLecturer/AllClass";
+import LectureDetail from "../../../scenes/lecture/LectureDetail";
+import LectureEditProfile from "../../../scenes/lecture/LectureEditProfile";
 
+import Grade from "../../../scenes/gradeForStudent";
+import AllSubjectStu from "../../../scenes/gradeForStudent/AllSubjectStu";
+import GradeClass from "../../../scenes/gradeForLecturer";
+
+import AllClass from "../../../scenes/gradeForLecturer/AllClass";
+import AllSubject from "../../../scenes/gradeForLecturer/AllSubject";
+import CalendarLec from "../../../scenes/calendarForLecturer";
 const LoggedIn = ({ logout }) => {
   const [theme, colorMode] = useMode();
   const navigate = useNavigate();
@@ -83,10 +89,15 @@ const LoggedIn = ({ logout }) => {
               />
 
               <Route path="/lecture" element={<Lecture />} />
+              <Route path="/lecture/:lectureId" element={<LectureDetail />} />
+              <Route path="/lecture/:lectureId/edit" element={<LectureEditProfile />} />
               <Route path="/notification" element={<Notification />} />
-              <Route path="/grade" element={<Grade />} />
-              <Route path="/gradeClass" element={<GradeClass />} />
+              <Route path="/grade/:gradeId" element={<Grade />} />
+              <Route path="/gradeClass/:gradeId" element={<GradeClass />} />
               <Route path="/AllClass" element={<AllClass />} />
+              <Route path="/AllSubject/:classId" element={<AllSubject />} />
+              <Route path="/AllSubjectStu" element={<AllSubjectStu />} />
+              <Route path="/calendarLec" element={<CalendarLec />} />
             </Routes>
           </main>
         </div>
