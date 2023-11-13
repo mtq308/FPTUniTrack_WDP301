@@ -127,16 +127,14 @@ async function deleteStudent(req, res) {
 
     const studentId = req.params.id;
 
-    // Check if the student with the given id exists
-    const student = await Student.findOne({ id: studentId });
+    // Use findOneAndRemove to find and remove the student by id
+    const result = await Student.findOneAndRemove({ id: studentId });
 
-    if (!student) {
+    if (!result) {
       return res.status(404).json({ message: 'Student not found' });
     }
 
     // If the student exists, delete it
-    await student.remove();
-
     res.json({ message: 'Student deleted successfully' });
   } catch (err) {
     console.error(err);
