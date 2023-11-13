@@ -9,7 +9,7 @@ const GradeClass = () => {
 
   const gradeId = useParams().gradeId;
   const [subjectId, classId] = gradeId.split('&');
-
+  const token = localStorage.getItem("token");
   console.log("Subject ID:", subjectId);
   console.log("Class ID:", classId);
   console.log(gradeId)
@@ -20,6 +20,7 @@ const GradeClass = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            Authorization: token
           },
           body: JSON.stringify({
             classId: classId,

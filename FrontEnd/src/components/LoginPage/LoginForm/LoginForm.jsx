@@ -51,6 +51,7 @@ const LoginForm = ({ setIsLoggedIn, handleLogin }) => {
 
       console.log(response.data.role);
       localStorage.setItem("role", response.data.role);
+      localStorage.setItem("id", response.data.user.id);
       // Determine the appropriate route based on the selected userRole
       setIsLoggedIn(true); // Set the login state as successful
     } catch (error) {

@@ -156,7 +156,7 @@ const Sidebar = () => {
 
             {role === "Student" && (<Item
               title="GradeStudent"
-              to="/main"
+              to="/AllSubjectStu"
               icon={<ArticleIcon />}
               selected={selected}
               setSelected={setSelected}

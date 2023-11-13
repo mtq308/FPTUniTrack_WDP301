@@ -6,10 +6,10 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import dayjs from 'dayjs';
 import { useHistory } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 const SemesterDetail = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-
+  const navigate = useNavigate();
   const [semester, setSemester] = useState([]);
   const [idValue, setIdValue] = useState("");
   const [nameValue, setNameValue] = useState("");
@@ -53,6 +53,7 @@ const SemesterDetail = () => {
       if (response.status === 200) {
         // Update the state or perform any other actions upon a successful update
         console.log('Semester updated successfully');
+        navigate(`/semester`);
       } else {
         console.error('Failed to update semester');
       }
@@ -69,9 +70,11 @@ const SemesterDetail = () => {
       });
 
       if (response.status === 200) {
+
         // Handle the successful deletion, e.g., navigate to a different page
         console.log('Semester deleted successfully');
       } else {
+        navigate(`/semester`);
         console.error('Failed to delete semester');
       }
     } catch (error) {

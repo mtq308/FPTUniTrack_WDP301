@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import "./Class.css";
 
 const AllClass = () => {
+  const token = localStorage.getItem("token");
   const [classData, setClassData] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const [uniqueClassIDs, setUniqueClassIDs] = useState([]);
@@ -15,7 +16,11 @@ const AllClass = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3456/lecturer/allClassIds');
+        const response = await fetch('http://localhost:3456/lecturer/allClassIds', {
+          headers: {
+            Authorization: token,
+          },
+        });
 
         if (response.ok) {
           const data = await response.json();
