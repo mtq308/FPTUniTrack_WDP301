@@ -3,9 +3,8 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import { useTheme } from "@mui/material";
-import { syllabusData } from "../../data/syllabusData";
 
-const Syllabus = () => {
+const Subject = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -73,4 +72,4 @@ const Syllabus = () => {
   );
 };
 
-export default Syllabus;
+export default Subject;
