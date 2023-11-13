@@ -69,7 +69,6 @@ const Students = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-
         const response = await axios.post(
           "http://localhost:3456/admin/getAllStudents",
           {

@@ -13,7 +13,11 @@ import Calendar from "../../../scenes/calendar";
 import Students from "../../../scenes/students";
 import StudentDetail from "../../../scenes/students/studentDetail";
 import StudentEditProfile from "../../../scenes/students/studentEditProfile";
+
+//Components for subject
 import Subject from "../../../scenes/subject";
+import SubjectDetail from "../../../scenes/subject/subjectDetail";
+
 import Curriculum from "../../../scenes/curriculum";
 import Semester from "../../../scenes/semester";
 
@@ -74,7 +78,15 @@ const LoggedIn = ({ logout }) => {
                 path="/students/:studentId/edit"
                 element={<StudentEditProfile />}
               />
+              
+              {/* All routes of subject */}
               <Route path="/subject" element={<Subject />} />
+              <Route path="/subject/:subjectId" element={<SubjectDetail />} />
+              {/* <Route
+                path="/subject/:subjectId/edit"
+                element={<SubjectEditDetail />}
+              /> */}
+
               <Route path="/curriculum" element={<Curriculum />} />
               <Route path="/semester" element={<Semester />} />
               <Route path="/calendar" element={<Calendar />} />

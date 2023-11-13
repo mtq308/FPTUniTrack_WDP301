@@ -1,5 +1,6 @@
 const express = require('express');
 const adminController = require('../controllers/adminController');
+const subjectController = require('../controllers/subjectController');
 const verifyToken = require('../middlewares/authMiddleware');
 const verifyAdmin = require('../middlewares/authMiddleware');
 const router = express.Router();
@@ -18,4 +19,11 @@ router.delete('/deleteStudent/:id', verifyToken, adminController.deleteStudent);
 router.post('/addStudent', verifyToken, adminController.addStudent);
 //Router.post
 router.get('/getAllLecturers', verifyToken, adminController.getAllLecturers);
+
+//Router for subject - ADMIN with CRUD subject privillege
+//Get all subjects
+router.get('/getAllSubjects', verifyToken, subjectController.getAllSubjects);
+//Get subject detail
+router.get('/subjectDetail/:id', verifyToken, subjectController.subjectDetail);
+
 module.exports = router;
