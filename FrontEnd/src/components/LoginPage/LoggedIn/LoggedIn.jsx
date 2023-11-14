@@ -46,7 +46,7 @@ const LoggedIn = ({ logout }) => {
     // Assuming you are using token-based authentication
     // Clear user authentication state by removing the token from local storage
     localStorage.removeItem("token");
-    navigate("/auth/login");
+    navigate("http://localhost:3000/auth/login");
 
     // You can also clear other user-related information or perform additional cleanup
 
@@ -79,7 +79,7 @@ const LoggedIn = ({ logout }) => {
                 path="/students/:studentId/edit"
                 element={<StudentEditProfile />}
               />
-              
+
               {/* All routes of subject */}
               <Route path="/subject" element={<Subject />} />
               <Route path="/subject/:subjectId" element={<SubjectDetail />} />
