@@ -16,7 +16,7 @@ const LoginForm = ({ setIsLoggedIn, handleLogin }) => {
   const navigate = useNavigate();
 
   const errors = {
-    username: "* Invalid email",
+    username: "* Invalid username",
     password: "* Invalid password",
     noUsername: "* Please enter your username",
     noPassword: "* Please enter your password",
@@ -69,10 +69,10 @@ const LoginForm = ({ setIsLoggedIn, handleLogin }) => {
     );
 
   return (
-    <div className="login-bg">
-      <Card>
-        <h1 className="title">Sign In</h1>
-        <p className="subtitle">Please log in using your mail and password!</p>
+    <div style={{ margin: "auto", padding: "10px"}}  className="login-bg">
+    <Card>
+      <h1 className="title">Sign In</h1>
+      <p className="subtitle">Please log in using your username and password!</p>
         <form action="POST" onSubmit={handleSubmit}>
           <div className="inputs_container">
             <input

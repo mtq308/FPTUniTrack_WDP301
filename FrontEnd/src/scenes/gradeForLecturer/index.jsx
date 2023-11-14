@@ -46,7 +46,7 @@ const GradeClass = () => {
 
   return (
     <div>
-      <Header title="Grade" subtitle={`The Grade Of ${classId}`} />
+      <div style={{marginLeft: "20px"}}><Header title="Grade" subtitle={`The Grade Of ${classId}`} /></div>
       {gradeData && gradeData.length > 0 ? (
         <table className="centered-table" style={{ marginLeft: "auto", marginRight: "auto" }}>
           <thead>

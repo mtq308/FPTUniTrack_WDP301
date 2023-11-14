@@ -1,4 +1,4 @@
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 
 import React, { useState } from "react";
@@ -509,6 +509,9 @@ const Lecture = () => {
               borderTop: "none",
               backgroundColor: colors.blueAccent[700],
             },
+            "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+              color: `${colors.grey[100]} !important`,
+            },
           }}
         >
           <DataGrid
@@ -520,6 +523,7 @@ const Lecture = () => {
             }}
             rows={lecturers}
             columns={columns}
+            components={{ Toolbar: GridToolbar }} 
           />
         </Box>
       </Box>

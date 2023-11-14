@@ -113,7 +113,7 @@ const Semester = () => {
 
   return (
     <Box m="20px">
-      <Stack direction="row"><Header title="TEAM" subtitle="Managing the Semester" />
+      <Stack direction="row"><Header title="SEMESTER" subtitle="Managing the Semester" />
         {role === "Admin" && (<Button variant="contained" onClick={handleOpenModal} sx={{
           borderRadius: "5px",
           ml: { lg: "920px", xs: "304px" },
@@ -231,9 +231,12 @@ const Semester = () => {
             borderTop: "none",
             backgroundColor: colors.blueAccent[700],
           },
+          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+            color: `${colors.grey[100]} !important`,
+          },
         }}
       >
-        <DataGrid sx={{ marginTop: "10px" }} getRowId={(row) => row.SemesterID} rows={semesterData} columns={columns} components={{ Toolbar: GridToolbar }} />
+        <DataGrid sx={{ marginTop: "10px"}} getRowId={(row) => row.SemesterID} rows={semesterData} columns={columns} components={{ Toolbar: GridToolbar }} />
       </Box>
 
     </Box>

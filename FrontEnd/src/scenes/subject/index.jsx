@@ -19,14 +19,7 @@ import {
   DialogContentText,
   DialogActions,
 } from "@mui/material";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import axios from "axios";
@@ -153,7 +146,7 @@ const Subject = () => {
       headerName: "Subject ID",
       flex: 0.3,
       renderCell: (params) => (
-        <Link to={`/subject/${params.row.SubjectID}`}>{params.row.SubjectID}</Link>
+        <Link style={{ textDecoration: "none", color: "#a4a9fc" }} to={`/subject/${params.row.SubjectID}`}>{params.row.SubjectID}</Link>
       )
     },
     {
@@ -194,11 +187,11 @@ const Subject = () => {
               borderRadius: "5px",
               ml: { lg: "920px", xs: "304px" },
               backgroundColor:
-                theme.palette.mode === "dark" ? "#3e4396" : "#a4a9fc",
-              color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
-              ":hover": {
-                bgcolor: "#a4a9fc", // theme.palette.primary.main
-                color: "white",
+              theme.palette.mode === "dark" ? "#ff8000" : "#a4a9fc",
+            color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
+            ":hover": {
+              bgcolor: theme.palette.mode === "dark" ? "#db8e40" : "#a4a9fc", // theme.palette.primary.main
+              color: "white",
               },
             }}>
             Add Subject

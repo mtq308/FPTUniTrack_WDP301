@@ -68,10 +68,6 @@ const LoggedIn = ({ logout }) => {
             <Topbar logout={handleLogout} />
             <Routes>
               <Route path="/" element={<Dashboard />} />
-              <Route path="/team" element={<Team />} />
-              <Route path="/contacts" element={<Contacts />} />
-
-              {/* <Route path="/admin/*" element={<AdminRoutes />} /> */}
 
               <Route path="/students" element={<Students />} />
               <Route path="/students/:studentId" element={<StudentDetail />} />
