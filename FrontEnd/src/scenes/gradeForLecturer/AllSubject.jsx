@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import "./Class.css";
 
 const AllSubject = () => {
+  const token = localStorage.getItem("token");
   const [subjectData, setSubjectData] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -20,6 +21,7 @@ const AllSubject = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            Authorization: token
           },
           body: JSON.stringify({
             classId: classId,

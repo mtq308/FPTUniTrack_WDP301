@@ -9,6 +9,7 @@ const GradeClass = () => {
 
   const gradeId = useParams().gradeId;
   const [subjectId, classId] = gradeId.split('&');
+  const token = localStorage.getItem("token");
   console.log("Subject ID:", subjectId);
   console.log("Class ID:", classId);
   console.log(gradeId)
@@ -19,6 +20,7 @@ const GradeClass = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            Authorization: token
           },
           body: JSON.stringify({
             classId: classId,
@@ -44,9 +46,9 @@ const GradeClass = () => {
 
   return (
     <div>
-      <Header title="Grade" subtitle={`The Grade Of ${classId}`}/>
+      <Header title="Grade" subtitle={`The Grade Of ${classId}`} />
       {gradeData && gradeData.length > 0 ? (
-        <table className="centered-table" style={{marginLeft: "auto", marginRight: "auto"}}>
+        <table className="centered-table" style={{ marginLeft: "auto", marginRight: "auto" }}>
           <thead>
             <tr style={{ backgroundColor: theme.greenAccent[500], color: theme.greenAccent[200] }}>
               <th>Student ID</th>

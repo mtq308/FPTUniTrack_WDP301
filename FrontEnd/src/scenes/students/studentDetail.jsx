@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { tokens } from "../../theme";
-import { studentsData } from "../../data/studentData";
 import {
   useTheme,
   Typography,
@@ -11,18 +10,80 @@ import {
   TextField,
   Stack,
   Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Header from "../../components/Header";
 
 const StudentDetail = () => {
+  
+  const token = localStorage.getItem("token");
   const theme = useTheme();
   const navigate = useNavigate();
-  // Get the studentId from the URL using useParams
+  const [student, setStudent] = useState("");
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const { studentId } = useParams();
+  
+  useEffect(() => {
+    const fetchStudentProfile = async () => {
+      try {
+        const response = await axios.post(
+          `http://localhost:3456/admin/student/profile/${studentId}`,
+          {
+            role: "Admin",
+          },
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
 
-  // Find the student data by studentId
-  const student = studentsData.find((student) => student.id === studentId);
+        setStudent(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching student:", error);
+        // Handle error as needed
+      }
+    };
+
+    fetchStudentProfile();
+  }, [studentId, token]);
+
+  const handleDeleteDialogOpen = () => {
+    setDeleteDialogOpen(true);
+  };
+
+  const handleDeleteDialogClose = () => {
+    setDeleteDialogOpen(false);
+  };
+
+  const handleDeleteConfirmed = async () => {
+    try {
+      // Call the backend API to delete the student
+      await axios.delete(`http://localhost:3456/admin/deleteStudent/${studentId}`, {
+        headers: {
+          Authorization: token,
+        },
+        data: {
+          role: "Admin",
+        },
+      });
+  
+      // Close the delete confirmation dialog
+      setDeleteDialogOpen(false);
+  
+      // Redirect to the list of students after deletion
+      navigate(`/students`);
+    } catch (error) {
+      console.error("Error deleting student:", error);
+      // Handle error as needed
+    }
+  };
 
   return (
     <Box sx={{ ml: 5 }}>
@@ -33,7 +94,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center">
               <Typography variant="h5">Student ID:</Typography>
               <TextField
-                defaultValue={student.id}
+                defaultValue={student[0].id}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -44,7 +105,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center" sx={{ ml: 10 }}>
               <Typography variant="h5">Full name:</Typography>
               <TextField
-                defaultValue={student.Fullname}
+                defaultValue={student[0].Fullname}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -57,7 +118,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center">
               <Typography variant="h5">Date of Birth:</Typography>
               <TextField
-                defaultValue={student.DateOfBirth}
+                defaultValue={student[0].DateOfBirth}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -68,7 +129,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center" sx={{ ml: 10 }}>
               <Typography variant="h5">Gender:</Typography>
               <TextField
-                defaultValue={student.Gender ? "Male" : "Female"}
+                defaultValue={student[0].Gender ? "Male" : "Female"}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -81,7 +142,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center">
               <Typography variant="h5">ID Card:</Typography>
               <TextField
-                defaultValue={student.IDCard}
+                defaultValue={student[0].IDCard}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -92,7 +153,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center" sx={{ ml: 10 }}>
               <Typography variant="h5">Phone:</Typography>
               <TextField
-                defaultValue={student.Phone}
+                defaultValue={student[0].Phone}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -104,7 +165,7 @@ const StudentDetail = () => {
           <Stack direction="row" alignItems="center" sx={{ mt: 3 }}>
             <Typography variant="h5">Address:</Typography>
             <TextField
-              defaultValue={student.Address}
+              defaultValue={student[0].Address}
               InputProps={{
                 readOnly: true,
               }}
@@ -116,7 +177,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center">
               <Typography variant="h5">Email:</Typography>
               <TextField
-                defaultValue={student.Email}
+                defaultValue={student[0].Email}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -127,7 +188,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center" sx={{ ml: 4 }}>
               <Typography variant="h5">Student username:</Typography>
               <TextField
-                defaultValue={student.StudentUsername}
+                defaultValue={student[0].StudentUsername}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -140,7 +201,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center">
               <Typography variant="h5">Specialization:</Typography>
               <TextField
-                defaultValue={student.Specialization}
+                defaultValue={student[0].Specialization}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -151,7 +212,7 @@ const StudentDetail = () => {
             <Stack direction="row" alignItems="center" sx={{ ml: 28.9 }}>
               <Typography variant="h5">Is active:</Typography>
               <TextField
-                defaultValue={student.IsActive ? "Yes" : "No"}
+                defaultValue={student[0].IsActive ? "Yes" : "No"}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -194,10 +255,46 @@ const StudentDetail = () => {
                   color: "white",
                 },
               }}
+              onClick={() => {
+                navigate(`/students`);
+              }}
             >
               Cancel/Go back
             </Button>
+            <Button
+              variant="contained"
+              size="large"
+              sx={{
+                ml: 3,
+                borderRadius: "20px",
+                backgroundColor:
+                  theme.palette.mode === "dark" ? "#3e4396" : "#a4a9fc",
+                color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
+                ":hover": {
+                  bgcolor: "#a4a9fc", // theme.palette.primary.main
+                  color: "white",
+                },
+              }}
+              onClick={handleDeleteDialogOpen}
+            >
+              Delete
+            </Button>
           </Box>
+          {/* Delete Confirmation Dialog */}
+          <Dialog open={deleteDialogOpen} onClose={handleDeleteDialogClose}>
+            <DialogTitle>Confirm Delete</DialogTitle>
+            <DialogContent>
+              <Typography>
+                Are you sure you want to delete this student?
+              </Typography>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleDeleteDialogClose}>Cancel</Button>
+              <Button onClick={handleDeleteConfirmed} color="error">
+                Delete
+              </Button>
+            </DialogActions>
+          </Dialog>
         </Box>
       ) : (
         <Typography variant="body1">Student not found</Typography>

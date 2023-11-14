@@ -13,8 +13,9 @@ import {
 } from "@mui/material";
 // import { useAuth0 } from '@auth0/auth0-react';
 // import { cl } from "@fullcalendar/core/internal-common";
-const Semester = () => {
 
+const Semester = () => {
+  const role = localStorage.getItem("role");
 
   const [semesterData, setSemesterData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,7 +32,8 @@ const Semester = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-  const handleAddSemester = () => {
+  const handleAddSemester = async (e) => {
+    e.preventDefault();
     console.log(newSemester);
     // Send a POST request to your backend API to add the new semester
     fetch('http://localhost:3456/semester', {
@@ -50,6 +52,7 @@ const Semester = () => {
       .catch((error) => {
         console.error('Error:', error);
       });
+    setIsModalOpen(false);
   };
   useEffect(() => {
     const fetchData = async () => {
@@ -75,14 +78,14 @@ const Semester = () => {
   console.log(semesterData);
 
   const columns = [
-    { field: "SemesterID", headerName: "ID",  flex: 0.5 },
+    { field: "SemesterID", headerName: "ID", flex: 0.5 },
     {
       field: "Name",
       headerName: "Name",
       flex: 1,
       cellClassName: "name-column--cell",
       renderCell: (params) => (
-        <Link style={{ textDecoration: "none" , color: "#a4a9fc"}} to={`/semester/${params.row.SemesterID}`}>{params.row.Name}</Link>
+        <Link style={{ textDecoration: "none", color: "#a4a9fc" }} to={`/semester/${params.row.SemesterID}`}>{params.row.Name}</Link>
       ),
     },
     {
@@ -110,20 +113,21 @@ const Semester = () => {
 
   return (
     <Box m="20px">
-      <Stack direction="row"><Header title="TEAM" subtitle="Managing the Semester"/>
-      <Button variant="contained" onClick={handleOpenModal} sx={{ 
-       borderRadius: "5px",
-       ml: { lg: "920px", xs: "304px" },
-       backgroundColor:
-         theme.palette.mode === "dark" ? "#ff8000" : "#a4a9fc",
-       color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
-       ":hover": {
-         bgcolor: theme.palette.mode === "dark" ? "#db8e40" : "#a4a9fc", // theme.palette.primary.main
-         color: "white",
-       },}}>
-        Add Semester
-      </Button></Stack>
-      
+      <Stack direction="row"><Header title="TEAM" subtitle="Managing the Semester" />
+        {role === "Admin" && (<Button variant="contained" onClick={handleOpenModal} sx={{
+          borderRadius: "5px",
+          ml: { lg: "920px", xs: "304px" },
+          backgroundColor:
+            theme.palette.mode === "dark" ? "#ff8000" : "#a4a9fc",
+          color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
+          ":hover": {
+            bgcolor: theme.palette.mode === "dark" ? "#db8e40" : "#a4a9fc", // theme.palette.primary.main
+            color: "white",
+          },
+        }}>
+          Add Semester
+        </Button>)}</Stack>
+
       <Modal
         open={isModalOpen}
         onClose={handleCloseModal}
@@ -229,7 +233,7 @@ const Semester = () => {
           },
         }}
       >
-        <DataGrid sx={{ marginTop: "10px" }} getRowId={(row) => row.SemesterID} rows={semesterData} columns={columns} />
+        <DataGrid sx={{ marginTop: "10px" }} getRowId={(row) => row.SemesterID} rows={semesterData} columns={columns} components={{ Toolbar: GridToolbar }} />
       </Box>
 
     </Box>

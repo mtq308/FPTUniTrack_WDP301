@@ -1,5 +1,5 @@
 import { Box, useTheme, Button } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
@@ -15,7 +15,7 @@ import {
 const Curriculum = () => {
   const [curriculumData, setCurriculumData] = useState([]);
   console.log(curriculumData);
-
+  const role = localStorage.getItem("role");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -54,7 +54,7 @@ const Curriculum = () => {
       flex: 0.5,
       cellClassName: "name-column--cell",
       renderCell: (params) => (
-        <Link style={{ textDecoration: "none" , color: "#a4a9fc"}} to={`/curriculum/${params.row.Id}`}>{params.row.Code}</Link>
+        <Link style={{ textDecoration: "none", color: "#a4a9fc" }} to={`/curriculum/${params.row.Id}`}>{params.row.Code}</Link>
       ),
     },
     {
@@ -88,19 +88,20 @@ const Curriculum = () => {
   return (
     <Box m="20px">
       <Stack direction="row"><Header title="TEAM" subtitle="Managing the Curriculum" />
-      <Button variant="contained" onClick={handleOpenModal} sx={{
-         borderRadius: "5px",
-         ml: { lg: "905px", xs: "304px" },
-        backgroundColor:
-              theme.palette.mode === "dark" ? "#ff8000" : "#a4a9fc",
-            color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
-            ":hover": {
-              bgcolor: theme.palette.mode === "dark" ? "#db8e40" : "#a4a9fc", // theme.palette.primary.main
-              color: "white"
-            }}}>
-        Add Curriculum
-      </Button></Stack>
-      
+        {role === "Admin" && (<Button variant="contained" onClick={handleOpenModal} sx={{
+          borderRadius: "5px",
+          ml: { lg: "905px", xs: "304px" },
+          backgroundColor:
+            theme.palette.mode === "dark" ? "#ff8000" : "#a4a9fc",
+          color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
+          ":hover": {
+            bgcolor: theme.palette.mode === "dark" ? "#db8e40" : "#a4a9fc", // theme.palette.primary.main
+            color: "white"
+          }
+        }}>
+          Add Curriculum
+        </Button>)}</Stack>
+
       <Modal
         open={isModalOpen}
         onClose={handleCloseModal}
@@ -201,7 +202,7 @@ const Curriculum = () => {
           },
         }}
       >
-        <DataGrid getRowId={(row) => row.Id} rows={curriculumData} columns={columns} />
+        <DataGrid getRowId={(row) => row.Id} rows={curriculumData} columns={columns} components={{ Toolbar: GridToolbar }} />
       </Box>
     </Box>
   );

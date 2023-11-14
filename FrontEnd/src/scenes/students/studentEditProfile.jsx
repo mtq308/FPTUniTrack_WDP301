@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { tokens } from "../../theme";
-import { studentsData } from "../../data/studentData";
 import {
   useTheme,
   Typography,
@@ -26,24 +25,104 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
+import axios from "axios";
 
 const StudentEditProfile = () => {
+
+  //important define value for page...
+  const token = localStorage.getItem("token");
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-
   const navigate = useNavigate();
-  // Get the studentId from the URL using useParams
+  const [student, setStudent] = useState("");
   const { studentId } = useParams();
-  const [specialization, setSpecialization] = React.useState("");
-  // Find the student data by studentId
-  const student = studentsData.find((student) => student.id === studentId);
-  const dateOfBirth = dayjs(student.DateOfBirth);
 
-  const handleChange = (event) => {
-    setSpecialization(event.target.value);
+  //useState for student's information...
+  const [id, setId] = useState("");
+  const [Fullname, setFullname] = useState("");
+  const [selectedGender, setSelectedGender] = useState("");
+  const [selectedDateOfBirth, setSelectedDateOfBirth] = useState(null);
+  const [IdCard, setIdCard] = useState(null);
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [studentUsername, setStudentUsername] = useState("");
+  const [specialization, setSpecialization] = useState("");
+  const [isActive, setIsActive] = useState("");
+
+  useEffect(() => {
+    const fetchStudentProfile = async () => {
+      try {
+        const response = await axios.post(
+          `http://localhost:3456/admin/student/profile/${studentId}`,
+          {
+            role: "Admin",
+          },
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+
+        setStudent(response.data);
+        console.log(response.data);
+        const receiveData = response.data;
+
+        //Set student data to handleSave function
+        setId(receiveData[0].id);
+        setFullname(receiveData[0].Fullname);
+        setIdCard(receiveData[0].IDCard);
+        setSelectedGender(receiveData[0].Gender);
+        setSelectedDateOfBirth(receiveData[0].DateOfBirth);
+        setPhone(receiveData[0].Phone);
+        setAddress(receiveData[0].Address);
+        setEmail(receiveData[0].Email);
+        setStudentUsername(receiveData[0].StudentUsername);
+        setSpecialization(receiveData[0].Specialization);
+        setIsActive(receiveData[0].IsActive);
+      } catch (error) {
+        console.error("Error fetching student:", error);
+        // Handle error as needed
+      }
+    };
+
+    fetchStudentProfile();
+  }, [studentId, token]);
+
+  const handleSave = async () => {
+    try {
+      const response = await axios.put(
+        `http://localhost:3456/admin/updateStudent/${studentId}/profile`,
+        {
+          role: "Admin", // Add other required fields
+          DateOfBirth: dayjs(selectedDateOfBirth).toISOString(),
+          Gender: selectedGender,
+          IDCard: IdCard,
+          Address: address,
+          Phone: phone,
+          Email: email,
+          StudentUsername: studentUsername,
+          Specialization: specialization,
+          IsActive: isActive,
+          Fullname: Fullname,
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+        // Add headers as needed
+      );
+
+      console.log(response.data); // Handle success response
+
+      // Optionally, you can navigate to a different page after a successful update
+      navigate(`/students/${studentId}`);
+    } catch (error) {
+      console.error("Error updating student profile:", error);
+      // Handle error as needed
+    }
   };
-  console.log(typeof dateOfBirth);
-  console.log(dateOfBirth);
 
   return (
     <Box sx={{ ml: 5 }}>
@@ -54,7 +133,10 @@ const StudentEditProfile = () => {
             <Stack direction="row" alignItems="center">
               <Typography variant="h5">Student ID:</Typography>
               <TextField
-                defaultValue={student.id}
+                value={id}
+                InputProps={{
+                  readOnly: true,
+                }}
                 sx={{ ml: 4.5 }}
                 size="small"
               />
@@ -62,9 +144,12 @@ const StudentEditProfile = () => {
             <Stack direction="row" alignItems="center" sx={{ ml: 10 }}>
               <Typography variant="h5">Full name:</Typography>
               <TextField
-                defaultValue={student.Fullname}
+                value={Fullname}
                 sx={{ ml: 10.7 }}
                 size="small"
+                onChange={(e) => {
+                  setFullname(e.target.value);
+                }}
               />
             </Stack>
           </Stack>
@@ -77,8 +162,9 @@ const StudentEditProfile = () => {
                   sx={{ width: 201, ml: 2.9 }}
                 >
                   <DatePicker
-                    defaultValue={dateOfBirth}
+                    value={dayjs(selectedDateOfBirth)}
                     slotProps={{ textField: { size: "small" } }}
+                    onChange={(date) => setSelectedDateOfBirth(date)}
                   />
                 </DemoContainer>
               </LocalizationProvider>
@@ -93,13 +179,16 @@ const StudentEditProfile = () => {
               <FormControl sx={{ ml: 9.9 }}>
                 <Stack direction="row">
                   <RadioGroup
-                    defaultValue={student.Gender ? "male" : "female"}
+                    value={selectedGender ? "true" : "false"}
                     name="radio-buttons-group"
                     sx={{ ml: 3 }}
+                    onChange={(e) =>
+                      setSelectedGender(e.target.value === "true")
+                    }
                   >
                     <Stack direction="row">
                       <FormControlLabel
-                        value="female"
+                        value="false"
                         control={
                           <Radio
                             sx={{
@@ -112,7 +201,7 @@ const StudentEditProfile = () => {
                         label="Female"
                       />
                       <FormControlLabel
-                        value="male"
+                        value="true"
                         control={
                           <Radio
                             sx={{
@@ -134,44 +223,49 @@ const StudentEditProfile = () => {
             <Stack direction="row" alignItems="center">
               <Typography variant="h5">ID Card:</Typography>
               <TextField
-                defaultValue={student.IDCard}
+                value={IdCard}
                 sx={{ ml: 7.1 }}
                 size="small"
+                onChange={(e) => setIdCard(e.target.value)}
               />
             </Stack>
             <Stack direction="row" alignItems="center" sx={{ ml: 10 }}>
               <Typography variant="h5">Phone:</Typography>
               <TextField
-                defaultValue={student.Phone}
+                value={phone}
                 sx={{ ml: 13.7 }}
                 size="small"
+                onChange={(e) => setPhone(e.target.value)}
               />
             </Stack>
           </Stack>
           <Stack direction="row" alignItems="center" sx={{ mt: 3 }}>
             <Typography variant="h5">Address:</Typography>
             <TextField
-              defaultValue={student.Address}
+              defaultValue={address}
               sx={{ ml: 6.7, width: 644 }}
               size="small"
+              onChange={(e) => setAddress(e.target.value)}
             />
           </Stack>
           <Stack direction="row" sx={{ mt: 3 }}>
             <Stack direction="row" alignItems="center">
               <Typography variant="h5">Email:</Typography>
               <TextField
-                defaultValue={student.Email}
+                value={email}
                 type="email"
                 sx={{ ml: 9, width: 250 }}
                 size="small"
+                onChange={(e) => setEmail(e.target.value)}
               />
             </Stack>
             <Stack direction="row" alignItems="center" sx={{ ml: 4 }}>
               <Typography variant="h5">Student username:</Typography>
               <TextField
-                defaultValue={student.StudentUsername}
+                value={studentUsername}
                 sx={{ ml: 3 }}
                 size="small"
+                onChange={(e) => setStudentUsername(e.target.value)}
               />
             </Stack>
           </Stack>
@@ -182,9 +276,9 @@ const StudentEditProfile = () => {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  defaultValue={student.Specialization}
+                  value={specialization}
                   size="small"
-                  onChange={handleChange}
+                  onChange={(e) => setSpecialization(e.target.value)}
                 >
                   <MenuItem value="SE">SE</MenuItem>
                   <MenuItem value="IA">IA</MenuItem>
@@ -200,13 +294,16 @@ const StudentEditProfile = () => {
               <FormControl sx={{ ml: 9.2 }}>
                 <Stack direction="row">
                   <RadioGroup
-                    defaultValue={student.IsActive ? "Yes" : "No"}
+                    value={isActive ? "true" : "false"}
                     name="radio-buttons-group"
                     sx={{ ml: 3 }}
+                    onChange={(e) =>
+                      setIsActive(e.target.value === "true")
+                    }
                   >
                     <Stack direction="row">
                       <FormControlLabel
-                        value="No"
+                        value="false"
                         control={
                           <Radio
                             sx={{
@@ -219,7 +316,7 @@ const StudentEditProfile = () => {
                         label="No"
                       />
                       <FormControlLabel
-                        value="Yes"
+                        value="true"
                         control={
                           <Radio
                             sx={{
@@ -241,9 +338,7 @@ const StudentEditProfile = () => {
             <Button
               variant="contained"
               size="large"
-              onClick={() => {
-                navigate(`/students/${studentId}/edit`);
-              }}
+              onClick={handleSave}
               sx={{
                 borderRadius: "20px",
                 backgroundColor:
@@ -271,8 +366,31 @@ const StudentEditProfile = () => {
                   color: "white",
                 },
               }}
+              onClick={() => {
+                navigate(`/students/${studentId}`);
+              }}
             >
               Cancel/Go back
+            </Button>
+            <Button
+              variant="contained"
+              size="large"
+              sx={{
+                ml: 3,
+                borderRadius: "20px",
+                backgroundColor:
+                  theme.palette.mode === "dark" ? "#3e4396" : "#a4a9fc",
+                color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
+                ":hover": {
+                  bgcolor: "#a4a9fc", // theme.palette.primary.main
+                  color: "white",
+                },
+              }}
+              onClick={() => {
+                navigate(`/students/${studentId}`);
+              }}
+            >
+              Delete
             </Button>
           </Box>
         </Box>

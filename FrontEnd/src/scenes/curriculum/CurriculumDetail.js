@@ -61,7 +61,7 @@ const CurrriculumDetail = () => {
   const [Code, setCode] = useState(curriculum.Code);
   const [TotalCredit, setTotalCredit] = useState(curriculum.TotalCredit);
   console.log("DSD" + Description);
-
+  const role = localStorage.getItem("role");
   return (
     <Box m="20px">
       <Header title="CURRICULUM DETAIL" subtitle="FPTUniTrackcurrriculum" />
@@ -75,6 +75,7 @@ const CurrriculumDetail = () => {
           handleSubmit,
         }) => (
           <form onSubmit={handleSubmit}>
+
             <Box
               m="40px 0 0 0"
               display="grid"
@@ -173,12 +174,11 @@ const CurrriculumDetail = () => {
               />
             </Box>
             <Box display="flex" justifyContent="end" mt="20px" gap="10px">
-              <Button type="submit" color="secondary" variant="contained">
+              {(role === "Admin") && (<><Button type="submit" color="secondary" variant="contained">
                 Update currriculum
-              </Button>
-              <Button type="" color="redAccent" variant="contained">
-                Delete currriculum
-              </Button>
+              </Button><Button type="" color="redAccent" variant="contained">
+                  Delete currriculum
+                </Button></>)}
             </Box>
           </form>
         )}

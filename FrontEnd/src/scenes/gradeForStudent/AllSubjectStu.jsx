@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import "./Class.css";
 import { useUser } from '../../UserContext';
 const AllSubjectStu = () => {
+  const token = localStorage.getItem("token");
   const { username1 } = useUser();
   const [subjectData, setSubjectData] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -19,6 +20,7 @@ const AllSubjectStu = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            Authorization: token,
           },
           body: JSON.stringify({
             studentId: studentId,

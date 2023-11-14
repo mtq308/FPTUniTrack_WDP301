@@ -5,9 +5,11 @@ import Header from "../../components/Header";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import dayjs from 'dayjs';
+import { useHistory } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 const SemesterDetail = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-
+  const navigate = useNavigate();
   const [semester, setSemester] = useState([]);
   const [idValue, setIdValue] = useState("");
   const [nameValue, setNameValue] = useState("");
@@ -32,7 +34,8 @@ const SemesterDetail = () => {
     };
     fetchData();
   }, []);
-  const handleFormSubmit = async (values) => {
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
     try {
       const updatedSemester = {
         Name: nameValue, // Get the updated name from the state
@@ -50,6 +53,7 @@ const SemesterDetail = () => {
       if (response.status === 200) {
         // Update the state or perform any other actions upon a successful update
         console.log('Semester updated successfully');
+        navigate(`/semester`);
       } else {
         console.error('Failed to update semester');
       }
@@ -57,16 +61,20 @@ const SemesterDetail = () => {
       console.error('Error:', error);
     }
   };
-  const handleDeleteSemester = async () => {
+  const handleDeleteSemester = async (e) => {
+
+    e.preventDefault();
     try {
       const response = await fetch(`http://localhost:3456/semester/${params}`, {
         method: 'DELETE',
       });
 
       if (response.status === 200) {
+
         // Handle the successful deletion, e.g., navigate to a different page
         console.log('Semester deleted successfully');
       } else {
+        navigate(`/semester`);
         console.error('Failed to delete semester');
       }
     } catch (error) {
@@ -80,7 +88,7 @@ const SemesterDetail = () => {
     setNameValue(name); // Update the Name field
     setIdValue(id);
   };
-
+  const role = localStorage.getItem("role");
   console.log(semester);
   console.log(params);
   return (
@@ -93,7 +101,7 @@ const SemesterDetail = () => {
       >
         {({
           handleBlur,
-          handleChange,
+          // handleChange,
 
         }) => (
           <form onSubmit={handleFormSubmit}>
@@ -137,7 +145,7 @@ const SemesterDetail = () => {
                 type="date"
                 label={"StartDate"}
                 onBlur={handleBlur}
-                onChange={handleChange}
+                // onChange={handleChange}
                 InputLabelProps={{
                   shrink: true, // Keeps the label in the "floating" position
                 }}
@@ -154,7 +162,7 @@ const SemesterDetail = () => {
                 type="date"
                 label={"EndDate"}
                 onBlur={handleBlur}
-                onChange={handleChange}
+                // onChange={handleChange}
                 value={dayjs(semester.EndDate).format("YYYY-MM-DD")}
                 name="EndDate"
                 InputLabelProps={{
@@ -165,12 +173,11 @@ const SemesterDetail = () => {
 
             </Box>
             <Box display="flex" justifyContent="end" mt="20px" gap="10px">
-              <Button type="submit" color="secondary" variant="contained">
+              {role === "Admin" && (<><Button type="submit" color="secondary" variant="contained">
                 Update Semester
-              </Button>
-              <Button onClick={handleDeleteSemester} type="" color="redAccent" variant="contained">
-                Delete Semester
-              </Button>
+              </Button><Button onClick={handleDeleteSemester} type="" color="redAccent" variant="contained">
+                  Delete Semester
+                </Button></>)}
 
             </Box>
           </form>

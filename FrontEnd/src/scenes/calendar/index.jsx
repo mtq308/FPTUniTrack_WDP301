@@ -17,7 +17,10 @@ import { tokens } from "../../theme";
 import { formatDate } from "@fullcalendar/core";
 
 const Calendar = () => {
+  const token = localStorage.getItem("token");
+  const id = localStorage.getItem("id");
   const [calenderData, setCalenderData] = useState([]);
+
   console.log(calenderData);
   useEffect(() => {
     const fetchData = async () => {
@@ -26,9 +29,10 @@ const Calendar = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            Authorization: token
           },
           body: JSON.stringify({
-            id: "HE170001"
+            id: id
           }),
         });
         if (response.ok) {
@@ -96,27 +100,27 @@ const Calendar = () => {
 
         {/* CALENDAR */}
         <Box flex="1 1 100%" ml="15px">
-            <FullCalendar 
-                height="75vh"
-                plugins={[
-                    dayGridPlugin,
-                    timeGridPlugin,
-                    interactionPlugin,
-                    listPlugin
-                ]}
-                headerToolbar={{
-                    left: "prev,next today",
-                    center: "title",
-                    right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
-                }}
-                initialView="dayGridMonth"
-                editable={false}
-                selectable={false}
-                selectMirror={true}
-                dayMaxEvents={true}
-                eventsSet={(events) => setCurrentEvents(events)}
-                events={calenderData}
-            />
+          <FullCalendar
+            height="75vh"
+            plugins={[
+              dayGridPlugin,
+              timeGridPlugin,
+              interactionPlugin,
+              listPlugin
+            ]}
+            headerToolbar={{
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
+            }}
+            initialView="dayGridMonth"
+            editable={false}
+            selectable={false}
+            selectMirror={true}
+            dayMaxEvents={true}
+            eventsSet={(events) => setCurrentEvents(events)}
+            events={calenderData}
+          />
         </Box>
       </Box>
     </Box>

@@ -34,7 +34,9 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 };
 
 const Sidebar = () => {
-
+  const role = localStorage.getItem("role");
+  const id = localStorage.getItem("id");
+  const fullname = localStorage.getItem("fullname");
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -79,7 +81,7 @@ const Sidebar = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINIS
+                  {role}
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -102,15 +104,15 @@ const Sidebar = () => {
               </Box>
               <Box textAlign="center">
                 <Typography
-                  variant="h2"
+                  variant="h3"
                   color={colors.grey[100]}
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Ed Roh
+                  {fullname}
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  VP Fancy Admin
+                  {id}
                 </Typography>
               </Box>
             </Box>
@@ -124,27 +126,27 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            {role === "Admin" && (<Item
               title="Students"
               to="/students"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            />)}
             <Item
-              title="Syllabus"
-              to="/syllabus"
+              title="Subject"
+              to="/subject"
               icon={<SchoolOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            {(<Item
               title="Semester"
               to="/semester"
               icon={<BookIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            />)}
 
             <Item
               title="Curriculum"
@@ -154,13 +156,13 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
 
-            <Item
+            {role === "Student" && (<Item
               title="GradeStudent"
               to="/AllSubjectStu"
               icon={<ArticleIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            />)}
             {/* <Item
               title="GradeLecturer"
               to="/gradeClass"
@@ -168,20 +170,20 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             /> */}
-            <Item
-              title="GradeLecturer"
+            {role !== "Student" && (<Item
+              title="Grade"
               to="/AllClass"
               icon={<ArticleIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
-            <Item
+            />)}
+            {role === "Lecturer" && (<Item
               title="CalendarLecturer"
               to="calendarLec"
               icon={<ArticleIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            />)}
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -196,20 +198,20 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            {role === "Student" && (<Item
               title="Calendar"
               to="/calendar"
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
-            <Item
+            />)}
+            {role === "Admin" && (<Item
               title="Lecture"
               to="/lecture"
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            />)}
             <Item
               title="Notification"
               to="/notification"

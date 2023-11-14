@@ -13,7 +13,12 @@ import Calendar from "../../../scenes/calendar";
 import Students from "../../../scenes/students";
 import StudentDetail from "../../../scenes/students/studentDetail";
 import StudentEditProfile from "../../../scenes/students/studentEditProfile";
-import Syllabus from "../../../scenes/syllabus";
+
+//Components for subject
+import Subject from "../../../scenes/subject/index";
+import SubjectDetail from "../../../scenes/subject/subjectDetail";
+import EditSubjectDetail from "../../../scenes/subject/editSubjectDetail";
+
 import Curriculum from "../../../scenes/curriculum";
 import Semester from "../../../scenes/semester";
 
@@ -29,11 +34,11 @@ import LectureEditProfile from "../../../scenes/lecture/LectureEditProfile";
 import Grade from "../../../scenes/gradeForStudent";
 import AllSubjectStu from "../../../scenes/gradeForStudent/AllSubjectStu";
 import GradeClass from "../../../scenes/gradeForLecturer";
+
 import AllClass from "../../../scenes/gradeForLecturer/AllClass";
 import AllSubject from "../../../scenes/gradeForLecturer/AllSubject";
 import CalendarLec from "../../../scenes/calendarForLecturer";
 const LoggedIn = ({ logout }) => {
-  console.log("hi")
   const [theme, colorMode] = useMode();
   const navigate = useNavigate();
   // Define the handleLogout function
@@ -74,7 +79,15 @@ const LoggedIn = ({ logout }) => {
                 path="/students/:studentId/edit"
                 element={<StudentEditProfile />}
               />
-              <Route path="/syllabus" element={<Syllabus />} />
+              
+              {/* All routes of subject */}
+              <Route path="/subject" element={<Subject />} />
+              <Route path="/subject/:subjectId" element={<SubjectDetail />} />
+              <Route
+                path="/subject/:subjectId/edit"
+                element={<EditSubjectDetail />}
+              />
+
               <Route path="/curriculum" element={<Curriculum />} />
               <Route path="/semester" element={<Semester />} />
               <Route path="/calendar" element={<Calendar />} />
