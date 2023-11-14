@@ -69,6 +69,8 @@ const Calendar = () => {
           backgroundColor={colors.primary[400]}
           p="15px"
           borderRadius="4px"
+          maxHeight="500px"
+          overflow="auto"
         >
           <Typography variant="h5">Slots</Typography>
           <List>

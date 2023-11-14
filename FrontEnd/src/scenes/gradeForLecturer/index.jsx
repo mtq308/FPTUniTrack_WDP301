@@ -46,36 +46,37 @@ const GradeClass = () => {
 
   return (
     <div>
-      <div style={{marginLeft: "20px"}}><Header title="Grade" subtitle={`The Grade Of ${classId}`} /></div>
+      <div style={{ marginLeft: "20px" }}><Header title="Grade" subtitle={`The Grade Of ${classId}`} /></div>
       {gradeData && gradeData.length > 0 ? (
-        <table className="centered-table" style={{ marginLeft: "auto", marginRight: "auto" }}>
-          <thead>
-            <tr style={{ backgroundColor: theme.greenAccent[500], color: theme.greenAccent[200] }}>
-              <th>Student ID</th>
-              <th>Student Name</th>
-              <th className="left-aligned-cell">Score Name</th>
-              <th>Grade</th>
-            </tr>
-          </thead>
-          <tbody>
-            {gradeData.map((student) => (
-              student.Score.map((scoreItem, index) => (
-                <tr key={scoreItem._id} style={{ borderBottom: "1px solid #ccc" }}>
+        <div className="table-container" style={{ overflowY: "auto", maxHeight: "550px", maxWidth: "8000px", marginLeft: "auto", marginRight: "auto" }}>
+          <table className="centered-table" style={{ marginLeft: "20px", marginRight: "auto", width: "80%" }}>
+            <thead>
+              <tr style={{ backgroundColor: theme.greenAccent[500], color: theme.greenAccent[200] }}>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th className="left-aligned-cell">Score Name</th>
+                <th>Grade</th>
+              </tr>
+            </thead>
+            <tbody>
+              {gradeData.map((student) => (
+                student.Score.map((scoreItem, index) => (
+                  <tr key={scoreItem._id} style={{ borderBottom: "1px solid #ccc" }}>
 
-                  {index === 0 ? (
-                    <><td className="centered-cell" rowSpan={student.Score.length}>
-                      {student.StudentID}
-                    </td><td className="centered-cell" rowSpan={student.Score.length}>
-                        {student.StudentName}
-                      </td></>
-                  ) : null}
-                  <td className="left-aligned-cell">{scoreItem.scoreName}</td>
-                  <td className="centered-cell">{scoreItem.grade}</td>
-                </tr>
-              ))
-            ))}
-          </tbody>
-        </table>
+                    {index === 0 ? (
+                      <><td className="centered-cell" rowSpan={student.Score.length}>
+                        {student.StudentID}
+                      </td><td className="centered-cell" rowSpan={student.Score.length}>
+                          {student.StudentName}
+                        </td></>
+                    ) : null}
+                    <td className="left-aligned-cell">{scoreItem.scoreName}</td>
+                    <td className="centered-cell">{scoreItem.grade}</td>
+                  </tr>
+                ))
+              ))}
+            </tbody>
+          </table> </div>
       ) : (
         <div>Loading...</div>
       )}
