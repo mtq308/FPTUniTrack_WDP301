@@ -1,5 +1,6 @@
 const express = require('express');
 const lecturerController = require('../controllers/lecturerController');
+const subjectController = require('../controllers/subjectController');
 const verifyToken = require('../middlewares/authMiddleware');
 
 const router = express.Router();
@@ -30,5 +31,11 @@ router.post('/allSubjectsByClassId', verifyToken, lecturerController.getAllSubje
 
 // Route to get grades by class ID and subject ID
 router.post('/gradeByClassIdAndSubjectId', verifyToken, lecturerController.getGradeByClassIdAndSubjectId);
+
+//Routes for subject - LECTURER with READ subject privillege only
+//Get all subjects
+router.get('/getAllSubjects', verifyToken, subjectController.getAllSubjects);
+//Get subject detail
+router.get('/subjectDetail/:id', verifyToken, subjectController.subjectDetail);
 
 module.exports = router;

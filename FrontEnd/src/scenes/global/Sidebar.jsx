@@ -35,6 +35,8 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 
 const Sidebar = () => {
   const role = localStorage.getItem("role");
+  const id = localStorage.getItem("id");
+  const fullname = localStorage.getItem("fullname");
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -79,7 +81,7 @@ const Sidebar = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINIS
+                  {role}
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -102,15 +104,15 @@ const Sidebar = () => {
               </Box>
               <Box textAlign="center">
                 <Typography
-                  variant="h2"
+                  variant="h3"
                   color={colors.grey[100]}
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Ed Roh
+                  {fullname}
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  VP Fancy Admin
+                  {id}
                 </Typography>
               </Box>
             </Box>
@@ -132,8 +134,8 @@ const Sidebar = () => {
               setSelected={setSelected}
             />)}
             <Item
-              title="Syllabus"
-              to="/syllabus"
+              title="Subject"
+              to="/subject"
               icon={<SchoolOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

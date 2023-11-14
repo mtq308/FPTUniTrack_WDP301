@@ -48,20 +48,19 @@ const Students = () => {
   };
   //Set state for modal student student.
   const [open, setOpen] = React.useState(false);
+  const [students, setStudents] = useState([]);
 
   //Set data state for modal create student.
   const [id, setId] = useState("");
   const [name, setName] = useState("");
-  const [selectedGender, setSelectedGender] = useState("female");
+  const [selectedGender, setSelectedGender] = useState("");
   const [selectedDateOfBirth, setSelectedDateOfBirth] = useState(null);
   const [idCard, setIdCard] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [students, setStudents] = useState([]);
   const [studentUsername, setStudentUsername] = useState("");
   const [specialization, setSpecialization] = useState("");
-
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -70,7 +69,6 @@ const Students = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-
         const response = await axios.post(
           "http://localhost:3456/admin/getAllStudents",
           {
@@ -100,11 +98,12 @@ const Students = () => {
       const response = await axios.post(
         "http://localhost:3456/admin/addStudent",
         {
+          role: "Admin",
           id: id, // Use the entered ID
           Fullname: name,
           Gender: selectedGender,
           DateOfBirth: selectedDateOfBirth,
-          IdCard: idCard,
+          IDCard: idCard,
           Address: address,
           Phone: phone,
           Email: email,
@@ -120,15 +119,22 @@ const Students = () => {
       );
       console.log("Request successful:", response.data);
       handleClose();
-      fetchStudents();
+
     } catch (error) {
       console.error("Error creating student:", error);
       // Handle error as needed, e.g., display an error message
       // You can also use a dialog to show the error message.
       // Example using a dialog from @mui/material:
-      const errorMessage = "Error creating student. Please try again later.";
-      setOpenErrorDialog(true);
-      setErrorDialogMessage(errorMessage);
+      if (error.response && error.response.status === 400 && error.response.data.message === 'Student with the same ID already exists') {
+        // Duplicate student ID error
+        setOpenErrorDialog(true);
+        setErrorDialogMessage("Error: Student with the same ID already exists");
+      } else {
+        // Other errors
+        const errorMessage = "Error creating student. Please try again later.";
+        setOpenErrorDialog(true);
+        setErrorDialogMessage(errorMessage);
+      }
     }
   };
 
@@ -258,7 +264,7 @@ const Students = () => {
                   >
                     <Stack direction="row">
                       <FormControlLabel
-                        value={false}
+                        value="false"
                         control={
                           <Radio
                             sx={{
@@ -271,7 +277,7 @@ const Students = () => {
                         label="Female"
                       />
                       <FormControlLabel
-                        value={true}
+                        value="true"
                         control={
                           <Radio
                             sx={{

@@ -14,7 +14,7 @@ const studentSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
-  IdCard: {
+  IDCard: {
     type: String,
     required: true,
   },
