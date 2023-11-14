@@ -46,7 +46,7 @@ const LoggedIn = ({ logout }) => {
     // Assuming you are using token-based authentication
     // Clear user authentication state by removing the token from local storage
     localStorage.removeItem("token");
-    navigate("http://localhost:3000/auth/login");
+    navigate("/");
 
     // You can also clear other user-related information or perform additional cleanup
 
