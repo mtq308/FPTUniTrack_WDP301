@@ -10,6 +10,7 @@ const adminRoutes = require('./routes/adminRoutes');
 const authRoutes = require('./routes/authRoutes');
 const swaggerRoute = require('./routes/swaggerRoute');
 const semesterRoutes = require('./routes/semesterRoutes');
+const notificationRoutes = require('./routes/notificationRoutes')
 const app = express();
 const cors = require('cors');
 // Middleware
@@ -33,6 +34,7 @@ app.use('/student', studentRoutes);
 app.use('/lecturer', lecturerRoutes);
 app.use('/admin', adminRoutes);
 app.use('/semester', semesterRoutes);
+app.use('/notification', notificationRoutes);
 app.use('/', swaggerRoute);
 
 // Global Error Handling Middleware
