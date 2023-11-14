@@ -25,4 +25,6 @@ router.get('/notificationDetail/:id', verifyToken, notificationController.viewNo
 
 
 
+router.post('/getGrade', verifyToken, studentController.getGrade);
+router.post('/getSubjectByStudentId', verifyToken, studentController.getSubjectIdByStudentId)
 module.exports = router;

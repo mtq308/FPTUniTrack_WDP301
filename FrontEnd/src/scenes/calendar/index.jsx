@@ -28,15 +28,14 @@ const Calendar = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            id: "HE170001",
-            weekNumber: "1",
+            id: "HE170001"
           }),
         });
         if (response.ok) {
           const data = await response.json();
           const filteredData = data.map(item => ({
             id: item._id,
-            title: `${item.Subject.SubjectCode} - ${item.LecturerUserName} - ${item.ClassID} - ${item.RoomCode}`,
+            title: `${item.Subject.SubjectCode} - ${item.LecturerUserName} - ${item.ClassID} - P${item.RoomCode}`,
             date: `${item.Day.Date.split('T')[0]}T${item.Period.StartTime}`,
             end: `${item.Day.Date.split('T')[0]}T${item.Period.EndTime}`,
           }));
