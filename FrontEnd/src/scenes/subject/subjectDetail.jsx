@@ -188,11 +188,11 @@ const SubjectDetail = () => {
                 sx={{
                   borderRadius: "20px",
                   backgroundColor:
-                    theme.palette.mode === "dark" ? "#3e4396" : "#a4a9fc",
-                  color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
-                  ":hover": {
-                    bgcolor: "#a4a9fc", // theme.palette.primary.main
-                    color: "white",
+                  theme.palette.mode === "dark" ? "#ff8000" : "#a4a9fc",
+                color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
+                ":hover": {
+                  bgcolor: theme.palette.mode === "dark" ? "#db8e40" : "#a4a9fc", // theme.palette.primary.main
+                  color: "white"
                   },
                 }}>
                 Edit subject
@@ -205,12 +205,12 @@ const SubjectDetail = () => {
                 ml: 3,
                 borderRadius: "20px",
                 backgroundColor:
-                  theme.palette.mode === "dark" ? "#3e4396" : "#a4a9fc",
-                color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
-                ":hover": {
-                  bgcolor: "#a4a9fc", // theme.palette.primary.main
-                  color: "white",
-                },
+              theme.palette.mode === "dark" ? "#ff8000" : "#a4a9fc",
+            color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
+            ":hover": {
+              bgcolor: theme.palette.mode === "dark" ? "#db8e40" : "#a4a9fc", // theme.palette.primary.main
+              color: "white"
+              },
               }}
               onClick={() => {
                 navigate(`/subject`);
@@ -226,11 +226,11 @@ const SubjectDetail = () => {
                   ml: 3,
                   borderRadius: "20px",
                   backgroundColor:
-                    theme.palette.mode === "dark" ? "#3e4396" : "#a4a9fc",
-                  color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
-                  ":hover": {
-                    bgcolor: "#a4a9fc", // theme.palette.primary.main
-                    color: "white",
+                  theme.palette.mode === "dark" ? "#ff8000" : "#a4a9fc",
+                color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
+                ":hover": {
+                  bgcolor: theme.palette.mode === "dark" ? "#db8e40" : "#a4a9fc", // theme.palette.primary.main
+                  color: "white"
                   },
                 }}
                 onClick={handleDeleteDialogOpen}>

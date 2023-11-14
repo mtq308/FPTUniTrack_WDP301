@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 
 const Curriculum = () => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const [curriculumData, setCurriculumData] = useState([]);
   console.log(curriculumData);
   const role = localStorage.getItem("role");
@@ -43,8 +45,7 @@ const Curriculum = () => {
 
     fetchData();
   }, []);
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+
 
   const columns = [
     { field: "Id", headerName: "ID", flex: 0.1 },
@@ -87,7 +88,7 @@ const Curriculum = () => {
 
   return (
     <Box m="20px">
-      <Stack direction="row"><Header title="TEAM" subtitle="Managing the Curriculum" />
+      <Stack direction="row"><Header title="CURRICULUM" subtitle="Managing the Curriculum" />
         {role === "Admin" && (<Button variant="contained" onClick={handleOpenModal} sx={{
           borderRadius: "5px",
           ml: { lg: "905px", xs: "304px" },
@@ -199,6 +200,9 @@ const Curriculum = () => {
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",
             backgroundColor: colors.blueAccent[700],
+          },
+          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+            color: `${colors.grey[100]} !important`,
           },
         }}
       >
