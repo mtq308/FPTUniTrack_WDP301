@@ -2,7 +2,7 @@
     {
         "ID": "1",
         "PeriodID": "1",
-        "DayID": "1",
+        "DayID": "2",
         "ClassID": "SE1701",
         "SemesterID": "Fall2023",
         "SubjectID": "9569",
@@ -15,10 +15,98 @@
         "PeriodID": "2",
         "DayID": "2",
         "ClassID": "SE1701",
+        "SubjectID": "10084",
+        "SemesterID": "Fall2023",
+        "RoomCode": "102",
+        "WeekNumber": "1",
+        "LecturerUserName": "ANaBDK45"
+    },
+    {
+        "ID": "3",
+        "PeriodID": "1",
+        "DayID": "3",
+        "ClassID": "SE1701",
         "SubjectID": "10326",
         "SemesterID": "Fall2023",
         "RoomCode": "101",
         "WeekNumber": "1",
         "LecturerUserName": "HoangLTH"
+    },
+    {
+        "ID": "4",
+        "PeriodID": "1",
+        "DayID": "4",
+        "ClassID": "SE1701",
+        "SubjectID": "10018",
+        "SemesterID": "Fall2023",
+        "RoomCode": "201",
+        "WeekNumber": "1",
+        "LecturerUserName": "LongVN"
+    },
+    {
+        "ID": "5",
+        "PeriodID": "1",
+        "DayID": "5",
+        "ClassID": "SE1701",
+        "SemesterID": "Fall2023",
+        "SubjectID": "9569",
+        "RoomCode": "101",
+        "WeekNumber": "1",
+        "LecturerUserName": "HoangLTH"
+    },
+    {
+        "ID": "6",
+        "PeriodID": "2",
+        "DayID": "5",
+        "ClassID": "SE1701",
+        "SubjectID": "10084",
+        "SemesterID": "Fall2023",
+        "RoomCode": "102",
+        "WeekNumber": "1",
+        "LecturerUserName": "ANaBDK45"
+    },
+    {
+        "ID": "7",
+        "PeriodID": "1",
+        "DayID": "6",
+        "ClassID": "SE1701",
+        "SubjectID": "10326",
+        "SemesterID": "Fall2023",
+        "RoomCode": "101",
+        "WeekNumber": "1",
+        "LecturerUserName": "HoangLTH"
+    },
+    {
+        "ID": "8",
+        "PeriodID": "2",
+        "DayID": "6",
+        "ClassID": "SE1701",
+        "SubjectID": "10018",
+        "SemesterID": "Fall2023",
+        "RoomCode": "201",
+        "WeekNumber": "1",
+        "LecturerUserName": "LongVN"
+    },
+    {
+        "ID": "9",
+        "PeriodID": "1",
+        "DayID": "9",
+        "ClassID": "SE1701",
+        "SemesterID": "Fall2023",
+        "SubjectID": "9569",
+        "RoomCode": "101",
+        "WeekNumber": "2",
+        "LecturerUserName": "HoangLTH"
+    },
+    {
+        "ID": "10",
+        "PeriodID": "2",
+        "DayID": "9",
+        "ClassID": "SE1701",
+        "SubjectID": "10084",
+        "SemesterID": "Fall2023",
+        "RoomCode": "102",
+        "WeekNumber": "2",
+        "LecturerUserName": "ANaBDK45"
     }
 ]
