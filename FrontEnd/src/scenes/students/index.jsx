@@ -48,6 +48,7 @@ const Students = () => {
   };
   //Set state for modal student student.
   const [open, setOpen] = React.useState(false);
+  
   const [students, setStudents] = useState([]);
 
   //Set data state for modal create student.

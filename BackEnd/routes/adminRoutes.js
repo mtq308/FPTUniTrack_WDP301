@@ -25,5 +25,11 @@ router.get('/getAllLecturers', verifyToken, adminController.getAllLecturers);
 router.get('/getAllSubjects', verifyToken, subjectController.getAllSubjects);
 //Get subject detail
 router.get('/subjectDetail/:id', verifyToken, subjectController.subjectDetail);
+//Edit subject detail
+router.put('/subjectDetail/:id/edit', verifyToken, adminController.editSubjectDetail);
+//Create subject
+router.post('/subject/create', verifyToken, adminController.addSubject);
+//Delete subject
+router.delete('/subject/:id/delete', verifyToken, adminController.deleteSubject);
 
 module.exports = router;
