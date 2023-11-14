@@ -10,6 +10,10 @@ import {
   TextField,
   Stack,
   Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -21,8 +25,8 @@ const StudentDetail = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [student, setStudent] = useState("");
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const { studentId } = useParams();
-  console.log(studentId);
   
   useEffect(() => {
     const fetchStudentProfile = async () => {
@@ -49,6 +53,38 @@ const StudentDetail = () => {
 
     fetchStudentProfile();
   }, [studentId, token]);
+
+  const handleDeleteDialogOpen = () => {
+    setDeleteDialogOpen(true);
+  };
+
+  const handleDeleteDialogClose = () => {
+    setDeleteDialogOpen(false);
+  };
+
+  const handleDeleteConfirmed = async () => {
+    try {
+      // Call the backend API to delete the student
+      await axios.delete(`http://localhost:3456/admin/deleteStudent/${studentId}`, {
+        headers: {
+          Authorization: token,
+        },
+        data: {
+          role: "Admin",
+        },
+      });
+  
+      // Close the delete confirmation dialog
+      setDeleteDialogOpen(false);
+  
+      // Redirect to the list of students after deletion
+      navigate(`/students`);
+    } catch (error) {
+      console.error("Error deleting student:", error);
+      // Handle error as needed
+      //
+    }
+  };
 
   return (
     <Box sx={{ ml: 5 }}>
@@ -226,7 +262,40 @@ const StudentDetail = () => {
             >
               Cancel/Go back
             </Button>
+            <Button
+              variant="contained"
+              size="large"
+              sx={{
+                ml: 3,
+                borderRadius: "20px",
+                backgroundColor:
+                  theme.palette.mode === "dark" ? "#3e4396" : "#a4a9fc",
+                color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
+                ":hover": {
+                  bgcolor: "#a4a9fc", // theme.palette.primary.main
+                  color: "white",
+                },
+              }}
+              onClick={handleDeleteDialogOpen}
+            >
+              Delete
+            </Button>
           </Box>
+          {/* Delete Confirmation Dialog */}
+          <Dialog open={deleteDialogOpen} onClose={handleDeleteDialogClose}>
+            <DialogTitle>Confirm Delete</DialogTitle>
+            <DialogContent>
+              <Typography>
+                Are you sure you want to delete this student?
+              </Typography>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleDeleteDialogClose}>Cancel</Button>
+              <Button onClick={handleDeleteConfirmed} color="error">
+                Delete
+              </Button>
+            </DialogActions>
+          </Dialog>
         </Box>
       ) : (
         <Typography variant="body1">Student not found</Typography>

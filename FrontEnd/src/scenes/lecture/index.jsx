@@ -16,7 +16,7 @@ import {
   DialogContentText,
   DialogActions,
 } from "@mui/material";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -34,10 +34,10 @@ const Lecture = () => {
   const colors = tokens(theme.palette.mode);
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
-
   const [lecturers, setLecturers] = useState([]);
+  const [lecturerId, setLecturerId] = useState(null);
   
-  
+  //show error when add lecturer
   const [open, setOpen] = React.useState(false);
   const [openErrorDialog, setOpenErrorDialog] = React.useState(false);
   const [errorDialogMessage, setErrorDialogMessage] = React.useState("");
@@ -45,6 +45,7 @@ const Lecture = () => {
     setOpenErrorDialog(false);
   };
 
+  //define field when add lecturer
   const [id, setId] = useState("");
   const [IdCard, setIdCard] = useState(null);
   const [lecturerUserName, setLecturerUserName] = useState("");
@@ -57,6 +58,8 @@ const Lecture = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+
+  //fetch lecturer list
   useEffect(() => {
     const fetchLecturers = async () => {
       try {
@@ -147,23 +150,76 @@ const Lecture = () => {
       setPhone("");
       setEmail("");
     } catch (error) {
-      console.error("Error creating student:", error);
-      // Handle error as needed, e.g., display an error message
-      // You can also use a dialog to show the error message.
-      // Example using a dialog from @mui/material:
+      console.error("Error creating lecturer:", error);
       if (error.response && error.response.status === 400 && error.response.data.message === 'Student with the same ID already exists') {
-        // Duplicate student ID error
+        // Duplicate lecturer ID error
         setOpenErrorDialog(true);
         setErrorDialogMessage("Error: Student with the same ID already exists");
       } else {
         // Other errors
-        const errorMessage = "Error creating student. Please try again later.";
+        const errorMessage = "Error creating lecturer. Please try again later.";
         setOpenErrorDialog(true);
         setErrorDialogMessage(errorMessage);
       }
     }
   };
+  //delete function
 
+  const [isDeleteConfirmationOpen, setIsDeleteConfirmationOpen] = useState(false);
+  const handleDeleteButtonClick = (id) => {
+    setLecturerId(id); // Set the lecturerId in the state
+    setIsDeleteConfirmationOpen(true); // Open the delete confirmation modal
+  };
+  const cancelDeleteLecture = () => {
+    setIsDeleteConfirmationOpen(false)
+  }
+  const handleDeleteConfirmed = async () => {
+    const fetchLecturers = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3456/admin/getAllLecturers",
+          {
+            role: "Admin",
+          },
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+  
+        setLecturers(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching lecturers:", error);
+      }
+    };
+    try {
+  
+      // Call the backend API to delete the lecturer
+      await axios.delete(`http://localhost:3456/admin/deleteLecturer/${lecturerId}`, {
+        headers: {
+          Authorization: token,
+        },
+        data: {
+          role: "Admin",
+        },
+      });
+  
+      // Close the delete confirmation dialog
+      setIsDeleteConfirmationOpen(false);
+      //fetch data table
+      fetchLecturers();
+  
+      // Redirect to the list of lecturers after deletion
+      navigate(`/lecturer`);
+    } catch (error) {
+      console.error("Error deleting lecturer:", error);
+      // Handle error as needed
+    }
+  };
+  
+  
 
   //define column
   const columns = [
@@ -205,21 +261,21 @@ const Lecture = () => {
       headerName: "IsActive",
       flex: 1,
     },
-    // {
-    //   field: "delete",
-    //   headerName: "Actions",
-    //   sortable: false,
-    //   width: 100,
-    //   renderCell: (params) => (
-    //     <Button
-    //       variant="contained"
-    //       color="error"
-    //       onClick={() => handleDeleteLecture(params.row.id)}
-    //     >
-    //       Delete
-    //     </Button>
-    //   ),
-    // },
+    {
+      field: "delete",
+      headerName: "Actions",
+      sortable: false,
+      width: 100,
+      renderCell: (params) => (
+        <Button
+          variant="contained"
+          color="error"
+          onClick={() => handleDeleteButtonClick(params.row.id)}
+          >
+          Delete
+        </Button>
+      ),
+    },
   ];
 
   return (
@@ -470,7 +526,7 @@ const Lecture = () => {
         </Modal>
         
         {/*This is cofirm delete modal*/}
-        {/* <Modal
+        <Modal
           open={isDeleteConfirmationOpen}
           onClose={cancelDeleteLecture}
           aria-labelledby="delete-confirmation-modal-title"
@@ -502,14 +558,14 @@ const Lecture = () => {
               id="delete-confirmation-modal-description"
               sx={{ mt: 2 }}
             >
-              {`Do you want to delete ${
-                lectureToDelete ? lectureToDelete.id : ""
-              } lecture?`}
+              {`Do you want to delete lecturer with id ${
+                lecturerId
+              } ?`}
             </Typography>
             <Stack direction="row" sx={{ mt: 5, ml: 20 }}>
               <Button
                 variant="outlined"
-                onClick={confirmDeleteLecture}
+                onClick={handleDeleteConfirmed}
                 sx={{
                   bgcolor:
                     theme.palette.mode === "dark" ? colors.grey[400] : "white",
@@ -538,7 +594,7 @@ const Lecture = () => {
               </Button>
             </Stack>
           </Box>
-        </Modal> */}
+        </Modal>
 
         {/* This is the start of the table view lecturers list */}
         <Box

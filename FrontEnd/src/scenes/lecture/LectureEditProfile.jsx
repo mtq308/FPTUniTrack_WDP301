@@ -170,12 +170,12 @@ const LectureEditProfile = () => {
             />
           </Stack>
           <Stack sx={{ mt: 1 }} direction="row" alignItems="center">
-            <Typography sx={{ width: 100 }} variant="h5">
+            <Typography  variant="h5">
               Date of Birth:{" "}
             </Typography>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
-                sx={{ ml: 1 }}
+                sx={{ ml: 2, width: 200, height: 55 }}
                 value={dayjs(selectedDateOfBirth)}
                 onChange={(date) => setSelectedDateOfBirth(date)}
                 renderInput={(params) => (
@@ -187,12 +187,12 @@ const LectureEditProfile = () => {
               {" "}
               Gender:{" "}
             </Typography>
-            <FormControl sx={{ ml: 9.9 }}>
+            <FormControl sx={{ ml: 1 }}>
                 <Stack direction="row">
                   <RadioGroup
                     value={selectedGender ? "true" : "false"}
                     name="radio-buttons-group"
-                    sx={{ ml: 3 }}
+                    sx={{ ml: 1 }}
                     onChange={(e) =>
                       setSelectedGender(e.target.value === "true")
                     }
@@ -274,12 +274,12 @@ const LectureEditProfile = () => {
               {" "}
               Active:{" "}
             </Typography>
-            <FormControl sx={{ ml: 9.2 }}>
+            <FormControl sx={{ ml: 1 }}>
                 <Stack direction="row">
                   <RadioGroup
                     value={isActive ? "true" : "false"}
                     name="radio-buttons-group"
-                    sx={{ ml: 3 }}
+                    sx={{ ml: 1 }}
                     onChange={(e) =>
                       setIsActive(e.target.value === "true")
                     }

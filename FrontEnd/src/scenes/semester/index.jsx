@@ -8,8 +8,12 @@ import TextField from '@mui/material/TextField';
 import Header from "../../components/Header";
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+// import { useAuth0 } from '@auth0/auth0-react';
 // import { cl } from "@fullcalendar/core/internal-common";
+
 const Semester = () => {
+  const role = localStorage.getItem("role");
+
   const [semesterData, setSemesterData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newSemester, setNewSemester] = useState({
@@ -25,10 +29,11 @@ const Semester = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-  const handleAddSemester = () => {
+  const handleAddSemester = async (e) => {
+    e.preventDefault();
     console.log(newSemester);
     // Send a POST request to your backend API to add the new semester
-    fetch('http://localhost:3000/semester', {
+    fetch('http://localhost:3456/semester', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,12 +49,13 @@ const Semester = () => {
       .catch((error) => {
         console.error('Error:', error);
       });
+    setIsModalOpen(false);
   };
   useEffect(() => {
     const fetchData = async () => {
       try {
         // const response = await fetch('/json/Semester.json');
-        const response = await fetch('http://localhost:3000/semester');
+        const response = await fetch('http://localhost:3456/semester');
         // Use the relative path to the JSON file
         if (response.ok) {
           const data = await response.json();
@@ -105,9 +111,9 @@ const Semester = () => {
   return (
     <Box m="20px">
       <Header title="TEAM" subtitle="Managing the Semester" />
-      <Button variant="contained" onClick={handleOpenModal}>
+      {role === "Admin" && (<Button variant="contained" onClick={handleOpenModal}>
         Add Semester
-      </Button>
+      </Button>)}
       <Modal
         open={isModalOpen}
         onClose={handleCloseModal}

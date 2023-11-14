@@ -13,7 +13,11 @@ import Calendar from "../../../scenes/calendar";
 import Students from "../../../scenes/students";
 import StudentDetail from "../../../scenes/students/studentDetail";
 import StudentEditProfile from "../../../scenes/students/studentEditProfile";
-import Syllabus from "../../../scenes/syllabus";
+
+//Components for subject
+import Subject from "../../../scenes/subject";
+import SubjectDetail from "../../../scenes/subject/subjectDetail";
+
 import Curriculum from "../../../scenes/curriculum";
 import Semester from "../../../scenes/semester";
 
@@ -26,10 +30,13 @@ import Notification from "../../../scenes/notification";
 import LectureDetail from "../../../scenes/lecture/LectureDetail";
 import LectureEditProfile from "../../../scenes/lecture/LectureEditProfile";
 
-import Grade from "../../../scenes/grade";
+import Grade from "../../../scenes/gradeForStudent";
+import AllSubjectStu from "../../../scenes/gradeForStudent/AllSubjectStu";
 import GradeClass from "../../../scenes/gradeForLecturer";
-import AllClass from "../../../scenes/gradeForLecturer/AllClass";
 
+import AllClass from "../../../scenes/gradeForLecturer/AllClass";
+import AllSubject from "../../../scenes/gradeForLecturer/AllSubject";
+import CalendarLec from "../../../scenes/calendarForLecturer";
 const LoggedIn = ({ logout }) => {
   const [theme, colorMode] = useMode();
   const navigate = useNavigate();
@@ -71,7 +78,15 @@ const LoggedIn = ({ logout }) => {
                 path="/students/:studentId/edit"
                 element={<StudentEditProfile />}
               />
-              <Route path="/syllabus" element={<Syllabus />} />
+              
+              {/* All routes of subject */}
+              <Route path="/subject" element={<Subject />} />
+              <Route path="/subject/:subjectId" element={<SubjectDetail />} />
+              {/* <Route
+                path="/subject/:subjectId/edit"
+                element={<SubjectEditDetail />}
+              /> */}
+
               <Route path="/curriculum" element={<Curriculum />} />
               <Route path="/semester" element={<Semester />} />
               <Route path="/calendar" element={<Calendar />} />
@@ -89,9 +104,12 @@ const LoggedIn = ({ logout }) => {
               <Route path="/lecturer/:lecturerId" element={<LectureDetail />} />
               <Route path="/lecturer/:lecturerId/edit" element={<LectureEditProfile />} />
               <Route path="/notification" element={<Notification />} />
-              <Route path="/grade" element={<Grade />} />
-              <Route path="/gradeClass" element={<GradeClass />} />
+              <Route path="/grade/:gradeId" element={<Grade />} />
+              <Route path="/gradeClass/:gradeId" element={<GradeClass />} />
               <Route path="/AllClass" element={<AllClass />} />
+              <Route path="/AllSubject/:classId" element={<AllSubject />} />
+              <Route path="/AllSubjectStu" element={<AllSubjectStu />} />
+              <Route path="/calendarLec" element={<CalendarLec />} />
             </Routes>
           </main>
         </div>

@@ -1,5 +1,6 @@
 const express = require('express');
 const adminController = require('../controllers/adminController');
+const subjectController = require('../controllers/subjectController');
 const verifyToken = require('../middlewares/authMiddleware');
 const verifyAdmin = require('../middlewares/authMiddleware');
 const router = express.Router();
@@ -21,5 +22,6 @@ router.post('/getAllLecturers', verifyToken, adminController.getAllLecturers);
 router.post('/lecturer/profile/:id', verifyToken, adminController.viewLecturerProfile);
 router.post('/addLecturer', verifyToken, adminController.addLecturer);
 router.put('/updateLecturer/:id/profile', verifyToken, adminController.updateLecturerProfile);
+router.delete('/deleteLecturer/:id', verifyToken, adminController.deleteLecturer);
 
 module.exports = router;

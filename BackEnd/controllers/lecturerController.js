@@ -25,8 +25,8 @@ async function lecturerProfile(req, res) {
 }
 
 async function getSlotsByWeekNumber(req, res) {
-  const lecturerId = req.user.id;
-  const weekNumber = req.user.weekNumber;
+  const lecturerId = req.body.id;
+  const weekNumber = req.body.weekNumber;
 
   try {
     const slots = await Slot.find({
@@ -74,7 +74,7 @@ async function getGradeByClass(req, res, next) {
   }
 }
 
-async function getGradeByStudentId(req, res, next){
+async function getGradeByStudentId(req, res, next) {
   try {
     const { studentId, subjectId } = req.body;
 
@@ -174,14 +174,14 @@ async function getStudentClasses(req, res, next) {
 }
 
 async function getAllStudentInClassBySubjectId(req, res, next) {
-  const {classId, subjectId} = req.body;
+  const { classId, subjectId } = req.body;
   try {
-    const classes = await Class.find({ ClassID: { $in: [classId] }, SubjectID: { $in: [subjectId]} });
+    const classes = await Class.find({ ClassID: { $in: [classId] }, SubjectID: { $in: [subjectId] } });
     const classWithSubjects = classes.map((cls) => {
       return {
         ClassID: cls.ClassID,
         SubjectID: cls.SubjectID,
-        StudentID:  cls.StudentID
+        StudentID: cls.StudentID
       };
     });
 
@@ -194,48 +194,48 @@ async function getAllStudentInClassBySubjectId(req, res, next) {
 
 async function getAllClassId(req, res, next) {
   try {
-      const classes = await Class.find({});
-      res.json(classes);
+    const classes = await Class.find({});
+    res.json(classes);
   } catch (err) {
-      console.error(error);
-      next(error);
+    console.error(error);
+    next(error);
   }
 }
 
 async function getAllSubjectByClassId(req, res, next) {
   try {
-      const classId = req.body.classId;
-      console.log(classId)
-      const classes = await Class.find({ ClassID: classId });
-      console.log(classes)
-      const subjectIds = classes.map((cls) => cls.SubjectID);
-      const subjects = await Subject.find({ SubjectID: { $in: subjectIds } });
+    const classId = req.body.classId;
+    console.log(classId)
+    const classes = await Class.find({ ClassID: classId });
+    console.log(classes)
+    const subjectIds = classes.map((cls) => cls.SubjectID);
+    const subjects = await Subject.find({ SubjectID: { $in: subjectIds } });
 
-      const classWithSubjects = classes.map((cls) => {
-          const subject = subjects.find((subj) => subj.SubjectID === cls.SubjectID);
-          return {
-              SubjectID: subject?.SubjectID || null,
-              SubjectCode: subject?.SubjectCode || null,
-              SyllabusName: subject?.SyllabusName || null, // Attach the subject to the class
-          };
-      });
+    const classWithSubjects = classes.map((cls) => {
+      const subject = subjects.find((subj) => subj.SubjectID === cls.SubjectID);
+      return {
+        SubjectID: subject?.SubjectID || null,
+        SubjectCode: subject?.SubjectCode || null,
+        SyllabusName: subject?.SyllabusName || null, // Attach the subject to the class
+      };
+    });
 
-      res.json(classWithSubjects);
+    res.json(classWithSubjects);
   } catch (error) {
-      console.error(error);
-      next(error);
+    console.error(error);
+    next(error);
   }
 }
 
 async function getGradeByClassIdAndSubjectId(req, res, next) {
   try {
-      const classId = req.body.classId;
-      const subjectId = req.body.subjectId;
-      const result = await Grade.find({
-          ClassID: classId,
-          "StudentGrades.SubjectID": subjectId,
-      });
-      const studentGrades = result?.[0]?.StudentGrades || [];
+    const classId = req.body.classId;
+    const subjectId = req.body.subjectId;
+    const result = await Grade.find({
+      ClassID: classId,
+      "StudentGrades.SubjectID": subjectId,
+    });
+    const studentGrades = result?.[0]?.StudentGrades || [];
 
     // Fetch student names based on StudentID
     const students = await Promise.all(
@@ -249,10 +249,10 @@ async function getGradeByClassIdAndSubjectId(req, res, next) {
       })
     );
     res.json(students);
-    
+
   } catch (error) {
-      console.error(error);
-      next(error);
+    console.error(error);
+    next(error);
   }
 }
 

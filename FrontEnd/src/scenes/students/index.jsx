@@ -64,12 +64,11 @@ const Students = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  
+
 
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-  
         const response = await axios.post(
           "http://localhost:3456/admin/getAllStudents",
           {
@@ -81,7 +80,7 @@ const Students = () => {
             }
           }
         );
-  
+
         setStudents(response.data);
         console.log(response.data); // Set the fetched students in the state
       } catch (error) {
