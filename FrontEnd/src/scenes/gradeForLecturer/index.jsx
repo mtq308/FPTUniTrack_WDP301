@@ -48,9 +48,9 @@ const GradeClass = () => {
     <div>
       <Header title="Grade" subtitle={`The Grade Of ${classId}`} />
       {gradeData && gradeData.length > 0 ? (
-        <table className="centered-table">
+        <table className="centered-table" style={{ marginLeft: "auto", marginRight: "auto" }}>
           <thead>
-            <tr style={{ backgroundColor: theme.blueAccent[700], color: theme.greenAccent[300] }}>
+            <tr style={{ backgroundColor: theme.greenAccent[500], color: theme.greenAccent[200] }}>
               <th>Student ID</th>
               <th>Student Name</th>
               <th className="left-aligned-cell">Score Name</th>

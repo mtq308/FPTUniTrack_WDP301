@@ -8,6 +8,9 @@ import Modal from '@mui/material/Modal';
 import Header from "../../components/Header";
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import {
+  Stack
+} from "@mui/material";
 
 const Curriculum = () => {
   const [curriculumData, setCurriculumData] = useState([]);
@@ -44,14 +47,14 @@ const Curriculum = () => {
   const colors = tokens(theme.palette.mode);
 
   const columns = [
-    { field: "Id", headerName: "ID", flex: 0.5 },
+    { field: "Id", headerName: "ID", flex: 0.1 },
     {
       field: "Code",
       headerName: "CODE",
-      flex: 1,
+      flex: 0.5,
       cellClassName: "name-column--cell",
       renderCell: (params) => (
-        <Link to={`/curriculum/${params.row.Id}`}>{params.row.Code}</Link>
+        <Link style={{ textDecoration: "none", color: "#a4a9fc" }} to={`/curriculum/${params.row.Id}`}>{params.row.Code}</Link>
       ),
     },
     {
@@ -60,6 +63,7 @@ const Curriculum = () => {
       type: "string",
       headerAlign: "left",
       align: "left",
+      flex: 0.8,
       cellClassName: "name-column--cell",
 
     },
@@ -76,17 +80,28 @@ const Curriculum = () => {
     {
       field: "TotalCredit",
       headerName: "Total Credit",
-      flex: 1,
+      flex: 0.4,
     },
 
   ];
 
   return (
     <Box m="20px">
-      <Header title="TEAM" subtitle="Managing the Curriculum" />
-      {role === "Admin" && (<Button variant="contained" onClick={handleOpenModal}>
-        Add Curriculum
-      </Button>)}
+      <Stack direction="row"><Header title="TEAM" subtitle="Managing the Curriculum" />
+        {role === "Admin" && (<Button variant="contained" onClick={handleOpenModal} sx={{
+          borderRadius: "5px",
+          ml: { lg: "905px", xs: "304px" },
+          backgroundColor:
+            theme.palette.mode === "dark" ? "#ff8000" : "#a4a9fc",
+          color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
+          ":hover": {
+            bgcolor: theme.palette.mode === "dark" ? "#db8e40" : "#a4a9fc", // theme.palette.primary.main
+            color: "white"
+          }
+        }}>
+          Add Curriculum
+        </Button>)}</Stack>
+
       <Modal
         open={isModalOpen}
         onClose={handleCloseModal}
