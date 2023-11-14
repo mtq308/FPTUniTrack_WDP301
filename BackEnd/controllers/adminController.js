@@ -1,6 +1,7 @@
 const Admin = require('../Models/adminModel');
 const Lecturer = require('../Models/lecturerModel');
 const Student = require('../Models/studentModel');
+const Subject = require('../Models/subjectModel');
 const roles = require('../configs/roleConfig');
 
 async function adminProfile(req, res) {
@@ -24,7 +25,7 @@ async function updateStudentProfile(req, res) {
   const studentId = req.params.id;
   const { DateOfBirth, Gender, IDCard, Address, Phone, Email,
     StudentUsername, Specialization, IsActive, Fullname } = req.body;
-    console.log('User Role:', req.user.role);
+  console.log('User Role:', req.user.role);
   try {
     if (req.body.role !== roles.ADMIN) {
       return res.status(403).json({ message: 'Permission denied. Only admin Admins can update student profiles.' });
@@ -76,7 +77,7 @@ async function addStudent(req, res) {
       return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
     }
     //Handle case duplicate ID.
-    const {id} = req.body;
+    const { id } = req.body;
     console.log(id);
     const existingStudent = await Student.findOne({ id });
     if (existingStudent) {
@@ -142,6 +143,91 @@ async function deleteStudent(req, res) {
   }
 }
 
+async function editSubjectDetail(req, res) {
+  const subjectId = req.params.id;
+
+  try {
+    // Check if the user has admin role
+    if (req.body.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admins can edit subject detail!' });
+    }
+
+    // Find the subject by ID
+    const subject = await Subject.findOne({ SubjectID: subjectId });
+
+    // Check if the subject exists
+    if (!subject) {
+      return res.status(404).json({ message: 'Subject not found' });
+    }
+
+    // Update subject properties based on the request body
+    const { SubjectCode, SyllabusName, Score, PREQUISITE, IsActive } = req.body;
+    subject.SubjectCode = SubjectCode || subject.SubjectCode;
+    subject.SyllabusName = SyllabusName || subject.SyllabusName;
+    subject.Score = Score || subject.Score;
+    subject.PREQUISITE = PREQUISITE || subject.PREQUISITE;
+    subject.IsActive = IsActive !== undefined ? IsActive : subject.IsActive;
+
+    // Save the updated subject data
+    await subject.save();
+
+    res.json({ message: 'Subject details updated successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+async function addSubject(req, res) {
+  //Check user role
+  try {
+    if (req.body.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can create subject.' });
+    }
+    //Handle case duplicate ID.
+    const { SubjectID } = req.body;
+    console.log(SubjectID);
+    const existingSubject = await Subject.findOne({ SubjectID });
+    if (existingSubject) {
+      return res.status(400).json({ message: 'Subject with the same ID already exists' });
+    }
+    //If ID not dupilcate, continue create new student.
+    const newSubjectData = req.body;
+    const newSubject = new Subject(newSubjectData);
+    await newSubject.save();
+    res.json({ message: 'Subject added successfully' });
+
+  } catch (err) {
+
+    //Error handler case.
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+async function deleteSubject(req, res) {
+  try {
+    if (req.body.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can delete subject.' });
+    }
+
+    const subjectId = req.params.id;
+
+    // Use findOneAndRemove to find and remove the student by id
+    const result = await Subject.findOneAndRemove({ SubjectID: subjectId });
+
+    if (!result) {
+      return res.status(404).json({ message: 'Subject not found' });
+    }
+
+    // If the student exists, delete it
+    res.json({ message: 'Subject deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
 module.exports = {
   adminProfile,
   getAllStudents,
@@ -149,5 +235,8 @@ module.exports = {
   addStudent,
   getAllLecturers,
   viewStudentProfile,
-  deleteStudent
+  deleteStudent,
+  editSubjectDetail,
+  addSubject,
+  deleteSubject
 };

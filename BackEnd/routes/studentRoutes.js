@@ -13,7 +13,7 @@ router.post('/getSlotsOfWeek', studentController.getSlotsByWeekNumber);
 router.post('/getGrade', studentController.getGrade);
 router.post('/getSubjectByStudentId', studentController.getSubjectIdByStudentId);
 
-//Routes for subject - LECTURER with READ subject privillege only
+//Routes for subject - STUDENT with READ subject privillege only
 //Get all subjects
 router.get('/getAllSubjects', verifyToken, subjectController.getAllSubjects);
 //Get subject detail
