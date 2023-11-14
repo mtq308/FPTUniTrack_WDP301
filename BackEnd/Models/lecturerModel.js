@@ -6,7 +6,7 @@ const lecturerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  LectureUsername: {
+  LectureUserName: {
     type: String,
     required: true,
   },
@@ -18,7 +18,7 @@ const lecturerSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
-  IdCard: {
+  IDCard: {
     type: String,
     required: true,
   },
@@ -38,7 +38,7 @@ const lecturerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  isActive: {
+  IsActive: {
     type: Boolean,
     required: true,
   },

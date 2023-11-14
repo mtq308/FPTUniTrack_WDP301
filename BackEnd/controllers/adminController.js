@@ -20,11 +20,78 @@ async function adminProfile(req, res) {
   }
 }
 
-async function updateStudentProfile(req, res) {
-  const studentId = req.body.id;
-  const { fullname, address, phone, email } = req.body;
+
+
+async function getAllStudents(req, res) {
   try {
-    if (req.user.role !== roles.ADMIN) {
+    if (req.body.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
+    }
+    const students = await Student.find({});
+    res.json(students);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+async function viewStudentProfile(req, res) {
+
+  try {
+    // Check if the request is coming from an admin
+    if (req.body.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admins can view student profiles.' });
+    }
+
+    // Find the student with the specified ID
+    const studentId = req.params.id; // Use req.params.id to get the ID from the route parameter
+    const student = await Student.find({ id: studentId });
+
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    res.json(student);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+async function addStudent(req, res) {
+  //Check user role
+  try {
+    if (req.body.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
+    }
+    //Handle case duplicate ID.
+    const {id} = req.body;
+    console.log(id);
+    const existingStudent = await Student.findOne({ id });
+    if (existingStudent) {
+      return res.status(400).json({ message: 'Student with the same ID already exists' });
+    }
+    //If ID not dupilcate, continue create new student.
+    const newStudentData = req.body;
+    const newStudent = new Student(newStudentData);
+    await newStudent.save();
+    res.json({ message: 'Student added successfully' });
+
+  } catch (err) {
+
+    //Error handler case.
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+async function updateStudentProfile(req, res) {
+  const studentId = req.params.id;
+  const { DateOfBirth, Gender, IDCard, Address, Phone, Email,
+    StudentUsername, Specialization, IsActive, Fullname } = req.body;
+    console.log('User Role:', req.user.role);
+  try {
+    if (req.body.role !== roles.ADMIN) {
       return res.status(403).json({ message: 'Permission denied. Only admin Admins can update student profiles.' });
     }
 
@@ -41,62 +108,30 @@ async function updateStudentProfile(req, res) {
   }
 }
 
-async function getAllStudents(req, res) {
+async function deleteStudent(req, res) {
   try {
     if (req.body.role !== roles.ADMIN) {
-      return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
-    }
-    const students = await Student.find({});
-    res.json(students);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-}
-
-async function addStudent(req, res) {
-  try {
-    if (req.body.role !== roles.ADMIN) {
-      return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can delete student profiles.' });
     }
 
-    const newStudentData = req.body;
+    const studentId = req.params.id;
 
-    const newStudent = new Student(newStudentData);
-
-    await newStudent.save();
-
-    res.json({ message: 'Student added successfully' });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-}
-
-async function viewStudentProfile(req, res) {
-  const studentId = req.params.id; // Assuming the student ID is passed as a route parameter
-
-  try {
-    // Check if the request is coming from an admin
-    if (req.body.role !== roles.ADMIN) {
-      return res.status(403).json({ message: 'Permission denied. Only admins can view student profiles.' });
-    }
-
-    // Find the student with the specified ID
-    const student = await Student.find({ id: studentId });
+    // Check if the student with the given id exists
+    const student = await Student.findOne({ id: studentId });
 
     if (!student) {
       return res.status(404).json({ message: 'Student not found' });
     }
 
-    res.json(student);
-  } catch (error) {
+    // If the student exists, delete it
+    await student.remove();
 
-    console.error(error);
+    res.json({ message: 'Student deleted successfully' });
+  } catch (err) {
+    console.error(err);
     res.status(500).json({ message: 'Server error' });
   }
 }
-
 async function getAllLecturers(req, res) {
   try {
     if (req.body.role !== roles.ADMIN) {
@@ -137,28 +172,37 @@ async function viewLecturerProfile(req, res) {
 async function addLecturer(req, res) {
   try {
     if (req.body.role !== roles.ADMIN) {
-      return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all lecturer profiles.' });
     }
-
+    //Handle case duplicate ID.
+    const {id} = req.body;
+    console.log(id);
+    const existingLecturer = await Lecturer.findOne({ id });
+    if (existingLecturer) {
+      return res.status(400).json({ message: 'Lecturer with the same ID already exists' });
+    }
+    //If ID not dupilcate, continue create new lecturer.
     const newLecturerData = req.body;
-
     const newLecturer = new Lecturer(newLecturerData);
-
     await newLecturer.save();
-
     res.json({ message: 'Lecturer added successfully' });
+
   } catch (err) {
+
+    //Error handler case.
     console.error(err);
     res.status(500).json({ message: 'Server error' });
   }
 }
 
 async function updateLecturerProfile(req, res) {
-  const lecturerId = req.body.id;
-  const { fullname, address, phone, email } = req.body;
+  const lecturerId = req.params.id;
+  const { LectureUserName, DateOfBirth, Gender, IDCard, Address,
+    Phone, Email, Fullname, IsActive } = req.body;
+    console.log('User Role: ', req.user.role);
   try {
-    if (req.user.role !== roles.ADMIN) {
-      return res.status(403).json({ message: 'Permission denied. Only admin Admins can update student profiles.' });
+    if (req.body.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can update lecturer profiles.' });
     }
 
     const lecturer = await Lecturer.findOne({ id: lecturerId });
@@ -175,17 +219,15 @@ async function updateLecturerProfile(req, res) {
 }
 
 
-
-
-
 module.exports = {
   adminProfile,
   getAllStudents,
   viewStudentProfile,
   addStudent,
   updateStudentProfile,
+  deleteStudent,
   getAllLecturers,
   viewLecturerProfile,
   addLecturer,
-  updateLecturerProfile
+  updateLecturerProfile,
 };

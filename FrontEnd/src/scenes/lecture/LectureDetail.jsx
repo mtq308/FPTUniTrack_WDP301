@@ -180,7 +180,7 @@ const LectureDetail = () => {
               variant="contained"
               size="large"
               onClick={() => {
-                navigate(`/lecture/${lecturerId}/edit`);
+                navigate(`/lecturer/${lecturerId}/edit`);
               }}
               sx={{
                 borderRadius: "20px",
@@ -199,7 +199,7 @@ const LectureDetail = () => {
             <Button
               variant="outlined"
               onClick={() => {
-                navigate('/lecture')
+                navigate('/lecturer')
               }}
               sx={{
                 borderRadius: "20px",
