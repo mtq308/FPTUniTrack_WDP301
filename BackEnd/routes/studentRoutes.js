@@ -1,6 +1,7 @@
 const express = require('express');
 const studentController = require('../controllers/studentController');
 const subjectController = require('../controllers/subjectController');
+const notificationController = require('../controllers/notificationController');
 const verifyToken = require('../middlewares/authMiddleware');
 
 const router = express.Router();
@@ -18,5 +19,10 @@ router.post('/getSubjectByStudentId', studentController.getSubjectIdByStudentId)
 router.get('/getAllSubjects', verifyToken, subjectController.getAllSubjects);
 //Get subject detail
 router.get('/subjectDetail/:id', verifyToken, subjectController.subjectDetail);
+//Noti
+router.get('/getAllNotifications', verifyToken, notificationController.getAllNotifications);
+router.get('/notificationDetail/:id', verifyToken, notificationController.viewNotificationDetail);
+
+
 
 module.exports = router;

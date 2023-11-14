@@ -1,6 +1,7 @@
 const express = require('express');
 const lecturerController = require('../controllers/lecturerController');
 const subjectController = require('../controllers/subjectController');
+const notificationController = require('../controllers/notificationController');
 const verifyToken = require('../middlewares/authMiddleware');
 
 const router = express.Router();
@@ -37,5 +38,8 @@ router.post('/gradeByClassIdAndSubjectId', lecturerController.getGradeByClassIdA
 router.get('/getAllSubjects', verifyToken, subjectController.getAllSubjects);
 //Get subject detail
 router.get('/subjectDetail/:id', verifyToken, subjectController.subjectDetail);
+//Get all noti
+router.get('/getAllNotifications', verifyToken, notificationController.getAllNotifications);
+router.get('/notificationDetail/:id', verifyToken, notificationController.viewNotificationDetail);
 
 module.exports = router;

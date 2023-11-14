@@ -113,11 +113,6 @@ const LectureEditProfile = () => {
     }
   };
 
-  const handleDateChange = (newDate) => {
-    // Handle the date change, e.g., update the state or perform any necessary logic
-    console.log("New Date:", newDate);
-  };
-
   return (
     <Box sx={{ ml: 5 }}>
       <Header title="EDIT LECTURER PROFILE" />

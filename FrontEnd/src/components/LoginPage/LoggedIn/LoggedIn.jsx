@@ -37,6 +37,8 @@ import GradeClass from "../../../scenes/gradeForLecturer";
 import AllClass from "../../../scenes/gradeForLecturer/AllClass";
 import AllSubject from "../../../scenes/gradeForLecturer/AllSubject";
 import CalendarLec from "../../../scenes/calendarForLecturer";
+import NotificationDetail from "../../../scenes/notification/NotificationDetail";
+import NotificationEditDetail from "../../../scenes/notification/NotificationEditDetail";
 const LoggedIn = ({ logout }) => {
   const [theme, colorMode] = useMode();
   const navigate = useNavigate();
@@ -104,6 +106,8 @@ const LoggedIn = ({ logout }) => {
               <Route path="/lecturer/:lecturerId" element={<LectureDetail />} />
               <Route path="/lecturer/:lecturerId/edit" element={<LectureEditProfile />} />
               <Route path="/notification" element={<Notification />} />
+              <Route path="/notification/:notificationId" element={<NotificationDetail />} />
+              <Route path="/notification/:notificationId/edit" element={<NotificationEditDetail />} />
               <Route path="/grade/:gradeId" element={<Grade />} />
               <Route path="/gradeClass/:gradeId" element={<GradeClass />} />
               <Route path="/AllClass" element={<AllClass />} />

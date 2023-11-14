@@ -1,6 +1,7 @@
 const express = require('express');
 const adminController = require('../controllers/adminController');
 const subjectController = require('../controllers/subjectController');
+const notificationController = require('../controllers/notificationController');
 const verifyToken = require('../middlewares/authMiddleware');
 const verifyAdmin = require('../middlewares/authMiddleware');
 const router = express.Router();
@@ -23,5 +24,12 @@ router.post('/lecturer/profile/:id', verifyToken, adminController.viewLecturerPr
 router.post('/addLecturer', verifyToken, adminController.addLecturer);
 router.put('/updateLecturer/:id/profile', verifyToken, adminController.updateLecturerProfile);
 router.delete('/deleteLecturer/:id', verifyToken, adminController.deleteLecturer);
+// Router noti
+router.get('/getAllNotifications', verifyToken, notificationController.getAllNotifications);
+router.get('/notificationDetail/:id', verifyToken, notificationController.viewNotificationDetail);
+router.post('/addNotification', verifyToken, notificationController.createNotification);
+router.put('/updateNotification/:id/detail', verifyToken, notificationController.updateNotification);
+router.delete('/deleteNotification/:id', verifyToken, notificationController.deleteNotification);
+
 
 module.exports = router;

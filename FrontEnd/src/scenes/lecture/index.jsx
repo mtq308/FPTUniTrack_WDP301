@@ -171,7 +171,7 @@ const Lecture = () => {
     setIsDeleteConfirmationOpen(true); // Open the delete confirmation modal
   };
   const cancelDeleteLecture = () => {
-    setIsDeleteConfirmationOpen(false)
+    setIsDeleteConfirmationOpen(false);
   }
   const handleDeleteConfirmed = async () => {
     const fetchLecturers = async () => {
