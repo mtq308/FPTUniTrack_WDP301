@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/profile/:id', verifyToken, studentController.studentProfile);
 router.get('/getStudentClasses/:id', verifyToken, studentController.getStudentClasses);
 router.get('/getStudentSubjectId/:id', verifyToken, studentController.getStudentBySubjectID)
-router.post('/getSlotsOfWeek', verifyToken, studentController.getSlotsByWeekNumber);
+router.post('/getSlotsOfWeek', studentController.getSlotsByWeekNumber);
 router.post('/getGrade', verifyToken, studentController.getGrade);
 router.post('/getSubjectByStudentId', verifyToken, studentController.getSubjectIdByStudentId)
 module.exports = router;

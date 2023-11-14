@@ -20,8 +20,8 @@ export const tokens = (mode) => ({
                 100: "#d0d1d5",
                 200: "#a1a4ab",
                 300: "#717681",
-                400: "#424957",
-                500: "#131b2d",
+                400: "#46332E",
+                500: "#1D1D1D",
                 600: "#0f1624",
                 700: "#0b101b",
                 800: "#080b12",
@@ -31,9 +31,9 @@ export const tokens = (mode) => ({
                 100: "#dbf5ee",
                 200: "#b7ebde",
                 300: "#94e2cd",
-                400: "#70d8bd",
-                500: "#4cceac",
-                600: "#3da58a",
+                400: "#ff8d00",
+                500: "#F59115",
+                600: "#ff8000",
                 700: "#2e7c67",
                 800: "#1e5245",
                 900: "#0f2922",
@@ -54,9 +54,9 @@ export const tokens = (mode) => ({
                 200: "#c3c6fd",
                 300: "#a4a9fc",
                 400: "#868dfb",
-                500: "#6870fa",
+                500: "#000000",
                 600: "#535ac8",
-                700: "#3e4396",
+                700: "#ff8d00",
                 800: "#2a2d64",
                 900: "#151632",
             },
@@ -206,7 +206,7 @@ export const themeSettings = (mode) => {
 
 //context for color mode
 export const ColorModeContext = createContext({
-    toggleColorMode: () => { }
+    // toggleColorMode: () => { }
 });
 
 export const useMode = () => {

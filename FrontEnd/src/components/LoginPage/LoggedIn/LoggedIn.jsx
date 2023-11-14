@@ -8,8 +8,7 @@ import Sidebar from "../../../scenes/global/Sidebar";
 import Topbar from "../../../scenes/global/Topbar";
 import Dashboard from "../../../scenes/dashboard";
 import Team from "../../../scenes/team";
-import Contacts from "../../../scenes/contacts";
-import Form from "../../../scenes/form";
+import Contacts from "../../../scenes/contacts";;
 import Calendar from "../../../scenes/calendar";
 import Students from "../../../scenes/students";
 import StudentDetail from "../../../scenes/students/studentDetail";
@@ -17,7 +16,6 @@ import StudentEditProfile from "../../../scenes/students/studentEditProfile";
 import Syllabus from "../../../scenes/syllabus";
 import Curriculum from "../../../scenes/curriculum";
 import Semester from "../../../scenes/semester";
-import AdminRoutes from "../../../routes/AdminRoutes";
 
 // import SemesterDetail from "../../../scenes/SemesterDetail";
 import SemesterDetail from "../../../scenes/semester/SemesterDetail";
@@ -25,10 +23,15 @@ import CurriculumDetail from "../../../scenes/curriculum/CurriculumDetail";
 
 import Lecture from "../../../scenes/lecture";
 import Notification from "../../../scenes/notification";
-import Grade from "../../../scenes/grade";
+import LectureDetail from "../../../scenes/lecture/LectureDetail";
+import LectureEditProfile from "../../../scenes/lecture/LectureEditProfile";
+
+import Grade from "../../../scenes/gradeForStudent";
+import AllSubjectStu from "../../../scenes/gradeForStudent/AllSubjectStu";
 import GradeClass from "../../../scenes/gradeForLecturer";
 import AllClass from "../../../scenes/gradeForLecturer/AllClass";
-
+import AllSubject from "../../../scenes/gradeForLecturer/AllSubject";
+import CalendarLec from "../../../scenes/calendarForLecturer";
 const LoggedIn = ({ logout }) => {
   console.log("hi")
   const [theme, colorMode] = useMode();
@@ -63,18 +66,17 @@ const LoggedIn = ({ logout }) => {
               <Route path="/team" element={<Team />} />
               <Route path="/contacts" element={<Contacts />} />
 
-              <Route path="/admin/*" element={<AdminRoutes />} />
+              {/* <Route path="/admin/*" element={<AdminRoutes />} /> */}
 
-              {/* <Route path="/students" element={<Students />} />
+              <Route path="/students" element={<Students />} />
               <Route path="/students/:studentId" element={<StudentDetail />} />
               <Route
                 path="/students/:studentId/edit"
                 element={<StudentEditProfile />}
-              /> */}
+              />
               <Route path="/syllabus" element={<Syllabus />} />
               <Route path="/curriculum" element={<Curriculum />} />
               <Route path="/semester" element={<Semester />} />
-              <Route path="/form" element={<Form />} />
               <Route path="/calendar" element={<Calendar />} />
 
               <Route
@@ -87,10 +89,15 @@ const LoggedIn = ({ logout }) => {
               />
 
               <Route path="/lecture" element={<Lecture />} />
+              <Route path="/lecture/:lectureId" element={<LectureDetail />} />
+              <Route path="/lecture/:lectureId/edit" element={<LectureEditProfile />} />
               <Route path="/notification" element={<Notification />} />
-              <Route path="/grade" element={<Grade />} />
-              <Route path="/gradeClass" element={<GradeClass />} />
+              <Route path="/grade/:gradeId" element={<Grade />} />
+              <Route path="/gradeClass/:gradeId" element={<GradeClass />} />
               <Route path="/AllClass" element={<AllClass />} />
+              <Route path="/AllSubject/:classId" element={<AllSubject />} />
+              <Route path="/AllSubjectStu" element={<AllSubjectStu />} />
+              <Route path="/calendarLec" element={<CalendarLec />} />
             </Routes>
           </main>
         </div>

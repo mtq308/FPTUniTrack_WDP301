@@ -16,26 +16,26 @@ import Header from "../../components/Header";
 import { tokens } from "../../theme";
 import { formatDate } from "@fullcalendar/core";
 
-const Calendar = () => {
+const CalendarLec = () => {
   const [calenderData, setCalenderData] = useState([]);
   console.log(calenderData);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3456/student/getSlotsOfWeek', {
+        const response = await fetch('http://localhost:3456/lecturer/getSlotsByWeek', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            id: "HE170001"
+            id: "HoangLTH"
           }),
         });
         if (response.ok) {
           const data = await response.json();
           const filteredData = data.map(item => ({
             id: item._id,
-            title: `${item.Subject.SubjectCode} - ${item.LecturerUserName} - ${item.ClassID} - P${item.RoomCode}`,
+            title: `${item.Subject.SubjectCode} - ${item.ClassID} - P${item.RoomCode}`,
             date: `${item.Day.Date.split('T')[0]}T${item.Period.StartTime}`,
             end: `${item.Day.Date.split('T')[0]}T${item.Period.EndTime}`,
           }));
@@ -123,4 +123,4 @@ const Calendar = () => {
   );
 };
 
-export default Calendar;
+export default CalendarLec;

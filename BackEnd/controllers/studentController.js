@@ -5,11 +5,12 @@ const Period = require('../Models/periodModel.js');
 const Day = require('../Models/dayModel.js');
 const Semester = require('../Models/semesterModel.js');
 const Subject = require('../Models/subjectModel.js');
-const Grade = require('../Models/gradeModel.js')
+const Grade = require('../Models/gradeModel.js');
 
 async function studentProfile(req, res, next) {
   const studentId = req.user.id;
   try {
+
     const student = await Student.findOne({ id: studentId });
 
     if (!student) {
@@ -77,9 +78,8 @@ async function getStudentBySubjectID(req, res, next) {
 
 async function getSlotsByWeekNumber(req, res, next) {
   const studentId = req.body.id;
-  const weekNumber = req.body.weekNumber;
 
-  if (!studentId || !weekNumber) {
+  if (!studentId) {
     return res.status(400).json({ message: 'Student ID and week number are required' });
   }
 
@@ -93,7 +93,6 @@ async function getSlotsByWeekNumber(req, res, next) {
     const classIDs = classes.map((cls) => cls.ClassID);
 
     const slots = await Slot.find({
-      WeekNumber: weekNumber,
       ClassID: { $in: classIDs },
     });
 

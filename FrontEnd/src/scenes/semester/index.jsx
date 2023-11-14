@@ -8,8 +8,14 @@ import TextField from '@mui/material/TextField';
 import Header from "../../components/Header";
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import {
+  Stack
+} from "@mui/material";
+// import { useAuth0 } from '@auth0/auth0-react';
 // import { cl } from "@fullcalendar/core/internal-common";
 const Semester = () => {
+
+
   const [semesterData, setSemesterData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newSemester, setNewSemester] = useState({
@@ -28,7 +34,7 @@ const Semester = () => {
   const handleAddSemester = () => {
     console.log(newSemester);
     // Send a POST request to your backend API to add the new semester
-    fetch('http://localhost:3000/semester', {
+    fetch('http://localhost:3456/semester', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +55,7 @@ const Semester = () => {
     const fetchData = async () => {
       try {
         // const response = await fetch('/json/Semester.json');
-        const response = await fetch('http://localhost:3000/semester');
+        const response = await fetch('http://localhost:3456/semester');
         // Use the relative path to the JSON file
         if (response.ok) {
           const data = await response.json();
@@ -69,14 +75,14 @@ const Semester = () => {
   console.log(semesterData);
 
   const columns = [
-    { field: "SemesterID", headerName: "ID" },
+    { field: "SemesterID", headerName: "ID",  flex: 0.5 },
     {
       field: "Name",
       headerName: "Name",
       flex: 1,
       cellClassName: "name-column--cell",
       renderCell: (params) => (
-        <Link to={`/semester/${params.row.SemesterID}`}>{params.row.Name}</Link>
+        <Link style={{ textDecoration: "none" , color: "#a4a9fc"}} to={`/semester/${params.row.SemesterID}`}>{params.row.Name}</Link>
       ),
     },
     {
@@ -104,10 +110,20 @@ const Semester = () => {
 
   return (
     <Box m="20px">
-      <Header title="TEAM" subtitle="Managing the Semester" />
-      <Button variant="contained" onClick={handleOpenModal}>
+      <Stack direction="row"><Header title="TEAM" subtitle="Managing the Semester"/>
+      <Button variant="contained" onClick={handleOpenModal} sx={{ 
+       borderRadius: "5px",
+       ml: { lg: "920px", xs: "304px" },
+       backgroundColor:
+         theme.palette.mode === "dark" ? "#ff8000" : "#a4a9fc",
+       color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
+       ":hover": {
+         bgcolor: theme.palette.mode === "dark" ? "#db8e40" : "#a4a9fc", // theme.palette.primary.main
+         color: "white",
+       },}}>
         Add Semester
-      </Button>
+      </Button></Stack>
+      
       <Modal
         open={isModalOpen}
         onClose={handleCloseModal}
@@ -213,7 +229,7 @@ const Semester = () => {
           },
         }}
       >
-        <DataGrid getRowId={(row) => row.SemesterID} rows={semesterData} columns={columns} />
+        <DataGrid sx={{ marginTop: "10px" }} getRowId={(row) => row.SemesterID} rows={semesterData} columns={columns} />
       </Box>
 
     </Box>

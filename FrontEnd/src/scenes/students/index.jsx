@@ -15,6 +15,13 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from "@mui/material";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -23,36 +30,99 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { useNavigate } from "react-router-dom";
-
-import { studentsData } from "../../data/studentData";
 import axios from "axios";
 
 const Students = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
+  //Set state for dialog
+  const [openErrorDialog, setOpenErrorDialog] = React.useState(false);
+  const [errorDialogMessage, setErrorDialogMessage] = React.useState("");
+
+  //Dialog handle open when there's error create student, eg: same ID with existed ID in the database.
+  const handleCloseErrorDialog = () => {
+    setOpenErrorDialog(false);
+  };
+  //Set state for modal student student.
   const [open, setOpen] = React.useState(false);
+
+  //Set data state for modal create student.
+  const [id, setId] = useState("");
   const [name, setName] = useState("");
-  const [age, setAge] = React.useState("");
+  const [selectedGender, setSelectedGender] = useState("female");
+  const [selectedDateOfBirth, setSelectedDateOfBirth] = useState(null);
+  const [idCard, setIdCard] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [students, setStudents] = useState([]);
+  const [studentUsername, setStudentUsername] = useState("");
+  const [specialization, setSpecialization] = useState("");
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleChange = (event) => {
-    setAge(event.target.value);
+
+  const fetchStudents = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3000/admin/getAllStudents",
+        {
+          headers: {
+            Authorization: token, // Send the token in the request headers
+          },
+        }
+      );
+      setStudents(response.data);
+      console.log(response.data); // Set the fetched students in the state
+    } catch (error) {
+      console.error("Error fetching students:", error);
+      // Handle error as needed
+    }
   };
+
+  useEffect(() => {
+    fetchStudents(); // Fetch students when the component mounts
+  }, []);
 
   const submit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/admin/students/create",
-        { name }
+        "http://localhost:3000/admin/addStudent",
+        {
+          id: id, // Use the entered ID
+          Fullname: name,
+          Gender: selectedGender,
+          DateOfBirth: selectedDateOfBirth,
+          IdCard: idCard,
+          Address: address,
+          Phone: phone,
+          Email: email,
+          StudentUsername: studentUsername,
+          Specialization: specialization,
+          IsActive: true,
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
       );
       console.log("Request successful:", response.data);
-    } catch (e) {
-      console.log(e);
+      handleClose();
+      fetchStudents();
+    } catch (error) {
+      console.error("Error creating student:", error);
+      // Handle error as needed, e.g., display an error message
+      // You can also use a dialog to show the error message.
+      // Example using a dialog from @mui/material:
+      const errorMessage = "Error creating student. Please try again later.";
+      setOpenErrorDialog(true);
+      setErrorDialogMessage(errorMessage);
     }
   };
 
@@ -102,10 +172,10 @@ const Students = () => {
             borderRadius: "5px",
             ml: { lg: "920px", xs: "304px" },
             backgroundColor:
-              theme.palette.mode === "dark" ? "#3e4396" : "#a4a9fc",
+              theme.palette.mode === "dark" ? "#ff8000" : "#a4a9fc",
             color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
             ":hover": {
-              bgcolor: "#a4a9fc", // theme.palette.primary.main
+              bgcolor: theme.palette.mode === "dark" ? "#db8e40" : "#a4a9fc", // theme.palette.primary.main
               color: "white",
             },
           }}
@@ -151,6 +221,15 @@ const Students = () => {
             </Typography>
 
             <Stack direction="column">
+              <TextField
+                label="ID"
+                variant="outlined"
+                sx={{ mt: 3, width: 300 }}
+                onChange={(e) => {
+                  setId(e.target.value);
+                }}
+                value={id}
+              />
               <Stack direction="row">
                 <TextField
                   label="Full name"
@@ -159,52 +238,58 @@ const Students = () => {
                   onChange={(e) => {
                     setName(e.target.value);
                   }}
+                  value={name}
                 />
                 <FormControl sx={{ ml: 3, mt: 3.5 }}>
-                  <Stack direction="row">
-                    <RadioGroup
-                      aria-labelledby="demo-radio-buttons-group-label"
-                      defaultValue="female"
-                      name="radio-buttons-group"
-                      sx={{ ml: 3 }}
-                    >
-                      <Stack direction="row">
-                        <FormControlLabel
-                          value="female"
-                          control={
-                            <Radio
-                              sx={{
-                                "&, &.Mui-checked": {
-                                  color: "silver",
-                                },
-                              }}
-                            />
-                          }
-                          label="Female"
-                        />
-                        <FormControlLabel
-                          value="male"
-                          control={
-                            <Radio
-                              sx={{
-                                "&, &.Mui-checked": {
-                                  color: "silver",
-                                },
-                              }}
-                            />
-                          }
-                          label="Male"
-                        />
-                      </Stack>
-                    </RadioGroup>
-                  </Stack>
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    name="radio-buttons-group"
+                    sx={{ ml: 3 }}
+                    value={selectedGender} // Controlled component: value is set to the selected gender
+                    onChange={(e) =>
+                      setSelectedGender(e.target.value === "true")
+                    } // Update the selectedGender state
+                  >
+                    <Stack direction="row">
+                      <FormControlLabel
+                        value={false}
+                        control={
+                          <Radio
+                            sx={{
+                              "&, &.Mui-checked": {
+                                color: "silver",
+                              },
+                            }}
+                          />
+                        }
+                        label="Female"
+                      />
+                      <FormControlLabel
+                        value={true}
+                        control={
+                          <Radio
+                            sx={{
+                              "&, &.Mui-checked": {
+                                color: "silver",
+                              },
+                            }}
+                          />
+                        }
+                        label="Male"
+                      />
+                    </Stack>
+                  </RadioGroup>
                 </FormControl>
               </Stack>
 
               <Stack direction="row">
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DemoContainer components={["DatePicker"]}>
-                    <DatePicker label="Date of Birth" />
+                    <DatePicker
+                      label="Date of Birth"
+                      value={selectedDateOfBirth}
+                      onChange={(date) => setSelectedDateOfBirth(date)}
+                    />
                   </DemoContainer>
                 </LocalizationProvider>
                 <TextField
@@ -213,6 +298,8 @@ const Students = () => {
                   label="ID Card"
                   variant="outlined"
                   sx={{ ml: 3, mt: 1, width: 600 }}
+                  value={idCard}
+                  onChange={(e) => setIdCard(e.target.value)}
                 />
               </Stack>
 
@@ -221,6 +308,8 @@ const Students = () => {
                 label="Address"
                 variant="outlined"
                 sx={{ mt: 3, width: 830 }}
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
               />
 
               <Stack direction="row">
@@ -229,41 +318,66 @@ const Students = () => {
                   label="Phone"
                   variant="outlined"
                   sx={{ mt: 3, width: 420 }}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
                 <TextField
                   type="email"
                   label="Email"
                   variant="outlined"
                   sx={{ mt: 3, ml: 3, width: 420 }}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Stack>
               <Stack direction="row">
                 <TextField
-                  label="Member code"
+                  label="Student Username"
                   variant="outlined"
                   sx={{ mt: 3, width: 250 }}
+                  value={studentUsername}
+                  onChange={(e) => setStudentUsername(e.target.value)}
                 />
                 <FormControl sx={{ mt: 3, ml: 3, width: 150 }}>
                   <InputLabel id="demo-simple-select-label">
                     Specialization
                   </InputLabel>
                   <Select
-                    value={age}
                     label="Specialization"
-                    onChange={handleChange}
+                    value={specialization}
+                    onChange={(e) => setSpecialization(e.target.value)}
                   >
-                    <MenuItem value={10}>SE</MenuItem>
-                    <MenuItem value={20}>IA</MenuItem>
-                    <MenuItem value={30}>GD</MenuItem>
-                    <MenuItem value={30}>AI</MenuItem>
-                    <MenuItem value={30}>IB</MenuItem>
-                    <MenuItem value={30}>IS</MenuItem>
+                    <MenuItem value="SE">SE</MenuItem>
+                    <MenuItem value="IA">IA</MenuItem>
+                    <MenuItem value="GD">GD</MenuItem>
+                    <MenuItem value="AI">AI</MenuItem>
+                    <MenuItem value="IB">IB</MenuItem>
+                    <MenuItem value="IS">IS</MenuItem>
                   </Select>
                 </FormControl>
               </Stack>
 
               {/* Tam thoi khong can Full name vi ta co the lay Last name + Middle name + First name la se ra Full name */}
             </Stack>
+
+            <Dialog
+              open={openErrorDialog}
+              onClose={handleCloseErrorDialog}
+              aria-labelledby="error-dialog-title"
+              aria-describedby="error-dialog-description"
+            >
+              <DialogTitle id="error-dialog-title">Error</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="error-dialog-description">
+                  {errorDialogMessage}
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleCloseErrorDialog} color="primary">
+                  Close
+                </Button>
+              </DialogActions>
+            </Dialog>
 
             <Stack direction="row" sx={{ mt: 5, ml: 80 }}>
               <Button
@@ -334,7 +448,7 @@ const Students = () => {
       >
         <DataGrid
           //getRowId={(row) => row.id}
-          rows={studentsData}
+          rows={students}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
           onRowClick={(params) => {

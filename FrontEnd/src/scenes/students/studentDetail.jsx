@@ -17,7 +17,6 @@ import Header from "../../components/Header";
 
 const StudentDetail = () => {
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
   // Get the studentId from the URL using useParams
   const { studentId } = useParams();
