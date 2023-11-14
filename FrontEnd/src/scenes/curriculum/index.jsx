@@ -1,5 +1,5 @@
 import { Box, useTheme, Button } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
@@ -202,7 +202,7 @@ const Curriculum = () => {
           },
         }}
       >
-        <DataGrid getRowId={(row) => row.Id} rows={curriculumData} columns={columns} />
+        <DataGrid getRowId={(row) => row.Id} rows={curriculumData} columns={columns} components={{ Toolbar: GridToolbar }} />
       </Box>
     </Box>
   );
