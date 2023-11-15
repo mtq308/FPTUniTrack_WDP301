@@ -45,7 +45,7 @@ const AllSubjectStu = () => {
   return (
     <div className="all-class-container">
       <Header />
-      <div className="class-list">
+      <div className="class-list sbj">
         <h2>{`Subjects Learned By Student: ${studentId}`}</h2>
         <ul>
           {subjectData.map((item, index) => (

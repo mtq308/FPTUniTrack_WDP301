@@ -21,7 +21,7 @@
 }
 
 .class-list li {
-  flex: 0 0 calc(25% - 10px); /* Adjust for spacing */
+  flex: 0 0 calc(45% - 20px); /* Adjust for spacing */
   padding: 10px;
   margin: 5px;
   background-color: #f0f0f0;

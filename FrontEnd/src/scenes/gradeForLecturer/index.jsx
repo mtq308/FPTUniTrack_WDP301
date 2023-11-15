@@ -46,7 +46,7 @@ const GradeClass = () => {
 
   return (
     <div>
-      <div style={{ marginLeft: "20px" }}><Header title="Grade" subtitle={`The Grade Of ${classId}`} /></div>
+      <div style={{ marginLeft: "20px" }}><Header title="Grade" subtitle={`The Grade Of ${classId}`} style={{ InputProps: { readOnly: true } }} /></div>
       {gradeData && gradeData.length > 0 ? (
         <div className="table-container" style={{ overflowY: "auto", maxHeight: "550px", maxWidth: "8000px", marginLeft: "auto", marginRight: "auto" }}>
           <table className="centered-table" style={{ marginLeft: "20px", marginRight: "auto", width: "80%" }}>

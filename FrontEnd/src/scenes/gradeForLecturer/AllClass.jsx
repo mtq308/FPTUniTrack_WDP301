@@ -42,7 +42,7 @@ const AllClass = () => {
   return (
     <div className="all-class-container">
       <Header />
-      <div className="class-list">
+      <div className="class-list classadd">
         <h2>Class List</h2>
         <ul>
           {uniqueClassIDs.map((item, index) => (

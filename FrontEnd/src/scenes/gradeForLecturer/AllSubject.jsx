@@ -47,7 +47,7 @@ const AllSubject = () => {
   return (
     <div className="all-class-container">
       <Header />
-      <div className="class-list1">
+      <div className="class-list sbj">
         <h2>Subjects for Class {classId}</h2>
         <ul>
           {subjectData.map((item, index) => (
