@@ -82,6 +82,7 @@ const StudentDetail = () => {
     } catch (error) {
       console.error("Error deleting student:", error);
       // Handle error as needed
+      //
     }
   };
 

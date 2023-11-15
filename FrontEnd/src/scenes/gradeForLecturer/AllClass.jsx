@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from "../../components/Header";
 import { Link } from 'react-router-dom';
-
+import Card2 from "./Card2";
 import "./Class.css";
 
 const AllClass = () => {
@@ -50,9 +50,9 @@ const AllClass = () => {
               {/* <Link to={`/class/${item}`} onClick={() => handleItemClick(item)}>
                 {item}
               </Link> */}
-              <Link to={`/AllSubject/${item}`} onClick={() => handleItemClick(item)}>
+              <Card2>  <Link to={`/AllSubject/${item}`} onClick={() => handleItemClick(item)}>
                 {item}
-              </Link>
+              </Link></Card2>
             </li>
           ))}
         </ul>

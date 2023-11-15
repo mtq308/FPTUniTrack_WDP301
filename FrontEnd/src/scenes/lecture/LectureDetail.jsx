@@ -8,28 +8,55 @@ import {
 } from "@mui/material";
 import { tokens } from "../../theme";
 import { useNavigate, useParams } from "react-router-dom";
-import { lecturersData } from "../../data/lectureData";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
+import axios from "axios";
 
 const LectureDetail = () => {
-  const { lectureId } = useParams();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
-  const lecture = lecturersData.find((lecture) => lecture.id === lectureId);
+
+  const token = localStorage.getItem("token");
+  const { lecturerId } = useParams();
+  const [lecturer, setLecturer] = useState({});
+
+  useEffect(() => {
+    const fetchLectureDetail = async () => {
+      try {
+        const response = await axios.post(
+          `http://localhost:3456/admin/lecturer/profile/${lecturerId}`,
+          {
+            role: "Admin",
+          },
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+
+        setLecturer(response.data);
+        console.log(response.data)
+      } catch (error) {
+        console.error("Error fetching lecturer details:", error);
+        // Handle error as needed
+      }
+    };
+    fetchLectureDetail();
+  }, [lecturerId, token]);
 
   return (
     <Box sx={{ ml: 5 }}>
       <Header title="LECTURER DETAILS" />
-      {lecture ? (
+      {lecturer && lecturer.length > 0 ? (
         <Stack direction="column">
           <Stack direction="row" alignItems="center">
             <Typography sx={{ width: 100 }} variant="h5">
               Lecturer ID:{" "}
             </Typography>
             <TextField
-              value={lecture.id}
+              value={lecturer[0].id}
               InputProps={{
                 readOnly: true,
               }}
@@ -40,7 +67,7 @@ const LectureDetail = () => {
               ID Card:{" "}
             </Typography>
             <TextField
-              value={lecture.IDCard}
+              value={lecturer[0].IDCard}
               InputProps={{
                 readOnly: true,
               }}
@@ -50,10 +77,10 @@ const LectureDetail = () => {
           </Stack>
           <Stack sx={{ mt: 1 }} direction="row" alignItems="center">
             <Typography sx={{ width: 100 }} variant="h5">
-              Full name:{" "}
+              Username:{" "}
             </Typography>
             <TextField
-              value={lecture.Fullname}
+              value={lecturer[0].LectureUserName}
               InputProps={{
                 readOnly: true,
               }}
@@ -63,36 +90,10 @@ const LectureDetail = () => {
           </Stack>
           <Stack sx={{ mt: 1 }} direction="row" alignItems="center">
             <Typography sx={{ width: 100 }} variant="h5">
-              First Name:{" "}
+              Full Name:{" "}
             </Typography>
             <TextField
-              value={lecture.FirstName}
-              InputProps={{
-                readOnly: true,
-              }}
-              sx={{ ml: 1 }}
-              size="small"
-            />
-          </Stack>
-          <Stack sx={{ mt: 1 }} direction="row" alignItems="center">
-            <Typography sx={{ width: 100 }} variant="h5">
-              Middle Name:{" "}
-            </Typography>
-            <TextField
-              value={lecture.MiddleName}
-              InputProps={{
-                readOnly: true,
-              }}
-              sx={{ ml: 1 }}
-              size="small"
-            />
-          </Stack>
-          <Stack sx={{ mt: 1 }} direction="row" alignItems="center">
-            <Typography sx={{ width: 100 }} variant="h5">
-              Last Name:{" "}
-            </Typography>
-            <TextField
-              value={lecture.LastName}
+              value={lecturer[0].Fullname}
               InputProps={{
                 readOnly: true,
               }}
@@ -105,18 +106,18 @@ const LectureDetail = () => {
               Date of Birth:{" "}
             </Typography>
             <TextField
-              value={lecture.DateOfBirth}
+              value={lecturer[0].DateOfBirth}
               InputProps={{
                 readOnly: true,
               }}
               sx={{ ml: 1 }}
               size="small"
             >
-              {new Date(lecture.DateOfBirth).toLocaleDateString()}
+              {new Date(lecturer[0].DateOfBirth).toLocaleDateString()}
             </TextField>
             <Typography sx={{ width: 60, ml: 3 }} variant="h5"> Gender: </Typography>
             <TextField
-              value={lecture.Gender ? "Male" : "Female"}
+              value={lecturer[0].Gender ? "Male" : "Female"}
               InputProps={{
                 readOnly: true,
               }}
@@ -129,7 +130,7 @@ const LectureDetail = () => {
               Address:{" "}
             </Typography>
             <TextField
-              value={lecture.Address}
+              value={lecturer[0].Address}
               InputProps={{
                 readOnly: true,
               }}
@@ -139,10 +140,10 @@ const LectureDetail = () => {
           </Stack>
           <Stack sx={{ mt: 1 }} direction="row" alignItems="center">
             <Typography sx={{ width: 100 }} variant="h5">
-              Mobile Phone:{" "}
+              Phone:{" "}
             </Typography>
             <TextField
-              value={lecture.MobilePhone}
+              value={lecturer[0].Phone}
               InputProps={{
                 readOnly: true,
               }}
@@ -155,7 +156,7 @@ const LectureDetail = () => {
               Email:{" "}
             </Typography>
             <TextField
-              value={lecture.Email}
+              value={lecturer[0].Email}
               InputProps={{
                 readOnly: true,
               }}
@@ -166,7 +167,7 @@ const LectureDetail = () => {
           <Stack sx={{ mt: 1 }} direction="row" alignItems="center">
             <Typography sx={{ width: 100 }} variant="h5"> Active: </Typography>
                 <TextField
-                  value={lecture.IsActive ? "Yes" : "No"}
+                  value={lecturer[0].IsActive ? "Yes" : "No"}
                 InputProps={{
                     readOnly: true,
                 }}
@@ -179,7 +180,7 @@ const LectureDetail = () => {
               variant="contained"
               size="large"
               onClick={() => {
-                navigate(`/lecture/${lectureId}/edit`);
+                navigate(`/lecturer/${lecturerId}/edit`);
               }}
               sx={{
                 borderRadius: "20px",
@@ -198,7 +199,7 @@ const LectureDetail = () => {
             <Button
               variant="outlined"
               onClick={() => {
-                navigate('/lecture')
+                navigate('/lecturer')
               }}
               sx={{
                 borderRadius: "20px",

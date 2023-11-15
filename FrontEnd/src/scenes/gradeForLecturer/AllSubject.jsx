@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import "./Class.css";
-
+import Card2 from "./Card2";
 const AllSubject = () => {
   const token = localStorage.getItem("token");
   const [subjectData, setSubjectData] = useState([]);
@@ -47,14 +47,16 @@ const AllSubject = () => {
   return (
     <div className="all-class-container">
       <Header />
-      <div className="class-list">
+      <div className="class-list1">
         <h2>Subjects for Class {classId}</h2>
         <ul>
           {subjectData.map((item, index) => (
             <li key={index}>
+
               <Link to={`/gradeClass/${item.SubjectID}&${classId}`} onClick={() => handleItemClick(item)}>
                 {item.SyllabusName} - {item.SubjectCode}
               </Link>
+
             </li>
           ))}
         </ul>

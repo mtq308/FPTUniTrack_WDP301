@@ -238,7 +238,8 @@ const Semester = () => {
           },
         }}
       >
-        <DataGrid sx={{ marginTop: "10px"}} getRowId={(row) => row.SemesterID} rows={semesterData} columns={columns} components={{ Toolbar: GridToolbar }} />
+        <DataGrid sx={{ marginTop: "10px" }} getRowId={(row) => row.SemesterID} rows={semesterData} columns={columns} components={{ Toolbar: GridToolbar }} />
+
       </Box>
 
     </Box>

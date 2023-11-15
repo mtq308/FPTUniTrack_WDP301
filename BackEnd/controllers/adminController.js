@@ -57,15 +57,25 @@ async function getAllStudents(req, res) {
   }
 }
 
-async function getAllLecturers(req, res) {
+async function viewStudentProfile(req, res) {
+
   try {
+    // Check if the request is coming from an admin
     if (req.body.role !== roles.ADMIN) {
-      return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
+      return res.status(403).json({ message: 'Permission denied. Only admins can view student profiles.' });
     }
-    const lecturers = await Lecturer.find({});
-    res.json(lecturers);
-  } catch (err) {
-    console.error(err);
+
+    // Find the student with the specified ID
+    const studentId = req.params.id; // Use req.params.id to get the ID from the route parameter
+    const student = await Student.find({ id: studentId });
+
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    res.json(student);
+  } catch (error) {
+    console.error(error);
     res.status(500).json({ message: 'Server error' });
   }
 }
@@ -97,25 +107,25 @@ async function addStudent(req, res) {
   }
 }
 
-async function viewStudentProfile(req, res) {
-
+async function updateStudentProfile(req, res) {
+  const studentId = req.params.id;
+  const { DateOfBirth, Gender, IDCard, Address, Phone, Email,
+    StudentUsername, Specialization, IsActive, Fullname } = req.body;
+  console.log('User Role:', req.user.role);
   try {
-    // Check if the request is coming from an admin
     if (req.body.role !== roles.ADMIN) {
-      return res.status(403).json({ message: 'Permission denied. Only admins can view student profiles.' });
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can update student profiles.' });
     }
 
-    // Find the student with the specified ID
-    const studentId = req.params.id; // Use req.params.id to get the ID from the route parameter
-    const student = await Student.find({ id: studentId });
+    const student = await Student.findOne({ id: studentId });
 
-    if (!student) {
-      return res.status(404).json({ message: 'Student not found' });
-    }
+    Object.assign(student, req.body);
+    // Save the updated student data
+    await student.save();
 
-    res.json(student);
-  } catch (error) {
-    console.error(error);
+    res.json({ message: 'Student profile updated successfully' });
+  } catch (err) {
+    console.error(err);
     res.status(500).json({ message: 'Server error' });
   }
 }
@@ -126,7 +136,7 @@ async function deleteStudent(req, res) {
       return res.status(403).json({ message: 'Permission denied. Only admin Admins can delete student profiles.' });
     }
 
-    const studentId = req.params.id;
+    const studentId = req.params.id; 2
 
     // Use findOneAndRemove to find and remove the student by id
     const result = await Student.findOneAndRemove({ id: studentId });
@@ -137,6 +147,115 @@ async function deleteStudent(req, res) {
 
     // If the student exists, delete it
     res.json({ message: 'Student deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+async function getAllLecturers(req, res) {
+  try {
+    if (req.body.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all student profiles.' });
+    }
+    const lecturers = await Lecturer.find({});
+    res.json(lecturers);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+async function viewLecturerProfile(req, res) {
+  const lecturerId = req.params.id; // Assuming the lecturer ID is passed as a route parameter
+
+  try {
+    // Check if the request is coming from an admin
+    if (req.body.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admins can view lecturer profiles.' });
+    }
+
+    // Find the lecturer with the specified ID
+    const lecturer = await Lecturer.find({ id: lecturerId });
+
+    if (!lecturer) {
+      return res.status(404).json({ message: 'Lecturer not found' });
+    }
+
+    res.json(lecturer);
+  } catch (error) {
+
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+async function addLecturer(req, res) {
+  try {
+    if (req.body.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can get all lecturer profiles.' });
+    }
+    //Handle case duplicate ID.
+    const { id } = req.body;
+    console.log(id);
+    const existingLecturer = await Lecturer.findOne({ id });
+    if (existingLecturer) {
+      return res.status(400).json({ message: 'Lecturer with the same ID already exists' });
+    }
+    //If ID not dupilcate, continue create new lecturer.
+    const newLecturerData = req.body;
+    const newLecturer = new Lecturer(newLecturerData);
+    await newLecturer.save();
+    res.json({ message: 'Lecturer added successfully' });
+
+  } catch (err) {
+
+    //Error handler case.
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+async function updateLecturerProfile(req, res) {
+  const lecturerId = req.params.id;
+  const { LectureUserName, DateOfBirth, Gender, IDCard, Address,
+    Phone, Email, Fullname, IsActive } = req.body;
+  console.log('User Role: ', req.user.role);
+  try {
+    if (req.body.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can update lecturer profiles.' });
+    }
+
+    const lecturer = await Lecturer.findOne({ id: lecturerId });
+
+    Object.assign(lecturer, req.body);
+    // Save the updated lecturer data
+    await lecturer.save();
+
+    res.json({ message: 'Lecturer profile updated successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+async function deleteLecturer(req, res) {
+  try {
+    if (req.body.role !== roles.ADMIN) {
+      return res.status(403).json({ message: 'Permission denied. Only admin Admins can delete lecturer profiles.' });
+    }
+
+    const lecturerId = req.params.id;
+
+    // Use findOneAndRemove to find and remove the lecturer by id
+    const result = await Lecturer.findOneAndRemove({ id: lecturerId });
+
+    if (!result) {
+      return res.status(404).json({ message: 'Lecturer not found' });
+    }
+
+    // If the lecturer exists, delete it
+    res.json({ message: 'Lecturer deleted successfully' });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
@@ -231,11 +350,15 @@ async function deleteSubject(req, res) {
 module.exports = {
   adminProfile,
   getAllStudents,
-  updateStudentProfile,
-  addStudent,
-  getAllLecturers,
   viewStudentProfile,
+  addStudent,
+  updateStudentProfile,
   deleteStudent,
+  getAllLecturers,
+  viewLecturerProfile,
+  addLecturer,
+  updateLecturerProfile,
+  deleteLecturer,
   editSubjectDetail,
   addSubject,
   deleteSubject
