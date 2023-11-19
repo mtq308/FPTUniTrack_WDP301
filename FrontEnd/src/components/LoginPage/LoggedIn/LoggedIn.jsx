@@ -40,25 +40,26 @@ import AllSubject from "../../../scenes/gradeForLecturer/AllSubject";
 import CalendarLec from "../../../scenes/calendarForLecturer";
 import NotificationDetail from "../../../scenes/notification/NotificationDetail";
 import NotificationEditDetail from "../../../scenes/notification/NotificationEditDetail";
+import LoginForm from "../LoginForm/LoginForm";
 const LoggedIn = ({ logout }) => {
   const [theme, colorMode] = useMode();
   const navigate = useNavigate();
   // Define the handleLogout function
-  const handleLogout = () => {
-    // Assuming you are using token-based authentication
-    // Clear user authentication state by removing the token from local storage
-    localStorage.removeItem("token");
-    navigate("/");
+  // const handleLogout = () => {
+  //   // Assuming you are using token-based authentication
+  //   // Clear user authentication state by removing the token from local storage
+  //   localStorage.removeItem("token");
+  //   navigate("/");
 
-    // You can also clear other user-related information or perform additional cleanup
+  //   // You can also clear other user-related information or perform additional cleanup
 
-    // After clearing the authentication state, you can redirect the user to the login page or any other appropriate page.
-    // You can use the `navigate` function from `react-router-dom` for navigation.
-    // For example, if you are using React Router, you can navigate to the login page like this:
-    // import { useNavigate } from "react-router-dom";
-    // const navigate = useNavigate();
-    // navigate("/login");
-  };
+  //   // After clearing the authentication state, you can redirect the user to the login page or any other appropriate page.
+  //   // You can use the `navigate` function from `react-router-dom` for navigation.
+  //   // For example, if you are using React Router, you can navigate to the login page like this:
+  //   // import { useNavigate } from "react-router-dom";
+  //   // const navigate = useNavigate();
+  //   // navigate("/login");
+  // };
 
   return (
     <ColorModeContext.Provider value={colorMode}>
@@ -67,7 +68,7 @@ const LoggedIn = ({ logout }) => {
         <div className="app">
           <Sidebar />
           <main className="content">
-            <Topbar logout={handleLogout} />
+            <Topbar />
             <Routes>
               <Route path="/" element={<Dashboard />} />
 

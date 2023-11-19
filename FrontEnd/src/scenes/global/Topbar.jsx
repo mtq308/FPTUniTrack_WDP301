@@ -17,6 +17,12 @@ const Topbar = ({ logout }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
+  const handleLogout = () => {
+    // Assuming you are using token-based authentication
+    // Clear user authentication state by removing the token from local storage
+    localStorage.removeItem("token");
+    // Redirect to the login form page
+  };
 
   return (
     <Box display="flex" justifyContent="space-between" p={2}>
@@ -52,7 +58,7 @@ const Topbar = ({ logout }) => {
         </IconButton>
         <IconButton
           onClick={() => {
-            logout();
+            handleLogout();
           }}
         >
           <LogoutIcon />
