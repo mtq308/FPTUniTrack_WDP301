@@ -635,7 +635,6 @@ const Lecture = () => {
           rows={lecturers}
           components={{ Toolbar: GridToolbar }}
           columns={columns}
-          components={{ Toolbar: GridToolbar }}
         />
       </Box>
     </Box>
